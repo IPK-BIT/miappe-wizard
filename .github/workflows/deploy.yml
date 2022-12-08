@@ -52,7 +52,7 @@ jobs:
       - name: Copy data files from repo to dist dir
         run: |
           mkdir ./dist/data
-          mv -R ./data/* ./dist/data/
+          cp -R ./data/* ./dist/data/
         working-directory: ${{ env.BUILD_PATH }}
       - name: List artifact files
         run: ls -la
