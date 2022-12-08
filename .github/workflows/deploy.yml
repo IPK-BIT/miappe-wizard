@@ -43,6 +43,17 @@ jobs:
       - name: Build Svelte app
         run: npm run build
         working-directory: ${{ env.BUILD_PATH }}
+      - name: List repo files
+        run: ls -la
+        working-directory: ${{ env.BUILD_PATH }}
+      - name: List artifact files
+        run: ls -la
+        working-directory: ${{ env.BUILD_PATH }}/dist
+      - name: Copy data files from repo to dist dir
+        run: |
+          mkdir ./dist/data
+          mv -R ./data/* ./dist/data/
+        working-directory: ${{ env.BUILD_PATH }}
       - name: List artifact files
         run: ls -la
         working-directory: ${{ env.BUILD_PATH }}/dist
