@@ -98,6 +98,10 @@
 
         <div class="leftcol">
 
+        </div>
+
+        <div class="middlecol">
+
             <button on:click|preventDefault={() => loadISA()}>Load minimal example</button> 
             <button on:click|preventDefault={() => addInvestigation()}>Add new Investigation</button>
             <button on:click|preventDefault={() => saveIsaAsJson()}>Save ISA-JSON as file</button>
@@ -149,15 +153,27 @@ h1 {
 
 .content {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: 1fr;
     grid-column-gap: 50px;
     grid-row-gap: 0px;
     padding: 10px 30px;
+    border: 1px solid blue;
+    min-height: 100%;
+    height: 100%;
 }
 
-.leftcol { grid-area: 1 / 1 / 2 / 2; }
-.rightcol { grid-area: 1 / 2 / 2 / 3;  }
+.leftcol {
+    grid-area: 1 / 1 / 2 / 2;
+    background: rgb(230,230,230);
+    align-self: stretch;
+}
+.middlecol {
+    grid-area: 1 / 2 / 2 / 3;
+}
+.rightcol {
+    grid-area: 1 / 3 / 2 / 4;
+}
 
 textarea {
     width: 100%;
@@ -165,6 +181,8 @@ textarea {
     background: lightgoldenrodyellow;
     padding: 2px;
     color: rgb(30,30,30);
+    overflow-x: scroll;
+    white-space: pre;
 }
 
 
