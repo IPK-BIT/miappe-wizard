@@ -9,10 +9,15 @@
     import People from '@/components/generic/People.svelte';
     import Studies from '@/components/study/Studies.svelte';
 
+    import Investigation from '@/components/investigation/Investigation.svelte';
+    import InvestigationWizard from '@/components/investigation/InvestigationWizard.svelte';
+
 
     let dataLoaded = false;
     let isa = {};
     let isaAsString = '';
+
+    let mode = 'form'; // ['form', 'wizard']
 
     let componentMapper = {
         'submissionDate': Date,
@@ -45,6 +50,13 @@
         let emptyInvestigation = await Schemas.getObjectFromSchema('investigation');
         populateTextarea(emptyInvestigation);
         dataLoaded = true;
+    }
+
+    function startWizardMode() {
+        if (Object.keys(isa).length == 0) {
+            addInvestigation();
+        }
+        mode = 'wizard';
     }
 
 
@@ -82,6 +94,7 @@
         input.click();
     }
 
+
     onMount(() => {
         //loadISA();
     });
@@ -91,7 +104,7 @@
 <main>
 
     <div class="header">
-        <h1>MIAPPE-Wizard <span style="font-weight: normal; font-size: 80%;">(technical demo using two-way data binding feature of Svelte)</span></h1>
+        <h1>MIAPPE-Wizard</h1>
     </div>
 
     <div class="content">
@@ -106,17 +119,14 @@
             <button on:click|preventDefault={() => addInvestigation()}>Add new Investigation</button>
             <button on:click|preventDefault={() => saveIsaAsJson()}>Save ISA-JSON as file</button>
             <button on:click|preventDefault={() => loadIsaFromJson()}>Load ISA-JSON from file</button>
+            <button on:click|preventDefault={() => startWizardMode()}>Start Wizard mode</button>
 
-            {#if Object.keys(isa).length > 0}
-                <h2>Investigation</h2>
-                {#each Object.entries(isa) as [attr, value]}
-
-                    {#if components.includes(attr)}
-                        <svelte:component this={componentMapper[attr]} {attr} bind:value={isa[attr]} />
-                    {/if}
-
-                {/each}
+            {#if mode === 'form'}
+            <Investigation bind:isa={isa} />
+            {:else if mode === 'wizard'}
+            <InvestigationWizard on:closeWizard={() => {mode = 'form'}} bind:isa={isa} />
             {/if}
+
         </div>
 
         <div class="rightcol">
@@ -158,7 +168,7 @@ h1 {
     grid-column-gap: 50px;
     grid-row-gap: 0px;
     padding: 10px 30px;
-    border: 1px solid blue;
+    border: 0px solid blue;
     min-height: 100%;
     height: 100%;
 }
