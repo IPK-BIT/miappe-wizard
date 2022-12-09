@@ -1,6 +1,9 @@
 <script>
     export let isa;
 
+    import { setContext } from 'svelte';
+    setContext('isaLevel', 'Investigation');
+
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
 
@@ -8,12 +11,6 @@
     import People from '@/components/generic/People.svelte';
     import Studies from '@/components/study/Studies.svelte';
     import String from '@/components/generic/String.svelte';
-
-    let componentMapper = {
-        'submissionDate': Date,
-        'people': People,
-        'studies': Studies
-    };
 
     let currentStep = 0;
 
@@ -43,22 +40,17 @@
             key: 'people',
             component: People
         },
+        {
+            question: 'You can add one or multiple studies:',
+            key: 'studies',
+            component: Studies
+        },
     ];
-
-    let components = Object.keys(componentMapper);
 
     function next() {
         currentStep = currentStep + 1;
-        console.log(currentStep);
-        console.log(steps.length);
     }
 
-    function closeWizard() {
-        console.log('CLOSE');
-		dispatch('closeWizard', {
-			text: 'Hello!'
-		});
-	}
 </script>
 
 
@@ -75,7 +67,7 @@
                 {#if currentStep < (steps.length-1)}
                 <button on:click={() => next()}>Next</button>
                 {:else}
-                <button on:click={() => closeWizard()}>Close wizard</button>
+                <button on:click={() => dispatch('closeWizard')}>Close wizard</button>
                 {/if}
             </div>
         </div>

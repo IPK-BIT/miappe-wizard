@@ -3,7 +3,8 @@
 
     import Schemas from '@/lib/schemas.js';
 
-    import { isaStore } from '@/lib/isa_store.js';
+    import Header from '@/components/Header.svelte';
+    import Explanation from '@/components/Explanation.svelte';
 
     import Date from '@/components/generic/Date.svelte';
     import People from '@/components/generic/People.svelte';
@@ -35,7 +36,6 @@
     }
 
     function populateTextarea(isa) {
-        console.log('populateTextarea');
         isaAsString = JSON.stringify(isa, null, 2);
     }
 
@@ -99,13 +99,22 @@
         //loadISA();
     });
 
+    function handleAction(event) {
+        let map = {
+            'loadISA': loadISA,
+            'addInvestigation': addInvestigation,
+            'saveIsaAsJson': saveIsaAsJson,
+            'loadIsaFromJson': loadIsaFromJson,
+            'startWizardMode': startWizardMode,
+        }
+        map[event.detail.action]();
+    }
+
 </script>
 
 <main>
 
-    <div class="header">
-        <h1>MIAPPE-Wizard</h1>
-    </div>
+    <Header on:action={handleAction} />
 
     <div class="content">
 
@@ -114,12 +123,6 @@
         </div>
 
         <div class="middlecol">
-
-            <button on:click|preventDefault={() => loadISA()}>Load minimal example</button> 
-            <button on:click|preventDefault={() => addInvestigation()}>Add new Investigation</button>
-            <button on:click|preventDefault={() => saveIsaAsJson()}>Save ISA-JSON as file</button>
-            <button on:click|preventDefault={() => loadIsaFromJson()}>Load ISA-JSON from file</button>
-            <button on:click|preventDefault={() => startWizardMode()}>Start Wizard mode</button>
 
             {#if mode === 'form'}
             <Investigation bind:isa={isa} />
@@ -130,6 +133,9 @@
         </div>
 
         <div class="rightcol">
+            <Explanation />
+
+            <br />
             <strong>ISA-JSON:</strong>
             <textarea bind:value={isaAsString}></textarea>
         </div>
@@ -148,18 +154,6 @@ main {
     font-family: sans-serif;
 }
 
-.header {
-    background: rgb(100,100,100);
-    color: white;
-    padding: 10px 15px;
-    box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
-}
-
-h1 {
-    margin: 0;
-    padding: 0;
-    font-size: 150%;
-}
 
 .content {
     display: grid;

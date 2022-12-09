@@ -1,6 +1,9 @@
 <script>
     export let isa;
 
+    import { setContext } from 'svelte';
+    setContext('isaLevel', 'Investigation');
+
     import Date from '@/components/generic/Date.svelte';
     import People from '@/components/generic/People.svelte';
     import Studies from '@/components/study/Studies.svelte';
