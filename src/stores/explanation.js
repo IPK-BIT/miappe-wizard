@@ -2,22 +2,31 @@ import { writable } from 'svelte/store';
 
 function createExplanationStore() {
 
-	const { subscribe, set, update } = writable({
+	const store = writable({
         'isaLevel': undefined,
         'attr': undefined
     });
 
 	return {
-		subscribe,
-		setIsaLevel: (isaLevel) => update(x => {
+		subscribe: store.subscribe,
+
+        setContext: (getContext) => store.update(x => {
+            let isaLevel = getContext('isaLevel');
             x.isaLevel = isaLevel;
             return x;
         }),
-		setAttr: (attr) => update(x => {
+
+		setIsaLevel: (isaLevel) => store.update(x => {
+            x.isaLevel = isaLevel;
+            return x;
+        }),
+
+		setAttr: (attr) => store.update(x => {
             x.attr = attr;
             return x;
         }),
-		reset: () => update(x => {
+
+		reset: () => store.update(x => {
             x.attr = false;
             return x;
         })

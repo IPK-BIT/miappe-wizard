@@ -1,11 +1,61 @@
 <script>
+    export let isaObj;
+
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
 
-    function emit(action) {
-		dispatch('action', {
-            action: action
+    import Schemas from '@/lib/schemas.js';
+
+
+
+    function startWizardMode() {
+        if (Object.keys($isaObj).length == 0) {
+            addInvestigation();
+        }
+		dispatch('menuAction', {
+            action: 'startWizardMode'
 		});
+    }
+
+    async function loadISA() {
+        const response = await fetch('data/minimal_1.json');
+        const json = await response.json();
+        $isaObj = json;
+    }
+
+    async function addInvestigation() {
+        let emptyInvestigation = await Schemas.getObjectFromSchema('investigation');
+        $isaObj = emptyInvestigation;
+    }
+
+    function saveIsaAsJson() {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([JSON.stringify($isaObj, null, 2)], {
+            type: 'application/json'
+        }));
+        a.setAttribute('download', 'isa.json');
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+
+    function loadIsaFromJson() {
+        let input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.json,application/json';
+        input.onchange = () => {
+
+            let fileLoaded = (e) => {
+                let lines = e.target.result;
+                let json = JSON.parse(lines);
+                $isaObj = json;
+            }
+
+            let fr = new FileReader();
+            fr.onload = fileLoaded;
+            fr.readAsText(input.files[0]);
+        };
+        input.click();
     }
 </script>
 
@@ -16,11 +66,12 @@
     </div>
 
     <div class="flex-items">
-        <button on:click|preventDefault={() => emit('loadISA')}>Load minimal example</button> 
-        <button on:click|preventDefault={() => emit('addInvestigation')}>Add new Investigation</button>
-        <button on:click|preventDefault={() => emit('saveIsaAsJson')}>Save ISA-JSON as file</button>
-        <button on:click|preventDefault={() => emit('loadIsaFromJson')}>Load ISA-JSON from file</button>
-        <button on:click|preventDefault={() => emit('startWizardMode')}>Start Wizard mode</button>
+        <button on:click|preventDefault={() => loadISA()}>Load minimal example</button> 
+        <button on:click|preventDefault={() => addInvestigation()}>Add new Investigation</button>
+        <button on:click|preventDefault={() => saveIsaAsJson()}>Save ISA-JSON as file</button>
+        <button on:click|preventDefault={() => loadIsaFromJson()}>Load ISA-JSON from file</button>
+        <button on:click|preventDefault={() => startWizardMode()}>Start Wizard mode</button>
+
     </div>
 </header>
 

@@ -2,13 +2,19 @@
     export let study;
 
     import Comments from '@/components/generic/Comments.svelte';
+
+    import { explanationActionFactory } from '@/actions/explanation.js';
+    import { getContext } from 'svelte';
+    const isaLevel = getContext('isaLevel');
+
+    let explanationAction = explanationActionFactory(isaLevel);
 </script>
 
 <section>
 
     <div class="attr entity">
         <h4>Study</h4>
-        <input type="text" bind:value={study.title} placeholder="Study title">
+        <input type="text" use:explanationAction data-attr="title" bind:value={study.title} placeholder="Study title">
 
         <Comments bind:comments={study.comments} />
 

@@ -2,6 +2,9 @@
     let studies: Array<Object>;
     export { studies as value };
 
+    import { setContext } from 'svelte';
+    setContext('isaLevel', 'Study');
+
     import Schemas from '@/lib/schemas.js';
     import Study from '@/components/study/Study.svelte';
 
