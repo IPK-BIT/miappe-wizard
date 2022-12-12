@@ -21,13 +21,21 @@
 
 <section>
 
-    {#if $explanation.attr !== undefined && $explanation.attr !== false && explanations[$explanation.isaLevel] !== undefined && explanations[$explanation.isaLevel][$explanation.attr] !== undefined}
-    Explanation: {explanations[$explanation.isaLevel][$explanation.attr]}
+    {#if $explanation.attr !== undefined && $explanation.attr !== false && explanations?.[$explanation.isaLevel]?.[$explanation.attr] !== undefined}
+    <div id="explanation-content">
+        <strong>Explanation:</strong>
+        <p>{explanations?.[$explanation.isaLevel]?.[$explanation.attr]}</p>
+    </div>
     {/if}
 
 </section>
 
 
 <style>
-
+#explanation-content {
+    padding: 10px;
+    margin-bottom: 20px;
+    background: white;
+    border: 1px solid rgb(150,150,150);
+}
 </style>

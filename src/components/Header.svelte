@@ -87,36 +87,40 @@ header {
 
 h1 {
     margin: 0;
-    padding: 0;
+    padding: 0 0 0 20px;
     font-size: 150%;
     font-weight: normal;
 }
 
 .flex-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: normal;
-  align-content: normal;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: normal;
+    align-content: normal;
 }
 
 .flex-items:nth-child(1) {
-  display: block;
-  flex-grow: 0;
-  flex-shrink: 1;
-  flex-basis: auto;
-  align-self: auto;
-  order: 0;
-  padding-right: 100px;
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    order: 0;
+    padding-right: 100px;
 }
 
 .flex-items:nth-child(2) {
-  display: block;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: auto;
-  align-self: center;
-  order: 0;
+    display: block;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: center;
+    order: 0;
+}
+
+button {
+    margin-right: 7px;
 }
 </style>

@@ -43,7 +43,7 @@
         <div class="rightcol">
             <Explanation />
 
-            <br />
+            
 
             <div id="json">
                 <strong>ISA-JSON (<a href="#" on:click={() => showJson = !showJson}>{showJson ? 'hide' : 'show'}</a>)</strong>
@@ -106,17 +106,22 @@ main {
     align-self: stretch;
     padding: 10px;
 }
+
 .middlecol {
     grid-area: 1 / 2 / 2 / 3;
 }
+
 .rightcol {
     grid-area: 1 / 3 / 2 / 4;
+    background: rgb(230,230,230);
+    align-self: stretch;
+    padding: 10px;
 }
 
 #json {
-    border: 1px solid black;
-    box-sizing: border-box;
-    padding: 5px;
+    padding: 10px;
+    background: white;
+    border: 1px solid rgb(150,150,150);
 }
 
 #json-textarea {
