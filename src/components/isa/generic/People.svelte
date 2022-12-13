@@ -29,13 +29,16 @@
 
 
 <style>
-h3 {
-    display: inline;
-    margin: 0 0 10px 0;
-    font-style: italic;
-}
-button {
-    margin-left: 8px;
-    margin-bottom: 10px;
-}
+    section {
+        margin-top: 15px;
+    }
+    h3 {
+        display: inline;
+        margin: 0 0 10px 0;
+        font-style: italic;
+    }
+    button {
+        margin-left: 8px;
+        margin-bottom: 10px;
+    }
 </style>

@@ -13,15 +13,15 @@
 
 <section>
 
-    <div class="attr">{attr}: <input use:explanationAction data-attr={attr} type="text" bind:value={value} /></div>
+    <div class="attr"><label>{attr}:</label> <input use:explanationAction data-attr={attr} type="text" bind:value={value} /></div>
 
 </section>
 
 
 <style>
-input {
-    padding: 4px;
-    font-family: sans-serif;
-    font-size: 100%;
-}
+    input {
+        padding: 4px;
+        font-family: sans-serif;
+        font-size: 100%;
+    }
 </style>

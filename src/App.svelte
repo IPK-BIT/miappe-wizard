@@ -8,7 +8,7 @@
     import { isaObj, isaStr } from '@/stores/isa.js';
 
 
-    let showJson = false;
+    let showJson = true;
     let mode = 'form'; // ['form', 'wizard']
 
 
@@ -155,6 +155,11 @@ textarea:focus-visible {
     margin: 0 0 5px 0;
     
     color: darkslateblue;
+}
+
+:global(label) {
+    display: inline-block;
+    width: 150px;
 }
 
 :global(input) {

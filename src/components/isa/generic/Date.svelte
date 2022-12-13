@@ -14,7 +14,7 @@
 
 <section>
 
-    <div class="attr">{attr}: <input use:explanationAction data-attr={attr} class="datepicker" type="date" bind:value={date} /></div>
+    <div class="attr"><label>{attr}:</label> <input use:explanationAction data-attr={attr} class="datepicker" type="date" bind:value={date} /></div>
 
 </section>
 

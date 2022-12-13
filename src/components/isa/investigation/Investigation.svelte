@@ -6,7 +6,10 @@
 
     import Date from '@/components/isa/generic/Date.svelte';
     import People from '@/components/isa/generic/People.svelte';
+    import Publications from '@/components/isa/generic/Publications.svelte';
+
     import Studies from '@/components/isa/study/Studies.svelte';
+
     import String from '@/components/isa/generic/String.svelte';
 
     let componentMapper = {
@@ -14,6 +17,7 @@
         'description': String,
         'submissionDate': Date,
         'publicReleaseDate': Date,
+        'publications': Publications,
         'people': People,
         'studies': Studies
     };
