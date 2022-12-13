@@ -2,7 +2,7 @@
     export let comments: Array<Object>;
 
     //import Comment from './Comment_useforms.svelte';
-    import Comment from '@/components/generic/Comment.svelte';
+    import Comment from '@/components/isa/generic/Comment.svelte';
 
     const addComment = () => {
         comments = [...comments, {name: '', value: ''}];

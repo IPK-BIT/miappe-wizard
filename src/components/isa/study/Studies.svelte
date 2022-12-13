@@ -6,7 +6,7 @@
     setContext('isaLevel', 'Study');
 
     import Schemas from '@/lib/schemas.js';
-    import Study from '@/components/study/Study.svelte';
+    import Study from '@/components/isa/study/Study.svelte';
 
     const addStudy = async () => {
         let emptyStudy = await Schemas.getObjectFromSchema('study');

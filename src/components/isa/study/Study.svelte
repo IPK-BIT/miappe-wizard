@@ -1,7 +1,7 @@
 <script lang="ts">
     export let study;
 
-    import Comments from '@/components/generic/Comments.svelte';
+    import Comments from '@/components/isa/generic/Comments.svelte';
 
     import { explanationActionFactory } from '@/actions/explanation.js';
     import { getContext } from 'svelte';

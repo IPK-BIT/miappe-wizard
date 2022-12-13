@@ -1,7 +1,7 @@
 <script>
     export let person;
 
-    import Comments from '@/components/generic/Comments.svelte';
+    import Comments from '@/components/isa/generic/Comments.svelte';
 </script>
 
 <section>

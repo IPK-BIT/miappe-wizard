@@ -4,7 +4,7 @@
     export { people as value };
 
     import Schemas from '@/lib/schemas.js';
-    import Person from '@/components/generic/Person.svelte';
+    import Person from '@/components/isa/generic/Person.svelte';
 
     const addPerson = async () => {
         let emptyPerson = await Schemas.getObjectFromSchema('person');

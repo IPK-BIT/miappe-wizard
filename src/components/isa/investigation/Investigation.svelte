@@ -4,10 +4,10 @@
     import { setContext } from 'svelte';
     setContext('isaLevel', 'Investigation');
 
-    import Date from '@/components/generic/Date.svelte';
-    import People from '@/components/generic/People.svelte';
-    import Studies from '@/components/study/Studies.svelte';
-    import String from '@/components/generic/String.svelte';
+    import Date from '@/components/isa/generic/Date.svelte';
+    import People from '@/components/isa/generic/People.svelte';
+    import Studies from '@/components/isa/study/Studies.svelte';
+    import String from '@/components/isa/generic/String.svelte';
 
     let componentMapper = {
         'title': String,

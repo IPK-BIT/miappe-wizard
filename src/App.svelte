@@ -2,8 +2,8 @@
     import Header from '@/components/Header.svelte';
     import Explanation from '@/components/Explanation.svelte';
 
-    import Investigation from '@/components/investigation/Investigation.svelte';
-    import InvestigationWizard from '@/components/investigation/InvestigationWizard.svelte';
+    import Investigation from '@/components/isa/investigation/Investigation.svelte';
+    import InvestigationWizard from '@/components/isa/investigation/InvestigationWizard.svelte';
 
     import { isaObj, isaStr } from '@/stores/isa.js';
 
