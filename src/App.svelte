@@ -136,7 +136,6 @@
     }
     :global(div.attr > h4) {
         margin: 0 0 5px 0;
-        
         color: darkslateblue;
     }
     :global(label) {

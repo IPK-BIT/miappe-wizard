@@ -22,6 +22,7 @@
   "dependencies": {
     "gridjs": "^5.1.0",
     "gridjs-svelte": "^2.1.1",
-    "read-excel-file": "^5.5.3"
+    "read-excel-file": "^5.5.3",
+    "svelecte": "^3.12.0"
   }
 }

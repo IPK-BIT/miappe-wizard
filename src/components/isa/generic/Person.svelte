@@ -2,6 +2,8 @@
     export let person;
 
     import Comments from '@/components/isa/generic/Comments.svelte';
+
+    import OntologyAnnotations from '@/components/isa/generic/OntologyAnnotations.svelte';
 </script>
 
 <section>
@@ -12,6 +14,8 @@
         <input type="text" bind:value={person.lastName} placeholder="last name"> <br />
         <input type="text" bind:value={person.address} placeholder="address" style="width: 100%;"> <br />
         <input type="text" bind:value={person.affiliation} placeholder="affiliation" style="width: 100%;"> <br />
+
+        <OntologyAnnotations bind:ontologyAnnotations={person.roles} />
 
         <Comments bind:comments={person.comments} />
 
