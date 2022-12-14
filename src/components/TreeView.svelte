@@ -58,13 +58,16 @@
                 <ul>
                     {#each value as val}
                     {#if entry === 'people'}
-                    <li>
-                        <span class="no-arrow"></span>
-                        <a>
-                            {val.firstName+" "+val.lastName}
-                        </a>
-                    </li>
+                        {#if val.firstName.length > 0 || val.lastName.length > 0}
+                        <li>
+                            <span class="no-arrow"></span>
+                            <a>
+                                {val.firstName+" "+val.lastName}
+                            </a>
+                        </li>
+                        {/if}
                     {:else if entry === 'studies'}
+                    {#if val.title.length > 0}
                     <li>
                         {#if val.assays.length > 0}
                             <span on:click={expand} class="{val.title.replace(/\s/g, "")} arrow" class:arrowDown={_expandableState[val.title.replace(/\s/g, "")]}>&#x25b6</span>
@@ -75,9 +78,11 @@
                             {#if _expandableState[val.title.replace(/\s/g, "")]}
                             <ul>
                                 {#each val.assays as assay}
-                                <li>
-                                    <a>{assay.title}</a>
-                                </li>
+                                <!--{#if assay.title.length > 0}-->
+                                    <li>
+                                        <a>{assay.title}</a>
+                                    </li>
+                                <!--{/if}-->
                                 {/each}
                             </ul>
                             {/if}
@@ -89,11 +94,16 @@
                             ({val.assays.length})
                         {/if}
                     </li>
+                    {/if}
                     {:else}
-                            <span class="no-arrow"></span>
-                            <a>
-                                {val.title}
-                            </a>
+                        {#if val.title.length > 0}
+                            <li>
+                                <span class="no-arrow"></span>
+                                <a>
+                                    {val.title}
+                                </a>
+                            </li>
+                        {/if}
                     {/if}
                     {/each}
                 </ul>
