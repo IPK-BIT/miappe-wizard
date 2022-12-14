@@ -4,10 +4,9 @@ function ontologyLookup(search_term, ontology = null, n_terms = 7) {
         mode: 'cors',
         cache: 'no-cache',
         headers: {
-          'Content-Type': 'application/json',
-          'accept': 'application/json'
+            'Content-Type': 'application/json',
+            'accept': 'application/json'
         },
         body: '[{"n": '+n_terms+',"query": "'+search_term+'"}]'
-      })
-        .then((response) => response.json())
+    }).then((response) => response.json())
 }
