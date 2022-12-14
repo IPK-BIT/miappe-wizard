@@ -1,7 +1,7 @@
 <script>
     import Header from '@/components/Header.svelte';
     import Explanation from '@/components/Explanation.svelte';
-    import TreeView from '@/components/TreeView.svelte';
+    import TreeView from '@/components/TreeView/TreeView.svelte';
     
     import Investigation from '@/components/isa/investigation/Investigation.svelte';
     import InvestigationWizard from '@/components/isa/investigation/InvestigationWizard.svelte';
