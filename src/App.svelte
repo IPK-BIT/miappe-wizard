@@ -7,8 +7,6 @@
     import Investigation from '@/components/isa/investigation/Investigation.svelte';
     import InvestigationWizard from '@/components/isa/investigation/InvestigationWizard.svelte';
     import Forms from '@/components/Forms.svelte';
-
-    import Studies from '@/components/isa/study/Studies.svelte';
     
     import { isaObj, isaStr } from '@/stores/isa.js';
 
@@ -34,6 +32,30 @@
         }
         
     }
+
+    function handleTreeViewAction(event) {
+        if (event.detail.action === 'showIsaLevel') {
+            viewportMode = 'main';
+            mode = 'form';
+            switch (event.detail.level) {
+                case 'investigation':
+                    console.log('set hierarchical level to investigation');
+                    break;
+                case 'investigation.publication':
+                    console.log('set hierarchical level to investigation/publications');
+                    break;
+                case 'investigation.people':
+                    console.log('set hierarchical level to investigation/people');
+                    break;
+                case 'investigation.study':
+                    console.log('set hierarchical level to investigation/studies');
+                    break;
+                default:
+                    console.log(event.detail.level);
+                    break;
+            }
+        }
+    }
 </script>
 
 <main>
@@ -47,7 +69,7 @@
     <div class="content">
         
         <div class="leftcol">
-            <TreeView/>
+            <TreeView on:treeViewAction={handleTreeViewAction} />
         </div>
         
         <div class="middlecol">

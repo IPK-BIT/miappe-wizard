@@ -1,4 +1,11 @@
 <script lang="ts">
+    import { createEventDispatcher, getContext, setContext } from 'svelte';
+    const dispatch = createEventDispatcher();
+
+    let context = getContext('isaLevel');
+    setContext('isaLevel', context+".publication");
+    context = getContext('isaLevel');
+
     export let publications;
 
     let expanded = true;
@@ -7,12 +14,19 @@
         expanded = !expanded;
     }
 
+    function sendTreeViewAction() {
+        dispatch('treeViewAction', {
+            action: 'showIsaLevel',
+            level: context
+        });
+    }
+
     $: arrowDown = expanded;
 </script>
 
 <li>
     <span on:click={toggle} class="arrow" class:arrowDown>&#x25b6</span>
-    <a href="#">Publications</a> ({publications.length})
+    <a on:click|preventDefault={sendTreeViewAction} href="#">Publications</a> ({publications.length})
 </li>
 {#if expanded}
     <ul>

@@ -1,6 +1,13 @@
 <script lang="ts">
     import TreeViewStudy from "./TreeViewStudy.svelte";
 
+    import { createEventDispatcher, getContext, setContext } from 'svelte';
+    const dispatch = createEventDispatcher();
+
+    let context = getContext('isaLevel');
+    setContext('isaLevel', context+".study");
+    context = getContext('isaLevel');
+
     export let studies;
 
     let expanded = true;
@@ -9,18 +16,25 @@
         expanded = !expanded;
     }
 
+    function sendTreeViewAction() {
+        dispatch('treeViewAction', {
+            action: 'showIsaLevel',
+            level: context
+        });
+    }
+
     $: arrowDown = expanded;
 </script>
 
 <li>
     <span on:click={toggle} class="arrow" class:arrowDown>&#x25b6</span>
-    <a href="#">Studies</a> ({studies.length})
+    <a on:click|preventDefault={sendTreeViewAction} href="#">Studies</a> ({studies.length})
 </li>
 {#if expanded}
     <ul>
-        {#each studies as study}
+        {#each studies as study, index}
             <li>
-                <TreeViewStudy bind:study={study}/>
+                <TreeViewStudy on:treeViewAction {index} bind:study={study}/>
             </li>
         {/each}
     </ul>

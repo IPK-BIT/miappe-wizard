@@ -4,11 +4,26 @@
     import TreeViewPublication from "./TreeViewPublications.svelte";
 
     export let study;
+    export let index;
+    import { createEventDispatcher, getContext, setContext } from 'svelte';
+    const dispatch = createEventDispatcher();
+
+    let context = getContext('isaLevel');
+    setContext('isaLevel', context+"."+index);
+    context = getContext('isaLevel');
+
 
     let expanded = true;
 
     function toggle() {
         expanded = !expanded;
+    }
+
+    function sendTreeViewAction() {
+        dispatch('treeViewAction', {
+            action: 'showIsaLevel',
+            level: context
+        });
     }
 
     $: arrowDown = expanded;
@@ -17,16 +32,16 @@
     <li>
         <span on:click={toggle} class="arrow" class:arrowDown>&#x25b6</span>
         {#if study.title}
-            <a href="#">{study.title}</a>
+            <a on:click|preventDefault={sendTreeViewAction} href="#">{study.title}</a>
         {:else}
             <a>unnamed</a>
         {/if}
     </li>
     {#if expanded}
         <ul>
-            <TreeViewPublication bind:publications={study.publications}/>
-            <TreeViewPeople bind:people={study.people}/>
-            <TreeViewAssays bind:assays={study.assays}/>
+            <TreeViewPublication on:treeViewAction bind:publications={study.publications}/>
+            <TreeViewPeople on:treeViewAction bind:people={study.people}/>
+            <TreeViewAssays on:treeViewAction bind:assays={study.assays}/>
         </ul>    
     {/if}
 

@@ -5,10 +5,23 @@
 
     import { isaObj } from '@/stores/isa.js';
 
+    import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
+
+    import { setContext } from 'svelte';
+    setContext('isaLevel', 'investigation');
+
     let expanded = true;
 
     function toggle() {
         expanded = !expanded;
+    }
+
+    function sendTreeViewAction(level) {
+        dispatch('treeViewAction', {
+            action: 'showIsaLevel',
+            level
+        });
     }
 
     $: arrowDown = expanded;
@@ -18,18 +31,18 @@
     <ul>
         <li>
             <span on:click={toggle} class="arrow" class:arrowDown>&#x25b6</span>
-            <a href="#">Investigation</a>
+            <a on:click={()=>sendTreeViewAction("investigation")} href="#">Investigation</a>
         </li>
         {#if expanded}
             <ul>
                 {#if $isaObj.publications}
-                    <TreeViewPublications bind:publications={$isaObj.publications}/>
+                    <TreeViewPublications on:treeViewAction bind:publications={$isaObj.publications}/>
                 {/if}
                 {#if $isaObj.people}
-                    <TreeViewPeople bind:people={$isaObj.people}/>    
+                    <TreeViewPeople on:treeViewAction bind:people={$isaObj.people}/>    
                 {/if}
                 {#if $isaObj.studies}
-                    <TreeViewStudies bind:studies={$isaObj.studies}/>
+                    <TreeViewStudies on:treeViewAction bind:studies={$isaObj.studies}/>
                 {/if}
             </ul>
         {/if}
