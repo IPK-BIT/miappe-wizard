@@ -1,7 +1,7 @@
 <script lang="ts">
     export let assays;
 
-    let expanded = false;
+    let expanded = true;
 
     function toggle() {
         expanded = !expanded;

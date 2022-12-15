@@ -5,7 +5,7 @@
 
     export let study;
 
-    let expanded = false;
+    let expanded = true;
 
     function toggle() {
         expanded = !expanded;

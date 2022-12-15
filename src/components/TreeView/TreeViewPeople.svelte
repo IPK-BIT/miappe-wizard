@@ -1,7 +1,7 @@
 <script lang="ts">
     export let people;
 
-    let expanded = false;
+    let expanded = true;
 
     function toggle() {
         expanded = !expanded;
