@@ -64,12 +64,12 @@
 <header class="flex-container">
     <div class="flex-items" style="vertical-align: top;">
         <img src="data/logo.png"/>
-        <h1>miappe Wizard</h1>
+        <h1>MIAPPE Wizard</h1>
     </div>
 
     <div class="flex-items">
         {#if viewportMode == 'main'}
-        <button on:click|preventDefault={() => loadISA()}>Load minimal example</button> 
+        <!--<button on:click|preventDefault={() => loadISA()}>Load minimal example</button> -->
         <button on:click|preventDefault={() => addInvestigation()}>Add new Investigation</button>
         <button on:click|preventDefault={() => saveIsaAsJson()}>Save ISA-JSON as file</button>
         <button on:click|preventDefault={() => loadIsaFromJson()}>Load ISA-JSON from file</button>
