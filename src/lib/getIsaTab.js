@@ -1,5 +1,6 @@
+// Uses the small backend at https://github.com/IPK-BIT/isa-json2tab 
 function getIsaTab(isa_json) {
-    return fetch('URL(TBD)', {
+    return fetch('https://webapps.ipk-gatersleben.de/isa-json2tab/json2tab', {
         method: 'POST',
         mode: 'cors',
         cache: 'no-cache',
