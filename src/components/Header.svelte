@@ -1,5 +1,6 @@
 <script>
     export let isaObj;
+    export let viewportMode;
 
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
@@ -66,12 +67,13 @@
     </div>
 
     <div class="flex-items">
+        {#if viewportMode == 'main'}
         <button on:click|preventDefault={() => loadISA()}>Load minimal example</button> 
         <button on:click|preventDefault={() => addInvestigation()}>Add new Investigation</button>
         <button on:click|preventDefault={() => saveIsaAsJson()}>Save ISA-JSON as file</button>
         <button on:click|preventDefault={() => loadIsaFromJson()}>Load ISA-JSON from file</button>
         <button on:click|preventDefault={() => startWizardMode()}>Start Wizard mode</button>
-
+        {/if}
     </div>
 </header>
 

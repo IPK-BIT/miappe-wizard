@@ -1,16 +1,21 @@
 <script>
     import Header from '@/components/Header.svelte';
+    import InitView from '@/components/InitView.svelte';
     import Explanation from '@/components/Explanation.svelte';
     import TreeView from '@/components/TreeView/TreeView.svelte';
     
     import Investigation from '@/components/isa/investigation/Investigation.svelte';
     import InvestigationWizard from '@/components/isa/investigation/InvestigationWizard.svelte';
+    import Forms from '@/components/Forms.svelte';
+
+    import Studies from '@/components/isa/study/Studies.svelte';
     
     import { isaObj, isaStr } from '@/stores/isa.js';
 
 
     let showJson = true;
-    let mode = 'form'; // ['form', 'wizard']
+    let viewportMode = 'init';
+    let mode = 'form'; // ['form', 'wizard', 'subobject']
     
     
     function handleMenuAction(event) {
@@ -18,11 +23,26 @@
             mode = 'wizard';
         }
     }
+
+    function handleInitViewAction(event) {
+        if (event.detail.action === 'addInvestigation') {
+            viewportMode = 'main';
+        }
+        if (event.detail.action === 'startWizardMode') {
+            viewportMode = 'main';
+            mode = 'wizard';
+        }
+        
+    }
 </script>
 
 <main>
     
-    <Header on:menuAction={handleMenuAction} {isaObj} />
+    <Header on:menuAction={handleMenuAction} {isaObj} {viewportMode} />
+
+    {#if viewportMode == 'init'}
+    <InitView on:initViewAction={handleInitViewAction} {isaObj} />
+    {:else}
     
     <div class="content">
         
@@ -36,6 +56,8 @@
             <Investigation bind:isa={$isaObj} />
             {:else if mode === 'wizard'}
             <InvestigationWizard bind:isa={$isaObj} on:closeWizard={() => {mode = 'form'}} />
+            {:else if mode === 'subobject'}
+            <Forms bind:isaObj={$isaObj} level="studies" />
             {/if}
                 
         </div>
@@ -53,6 +75,7 @@
         </div>
 
     </div>
+    {/if}
 
     
 </main>
