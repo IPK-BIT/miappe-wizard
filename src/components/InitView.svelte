@@ -77,6 +77,8 @@
         padding: 50px;
         background: rgb(240,240,240);
         border: 1px solid rgb(230,230,230);
+        -webkit-box-shadow: 4px 4px 4px -2px #000000; 
+        box-shadow: 4px 4px 4px -2px #000000;
     }
     h1 {
         font-weight: normal;
