@@ -63,7 +63,7 @@
 
 <header class="flex-container">
     <div class="flex-items">
-        <h1>miappe Wizard</h1>
+        <h1><img style="vertical-algin:middle; padding-right: 10px" width=50 src="/data/logo.png"/>miappe Wizard</h1>
     </div>
 
     <div class="flex-items">
@@ -85,6 +85,7 @@ header {
     padding: 10px 15px;
     box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
     margin-bottom: 15px;
+    
 }
 
 h1 {
