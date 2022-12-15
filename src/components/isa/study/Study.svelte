@@ -11,6 +11,7 @@
 
     import { explanationActionFactory } from '@/actions/explanation.js';
     import { getContext } from 'svelte';
+import Publications from '../generic/Publications.svelte';
     const isaLevel = getContext('isaLevel');
 
     let explanationAction = explanationActionFactory(isaLevel);
@@ -30,6 +31,8 @@
         <Date bind:value={study.publicReleaseDate} attr="publicReleaseDate" />
 
         <Comments bind:comments={study.comments} />
+
+        <Publications bind:value={study.publications} attr="publications" />
 
         <People bind:value={study.people} attr="people" />
 
