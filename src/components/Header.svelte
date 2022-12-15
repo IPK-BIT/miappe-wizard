@@ -62,8 +62,9 @@
 
 
 <header class="flex-container">
-    <div class="flex-items">
-        <h1><img style="vertical-algin:middle; padding-right: 10px" width=50 src="data/logo.png"/>miappe Wizard</h1>
+    <div class="flex-items" style="vertical-align: top;">
+        <img src="data/logo.png"/>
+        <h1>miappe Wizard</h1>
     </div>
 
     <div class="flex-items">
@@ -89,10 +90,17 @@ header {
 }
 
 h1 {
-    margin: 0;
-    padding: 0 0 0 20px;
+    margin: 7px 0 0 15px;
+    padding: 0;
+    display: inline-block;
     font-size: 150%;
     font-weight: normal;
+    float: left;
+}
+
+img {
+    width: 40px;
+    float: left;
 }
 
 .flex-container {
