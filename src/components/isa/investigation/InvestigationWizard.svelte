@@ -61,7 +61,7 @@
         <div style="background: rgb(240,240,240); padding: 20px;">
             <p>{steps[currentStep].question}</p>
 
-            <svelte:component this={steps[currentStep].component} bind:value={isa[steps[currentStep].key]} attr={steps[currentStep].key} />
+            <svelte:component this={steps[currentStep].component} on:nextStep={() =>next()} bind:value={isa[steps[currentStep].key]} attr={steps[currentStep].key} />
 
             <div style="margin-top: 45px; text-align: right;">
                 {#if currentStep < (steps.length-1)}

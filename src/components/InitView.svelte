@@ -51,6 +51,7 @@
         <div>
             <img width=200 src="data/logo.png"/>
             <h1>Welcome to the MIAPPE Wizard</h1>
+            <p>Biologist-friendly application for creating MIAPPE-compliant metadata</p>
             <button on:click|preventDefault={() => startWizardMode()}>Start Wizard mode</button> <br />
             <button on:click|preventDefault={() => addInvestigation()}>Add new Investigation</button> <br />
             <button on:click|preventDefault={() => loadIsaFromJson()}>Load ISA-JSON from file</button>
@@ -71,20 +72,23 @@
     }
 
     .box div {
-        width: 400px;
+        width: 600px;
         border-radius: 5%;
         text-align: center;
         padding: 50px;
         background: rgb(240,240,240);
         border: 1px solid rgb(230,230,230);
-        -webkit-box-shadow: 4px 4px 4px -2px #000000; 
-        box-shadow: 4px 4px 4px -2px #000000;
+        box-shadow: 10px 10px 15px rgba(0,0,0,0.1);
     }
     h1 {
         font-weight: normal;
         font-size: 200%;
+        margin-bottom: 1rem;
+    }
+    p {
+        font-style: italic;
+        color: rgb(120,120,120);
         margin-bottom: 4rem;
-        font-family: Georgia;
     }
     button {
         display: block;

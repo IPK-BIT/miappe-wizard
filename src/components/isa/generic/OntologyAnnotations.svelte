@@ -1,5 +1,6 @@
 <script lang="ts">
     export let ontologyAnnotations: Array<Object>;
+    export let ontology;
 
     import Svelecte from 'svelecte';
 
@@ -11,7 +12,7 @@
     let roles;
 
     async function handleFetch(query) {
-        let result = await ontologyLookup(query);
+        let result = await ontologyLookup(query, ontology);
         result = result.map(item => {
             
             item.origName = item.Name;
@@ -28,7 +29,8 @@
 
         for (let role of roles) {
             let _emptyOA = Object.assign({}, emptyOA);
-            _emptyOA.termAccession = role.Accession;
+            _emptyOA.termSource = role.FK_Ontology;
+            _emptyOA.termAccession = 'http://purl.obolibrary.org/obo/'+role.Accession;
             _emptyOA.annotationValue = role.origName;
 
             ontologyAnnotations = [...ontologyAnnotations, _emptyOA];

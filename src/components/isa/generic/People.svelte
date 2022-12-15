@@ -29,9 +29,6 @@
 
 
 <style>
-    section {
-        margin-top: 15px;
-    }
     h3 {
         display: inline;
         margin: 0 0 10px 0;

@@ -1,5 +1,6 @@
 <script>
-    export let isa;
+    let isa;
+    export { isa as value };
 
     import { setContext } from 'svelte';
     setContext('isaLevel', 'Investigation');

@@ -11,10 +11,10 @@
     import { isaObj, isaStr } from '@/stores/isa.js';
 
 
-    let showJson = true;
+    let showJson = false;
     let viewportMode = 'init';
-    let mode = 'form'; // ['form', 'wizard', 'subobject']
-    
+    let mode = 'form'; // ['form', 'wizard', 'level']
+    let level;
     
     function handleMenuAction(event) {
         if (event.detail.action === 'startWizardMode') {
@@ -36,8 +36,10 @@
     function handleTreeViewAction(event) {
         if (event.detail.action === 'showIsaLevel') {
             viewportMode = 'main';
-            mode = 'form';
-            switch (event.detail.level) {
+            mode = 'level';
+            level = event.detail.level;
+
+            /*switch (event.detail.level) {
                 case 'investigation':
                     console.log('set hierarchical level to investigation');
                     break;
@@ -53,7 +55,7 @@
                 default:
                     console.log(event.detail.level);
                     break;
-            }
+            }*/
         }
     }
 </script>
@@ -75,11 +77,11 @@
         <div class="middlecol">
             
             {#if mode === 'form'}
-            <Investigation bind:isa={$isaObj} />
+            <Investigation bind:value={$isaObj} />
             {:else if mode === 'wizard'}
             <InvestigationWizard bind:isa={$isaObj} on:closeWizard={() => {mode = 'form'}} />
-            {:else if mode === 'subobject'}
-            <Forms bind:isaObj={$isaObj} level="studies" />
+            {:else if mode === 'level'}
+            <Forms bind:isaObj={$isaObj} {level} />
             {/if}
                 
         </div>

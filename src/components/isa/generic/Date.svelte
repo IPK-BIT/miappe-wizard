@@ -7,14 +7,27 @@
     import { getContext } from 'svelte';
     const isaLevel = getContext('isaLevel');
 
+    import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
+
     let explanationAction = explanationActionFactory(isaLevel);
+
+    function setFocus(el){
+        el.focus();
+    }
+
+    function handleKeypress(event) {
+        if (event.keyCode === 13) {
+            dispatch('nextStep');
+        }
+    }
 
 </script>
 
 
 <section>
 
-    <div class="attr"><label>{attr}:</label> <input use:explanationAction data-attr={attr} class="datepicker" type="date" bind:value={date} /></div>
+    <div class="attr"><label>{attr}:</label> <input use:explanationAction use:setFocus data-attr={attr} class="datepicker" type="date" bind:value={date} on:keypress={handleKeypress} /></div>
 
 </section>
 

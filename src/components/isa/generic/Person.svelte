@@ -4,6 +4,9 @@
     import Comments from '@/components/isa/generic/Comments.svelte';
 
     import OntologyAnnotations from '@/components/isa/generic/OntologyAnnotations.svelte';
+
+    import ontologyMapping from '@/lib/ontologyMapping';
+    console.log(ontologyMapping);
 </script>
 
 <section>
@@ -15,7 +18,7 @@
         <input type="text" bind:value={person.address} placeholder="address" style="width: 100%;"> <br />
         <input type="text" bind:value={person.affiliation} placeholder="affiliation" style="width: 100%;"> <br />
 
-        <OntologyAnnotations bind:ontologyAnnotations={person.roles} />
+        <OntologyAnnotations bind:ontologyAnnotations={person.roles} ontology={ontologyMapping['Person.role']} />
 
         <Comments bind:comments={person.comments} />
 
