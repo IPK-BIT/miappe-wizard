@@ -49,7 +49,7 @@
 <section>
     <div class="box">
         <div>
-            <img width=200 src="/data/logo.png"/>
+            <img width=200 src="data/logo.png"/>
             <h1>Welcome to the MIAPPE Wizard</h1>
             <button on:click|preventDefault={() => startWizardMode()}>Start Wizard mode</button> <br />
             <button on:click|preventDefault={() => addInvestigation()}>Add new Investigation</button> <br />
