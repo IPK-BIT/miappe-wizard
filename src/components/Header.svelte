@@ -58,12 +58,26 @@
         };
         input.click();
     }
+
+    function sendToArc() {
+        // localhost:8000/arc/import
+        fetch('http://localhost:8080/arc/import', {
+            headers: {
+                'Accept': 'application/octet-stream',
+                'Content-Type': 'application/text'
+            },
+            method: 'POST',
+            body: JSON.stringify(isaObj)
+        })
+        .then(function(res){ console.log(res) })
+        .catch(function(res){ console.log(res) })
+    }
 </script>
 
 
 <header class="flex-container">
     <div class="flex-items" style="vertical-align: top;">
-        <img src="data/logo.png"/>
+        <img src="data/logo.png" alt="MIAPPE Wizard" />
         <h1>MIAPPE Wizard</h1>
     </div>
 
@@ -74,6 +88,7 @@
         <button on:click|preventDefault={() => saveIsaAsJson()}>Save ISA-JSON as file</button>
         <button on:click|preventDefault={() => loadIsaFromJson()}>Load ISA-JSON from file</button>
         <button on:click|preventDefault={() => startWizardMode()}>Start Wizard mode</button>
+        <!--<button on:click|preventDefault={() => sendToArc()}>Send JSON to ARC</button>-->
         {/if}
     </div>
 </header>
