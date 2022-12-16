@@ -2,7 +2,7 @@
     import Header from '@/components/Header.svelte';
     import InitView from '@/components/InitView.svelte';
     import Explanation from '@/components/Explanation.svelte';
-    import TreeView from '@/components/TreeView/TreeView.svelte';
+    import TreeView from '@/components/treeview/TreeView.svelte';
     
     import Investigation from '@/components/isa/investigation/Investigation.svelte';
     import InvestigationWizard from '@/components/isa/investigation/InvestigationWizard.svelte';

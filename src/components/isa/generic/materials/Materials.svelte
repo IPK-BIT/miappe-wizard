@@ -65,15 +65,15 @@
 <section>
 
     <div class="attr">
-        <h3>Materials</h3>
+        <h3>Materials</h3><br /><br />
 
         <button on:click|preventDefault={() => loadXLSX()}>Load material sources from Excel file (*.xlsx)</button>
 
-        <br />
+        
         <!--<textarea bind:value={materialsInput} ></textarea>-->
         <br />
 
-        <button on:click|preventDefault={() => addStudy()}>add material source</button>
+        <!--<button on:click|preventDefault={() => addStudy()}>add material source</button>-->
 
         <!--{#each assays as assay}
         <Assay bind:assay />

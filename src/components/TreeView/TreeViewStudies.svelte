@@ -5,7 +5,7 @@
     const dispatch = createEventDispatcher();
 
     let context = getContext('isaLevel');
-    setContext('isaLevel', context+".study");
+    setContext('isaLevel', context+".studies");
     context = getContext('isaLevel');
 
     export let studies;
@@ -23,11 +23,10 @@
         });
     }
 
-    $: arrowDown = expanded;
 </script>
 
 <li>
-    <span on:click={toggle} class="arrow" class:arrowDown>&#x25b6</span>
+    <span on:click={toggle} class="arrow" class:arrowDown={expanded}>&#x25b6</span>
     <a on:click|preventDefault={sendTreeViewAction} href="#">Studies</a> ({studies.length})
 </li>
 {#if expanded}
@@ -46,10 +45,6 @@
             list-style: none;
             padding-left: 1.2rem; 
             user-select: none;
-    }
-
-    .no-arrow { 
-        padding-left: 1.0rem; 
     }
 
     .arrow {

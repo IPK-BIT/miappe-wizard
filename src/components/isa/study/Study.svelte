@@ -11,7 +11,7 @@
 
     import { explanationActionFactory } from '@/actions/explanation.js';
     import { getContext } from 'svelte';
-import Publications from '../generic/Publications.svelte';
+    import Publications from '../generic/Publications.svelte';
     const isaLevel = getContext('isaLevel');
 
     let explanationAction = explanationActionFactory(isaLevel);

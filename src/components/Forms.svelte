@@ -27,6 +27,10 @@
     };*/
 
     $: console.log(level);
+
+    let lastValue;
+    $: lastValue = level.split('.');
+    $: console.warn(lastValue);
 </script>
 
 
@@ -44,7 +48,7 @@
     <svelte:component this={People} bind:value={isaObj['people']} />
     {/if}
 
-    {#if level == 'investigation.study'}
+    {#if level == 'investigation.studies'}
     <svelte:component this={Studies} bind:value={isaObj['studies']} />
     {/if}
 
