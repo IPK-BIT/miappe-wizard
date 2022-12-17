@@ -62,13 +62,17 @@
 
 <main>
     
-    <Header on:menuAction={handleMenuAction} {isaObj} {viewportMode} />
+    
 
     {#if viewportMode == 'init'}
     <InitView on:initViewAction={handleInitViewAction} {isaObj} />
     {:else}
     
     <div class="content">
+
+        <div class="header">
+            <Header on:menuAction={handleMenuAction} {isaObj} {viewportMode} />
+        </div>
         
         <div class="leftcol">
             <TreeView on:treeViewAction={handleTreeViewAction} />
@@ -129,29 +133,38 @@
     }
     .content {
         display: grid;
-        grid-template-columns: 1fr 2fr 1fr;
-        grid-template-rows: 1fr;
-        grid-column-gap: 50px;
+        grid-template-columns: 1fr 3fr 1fr;
+        grid-template-rows: 60px auto;
+        grid-column-gap: 1px;
         grid-row-gap: 0px;
-        padding: 10px 30px;
+        padding: 0px 0px;
         border: 0px solid blue;
         min-height: 90vh;
-        height: 90vh;
+        height: 100vh;
+    }
+    .header {
+        grid-area: 1 / 1 / 1 / 4;
+        background: rgb(80, 80, 100);
     }
     .leftcol {
-        grid-area: 1 / 1 / 2 / 2;
-        background: rgb(230,230,230);
+        grid-area: 2 / 1 / 2 / 2;
+        background: rgb(240,240,240);
         align-self: stretch;
-        padding: 10px;
+        padding: 10px 5px;
+        border-right: 1px solid rgb(190,190,190);
+        /*box-shadow: 0px 0px 15px rgba(0,0,0,0.1);*/
     }
     .middlecol {
-        grid-area: 1 / 2 / 2 / 3;
+        grid-area: 2 / 2 / 2 / 3;
+        overflow-y: scroll;
+        padding: 20px 30px;
     }
     .rightcol {
-        grid-area: 1 / 3 / 2 / 4;
-        background: rgb(230,230,230);
+        grid-area: 2 / 3 / 2 / 4;
+        background: rgb(240,240,240);
         align-self: stretch;
         padding: 10px;
+        border-left: 1px solid rgb(190,190,190);
     }
     #json {
         padding: 10px;
@@ -176,10 +189,10 @@
     }
     :global(div.attr) {
         padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid rgb(215,215,215);
+        margin-bottom: 0px;
+        /*border: 1px solid rgb(215,215,215);*/
         box-sizing: border-box;
-        background: rgb(247,247,247);
+        
     }
     :global(div.attr > h4) {
         margin: 0 0 5px 0;
@@ -207,5 +220,18 @@
     :global(button:hover) {
         background: rgb(230, 230, 152);
         border: 1px solid rgb(70,70,70);
+    }
+
+    :global(button.add) {
+        background: rgb(130, 130, 230);
+        color: white;
+        border: 0;
+        border-radius: 5px;
+        padding: 3px 6px;
+        cursor: pointer;
+        border: 1px solid transparent;
+    }
+    :global(button.add:hover) {
+        background: rgb(160, 160, 255);
     }
 </style>

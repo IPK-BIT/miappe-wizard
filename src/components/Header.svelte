@@ -96,11 +96,10 @@
 
 <style>
 header {
-    background: rgb(80, 80, 100);
     color: white;
     padding: 10px 15px;
-    box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
-    margin-bottom: 15px;
+    /*box-shadow: 0px 5px 10px rgba(0,0,0,0.2);*/
+    margin-bottom: 0px;
     
 }
 

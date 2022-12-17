@@ -50,15 +50,14 @@
 </section>
 
 <style>
+    section {
+        font-size: 100%;
+    }
     ul {
             margin: 0;
             list-style: none;
-            padding-left: 1.2rem; 
+            padding-left: 0.5rem; 
             user-select: none;
-    }
-
-    .no-arrow { 
-        padding-left: 1.0rem; 
     }
 
     .arrow {
@@ -73,7 +72,6 @@
     }
 
     a {
-        font-size: large;
         text-decoration: none;
     }
 </style>

@@ -53,10 +53,6 @@
             user-select: none;
     }
 
-    .no-arrow { 
-        padding-left: 1.0rem; 
-    }
-
     .arrow {
         cursor: pointer;
         display: inline-block;
@@ -69,7 +65,6 @@
     }
 
     a {
-        font-size: large;
         text-decoration: none;
     }
 </style>

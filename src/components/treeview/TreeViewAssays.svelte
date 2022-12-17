@@ -68,7 +68,6 @@
     }
 
     a {
-        font-size: large;
         text-decoration: none;
     }
 </style>
