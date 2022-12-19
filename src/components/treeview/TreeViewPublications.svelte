@@ -27,8 +27,7 @@
 <li>
     <span on:click={toggle} class="arrow" class:arrowDown>&#x25b6</span>
     <a on:click|preventDefault={sendTreeViewAction} href="#">Publications</a> ({publications.length})
-</li>
-{#if expanded}
+    {#if expanded}
     <ul>
         {#each publications as publication}
         <li>
@@ -45,7 +44,8 @@
         </li>
         {/each}
     </ul>
-{/if}
+    {/if}
+</li>
 
 <style>
     ul {

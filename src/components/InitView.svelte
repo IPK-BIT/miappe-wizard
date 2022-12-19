@@ -71,12 +71,12 @@
 
     .box div {
         width: 600px;
-        border-radius: 5%;
+        border-radius: 3%;
         text-align: center;
         padding: 50px;
         background: rgb(240,240,240);
-        border: 1px solid rgb(230,230,230);
-        box-shadow: 10px 10px 15px rgba(0,0,0,0.1);
+        border: 1px solid rgb(200,200,200);
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.08);
     }
     h1 {
         font-weight: normal;
@@ -98,5 +98,9 @@
         cursor: pointer;
         text-align: center;
         color: white;
+    }
+
+    button:hover {
+        background-color: rgb(50, 75, 150);
     }
 </style>

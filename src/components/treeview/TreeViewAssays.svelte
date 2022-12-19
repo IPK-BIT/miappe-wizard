@@ -27,8 +27,7 @@
 <li>
     <span on:click={toggle} class="arrow" class:arrowDown>&#x25b6</span>
     <a on:click|preventDefault={sendTreeViewAction} href="#">Assays</a> ({assays.length})
-</li>
-{#if expanded}
+    {#if expanded}
     <ul>
         {#each assays as assay}
             <li>
@@ -42,6 +41,7 @@
         {/each}
     </ul>
 {/if}
+</li>
     
 
 <style>

@@ -28,12 +28,11 @@
 </script>
 
 <section>
-    <ul>
+    <ul id="tree-root">
         <li>
             <span on:click={toggle} class="arrow" class:arrowDown>&#x25b6</span>
             <a on:click={()=>sendTreeViewAction("investigation")} href="#">Investigation</a>
-        </li>
-        {#if expanded}
+            {#if expanded}
             <ul>
                 {#if $isaObj.publications}
                     <TreeViewPublications on:treeViewAction bind:publications={$isaObj.publications}/>
@@ -46,6 +45,7 @@
                 {/if}
             </ul>
         {/if}
+        </li>
     </ul>
 </section>
 
@@ -56,8 +56,12 @@
     ul {
             margin: 0;
             list-style: none;
-            padding-left: 0.5rem; 
+            padding-left: 1rem; 
             user-select: none;
+    }
+
+    ul#tree-root {
+        padding-left: 0.3rem;
     }
 
     .arrow {
