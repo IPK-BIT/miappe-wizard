@@ -29,6 +29,10 @@
 
 
 <style>
+    section {
+        background: rgba(0,0,0,0.05);
+        margin-bottom: 10px;
+    }
     h3 {
         display: inline;
         margin: 0 0 10px 0;

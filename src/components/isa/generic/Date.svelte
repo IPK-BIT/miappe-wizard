@@ -16,18 +16,12 @@
         el.focus();
     }
 
-    function handleKeypress(event) {
-        if (event.keyCode === 13) {
-            dispatch('nextStep');
-        }
-    }
-
 </script>
 
 
 <section>
 
-    <div class="attr"><label>{attr}:</label> <input use:explanationAction use:setFocus data-attr={attr} class="datepicker" type="date" bind:value={date} on:keypress={handleKeypress} /></div>
+    <div class="attr"><label>{attr}:</label> <input use:explanationAction use:setFocus data-attr={attr} class="datepicker" type="date" bind:value={date} /></div>
 
 </section>
 

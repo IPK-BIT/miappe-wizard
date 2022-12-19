@@ -33,7 +33,7 @@
         margin: 0 20px 5px 0;
     }
     div.entity {
-        background: rgb(240,240,240);
+        background: rgba(0,0,0,0.05);
         margin-bottom: 30px;
     }
 </style>

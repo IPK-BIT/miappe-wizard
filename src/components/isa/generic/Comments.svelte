@@ -16,11 +16,15 @@
 
 <section>
 
-    {#each comments as comment, index}
-    <Comment on:removeComment={handleRemoveComment} bind:comment {index} />
-    {/each}
+    <div class="attr">
+        <h3>Comments</h3>
 
-    <button on:click|preventDefault={() => addComment()}>add comment</button>
+        <button class="add" on:click|preventDefault={() => addComment()}>add comment</button>
+
+        {#each comments as comment, index}
+        <Comment on:removeComment={handleRemoveComment} bind:comment {index} />
+        {/each}
+    </div>
 
 </section>
 
@@ -28,5 +32,12 @@
 <style>
     section {
         margin-top: 10px;
+        margin-bottom: 10px;
+        background: rgba(0,0,0,0.05);
+    }
+    h3 {
+        display: inline;
+        margin: 0 10px 10px 0;
+        font-style: italic;
     }
 </style>

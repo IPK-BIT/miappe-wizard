@@ -1,28 +1,25 @@
 <script>
     export let isaObj;
 
-    import { createEventDispatcher } from 'svelte';
-    const dispatch = createEventDispatcher();
+    import { appstate } from '@/stores/appstate';
 
     import Schemas from '@/lib/schemas.js';
 
 
-    function startWizardMode() {
+    async function startWizardMode() {
         if (Object.keys($isaObj).length == 0) {
-            addInvestigation();
+            let emptyInvestigation = await Schemas.getObjectFromSchema('investigation');
+            $isaObj = emptyInvestigation;
         }
-		dispatch('initViewAction', {
-            action: 'startWizardMode'
-		});
+
+        $appstate.mode = appstate.WIZARD;
     }
 
     async function addInvestigation() {
         let emptyInvestigation = await Schemas.getObjectFromSchema('investigation');
         $isaObj = emptyInvestigation;
 
-		dispatch('initViewAction', {
-            action: 'addInvestigation'
-		});
+        $appstate.mode = appstate.FORM;
     }
 
     function loadIsaFromJson() {
@@ -35,6 +32,7 @@
                 let lines = e.target.result;
                 let json = JSON.parse(lines);
                 $isaObj = json;
+                $appstate.mode = appstate.FORM;
             }
 
             let fr = new FileReader();

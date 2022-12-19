@@ -31,6 +31,10 @@
 
 
 <style>
+    section {
+        background: rgba(0,0,0,0.05);
+        margin-bottom: 10px;
+    }
     button {
         margin: 0 0 10px 8px;
     }

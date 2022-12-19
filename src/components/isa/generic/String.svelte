@@ -15,18 +15,12 @@
         el.focus();
     }
 
-    function handleKeypress(event) {
-        if (event.keyCode === 13) {
-            dispatch('nextStep');
-        }
-    }
-
 </script>
 
 
 <section>
 
-    <div class="attr"><label>{attr}:</label> <input use:explanationAction use:setFocus data-attr={attr} type="text" bind:value={value} on:keypress={handleKeypress} /></div>
+    <div class="attr"><label>{attr}:</label> <input use:explanationAction use:setFocus data-attr={attr} type="text" bind:value={value} /></div> <!--  on:keypress={handleKeypress}  -->
 
 </section>
 

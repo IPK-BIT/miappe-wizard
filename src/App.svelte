@@ -1,4 +1,7 @@
 <script>
+    import '@fontsource/roboto';
+    import '@fontsource/roboto/500.css';
+
     import Header from '@/components/Header.svelte';
     import InitView from '@/components/InitView.svelte';
     import Explanation from '@/components/Explanation.svelte';
@@ -8,84 +11,54 @@
     import InvestigationWizard from '@/components/isa/investigation/InvestigationWizard.svelte';
     import Forms from '@/components/Forms.svelte';
     
+    import { appstate } from '@/stores/appstate';
     import { isaObj, isaStr } from '@/stores/isa.js';
 
 
     let showJson = false;
-    let viewportMode = 'init';
-    let mode = 'form'; // ['form', 'wizard', 'level']
     let level;
     
-    function handleMenuAction(event) {
-        if (event.detail.action === 'startWizardMode') {
-            mode = 'wizard';
-        }
-    }
-
-    function handleInitViewAction(event) {
-        if (event.detail.action === 'addInvestigation') {
-            viewportMode = 'main';
-        }
-        if (event.detail.action === 'startWizardMode') {
-            viewportMode = 'main';
-            mode = 'wizard';
-        }
-        
-    }
-
     function handleTreeViewAction(event) {
         if (event.detail.action === 'showIsaLevel') {
-            viewportMode = 'main';
-            mode = 'level';
+            $appstate.mode = appstate.LEVEL;
             level = event.detail.level;
-
-            /*switch (event.detail.level) {
-                case 'investigation':
-                    console.log('set hierarchical level to investigation');
-                    break;
-                case 'investigation.publication':
-                    console.log('set hierarchical level to investigation/publications');
-                    break;
-                case 'investigation.people':
-                    console.log('set hierarchical level to investigation/people');
-                    break;
-                case 'investigation.study':
-                    console.log('set hierarchical level to investigation/studies');
-                    break;
-                default:
-                    console.log(event.detail.level);
-                    break;
-            }*/
         }
     }
+
+    console.log();
 </script>
 
 <main>
     
     
 
-    {#if viewportMode == 'init'}
-    <InitView on:initViewAction={handleInitViewAction} {isaObj} />
+    {#if $appstate.mode == appstate.INIT}
+
+    <InitView {isaObj} />
+    
     {:else}
     
     <div class="content">
 
         <div class="header">
-            <Header on:menuAction={handleMenuAction} {isaObj} {viewportMode} />
+            <Header {isaObj} />
         </div>
         
         <div class="leftcol">
+
+            {#if $appstate.mode !== appstate.WIZARD}
             <TreeView on:treeViewAction={handleTreeViewAction} />
+            {/if}
         </div>
         
         <div class="middlecol">
             
-            {#if mode === 'form'}
+            {#if $appstate.mode === appstate.FORM}
             <Investigation bind:value={$isaObj} />
-            {:else if mode === 'wizard'}
-            <InvestigationWizard bind:isa={$isaObj} on:closeWizard={() => {mode = 'form'}} />
-            {:else if mode === 'level'}
-            <Forms bind:isaObj={$isaObj} {level} />
+            {:else if $appstate.mode === appstate.WIZARD}
+            <InvestigationWizard bind:isa={$isaObj} on:closeWizard={() => {$appstate.mode = appstate.FORM;}} />
+            {:else if $appstate.mode === appstate.LEVEL}
+            <Forms {level} />
             {/if}
                 
         </div>
@@ -93,6 +66,7 @@
         <div class="rightcol">
             <Explanation />
             
+            {#if $appstate.mode !== appstate.WIZARD}
             <div id="json">
                 <strong>ISA-JSON (<a href="#" on:click={() => showJson = !showJson}>{showJson ? 'hide' : 'show'}</a>)</strong>
                 
@@ -100,6 +74,7 @@
                 <textarea bind:value={$isaStr} id="json-textarea"></textarea>
                 {/if}
             </div> 
+            {/if}
         </div>
 
     </div>
@@ -121,14 +96,18 @@
         padding: 0;
         margin: 0;
         height: 100vh;
+        font-family: 'Roboto', sans-serif;
     }
     :global(#app) {
         padding: 0;
         margin: 0;
         height: 100vh;
     }
+    :global(strong) {
+        font-weight: 500;
+    }
     main {
-        font-family: sans-serif;
+        font-family: 'Roboto', sans-serif;
         height: 100vh;
     }
     .content {
@@ -157,7 +136,7 @@
     .middlecol {
         grid-area: 2 / 2 / 2 / 3;
         overflow-y: scroll;
-        padding: 20px 30px;
+        padding: 30px 30px;
     }
     .rightcol {
         grid-area: 2 / 3 / 2 / 4;

@@ -1,5 +1,6 @@
 <script lang="ts">
-    export let study;
+    let study;
+    export { study as value };
 
     import Comments from '@/components/isa/generic/Comments.svelte';
     import Date from '@/components/isa/generic/Date.svelte';
@@ -19,7 +20,7 @@
 
 <section>
 
-    <div class="attr entity">
+    <div class="attr ">
         <h4>Study</h4>
 
         <String bind:value={study.filename} attr="filename" />
@@ -48,6 +49,10 @@
 
 
 <style>
+    section {
+        background: rgba(0,0,0,0.05);
+        margin-bottom: 10px;
+    }
     div.assays {
         margin-top: 15px;
     }

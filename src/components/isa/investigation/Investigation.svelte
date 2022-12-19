@@ -42,5 +42,12 @@
 
 
 <style>
-
+    section {
+        /*background: rgb(247,247,247);*/
+        border-left: 3px solid rgb(180,180,180);
+        padding: 10px;
+    }
+    h2 {
+        margin-top: 0;
+    }
 </style>

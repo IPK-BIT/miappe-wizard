@@ -11,7 +11,7 @@
 
 <section>
 
-    <div class="attr" style="background: rgb(240,240,240); margin-bottom: 30px;">
+    <div class="attr">
         <h4>Person</h4>
         <input type="text" bind:value={person.firstName} placeholder="first name" style="margin-right: 20px;"> 
         <input type="text" bind:value={person.lastName} placeholder="last name"> <br />
@@ -28,7 +28,10 @@
 
 
 <style>
-input {
-    margin-bottom: 10px;
-}
+    section {
+        background: rgba(0,0,0,0.05);
+    }
+    input {
+        margin-bottom: 10px;
+    }
 </style>

@@ -1,6 +1,8 @@
 <script>
-    export let isaObj;
+    //export let isaObj;
     export let level;
+
+    import { isaObj } from '@/stores/isa.js';
 
     import Investigation from '@/components/isa/investigation/Investigation.svelte';
     import Publications from '@/components/isa/generic/Publications.svelte';
@@ -11,57 +13,53 @@
     let value;
     let component;
 
-    /*let levelToComponentMapping = {
+    let levelToComponentMapping = {
         'investigation': {
             component: Investigation,
-            //value: isaObj
+            value: isaObj
         },
         'investigation.publication': {
             component: Publications,
-            //value: isaObj['publications']
+            //value: () => isaObj['publications']
+            //value: derived(isaObj, $isaObj => $isaObj.publications),
+            //value: isaObj.derived('publications')
+            value: isaObj.keyed('publications')
         },
-        'investigation.study': null,
-        'investigation.study.0': null,
+        'investigation.people': {
+            component: People,
+            value: isaObj.keyed('people')
+        },
+        'investigation.studies': {
+            component: Studies,
+            value: isaObj.keyed('studies')
+        },
+        'investigation.studies.0': {
+            component: Study,
+            value: isaObj.keyed('studies[0]')
+        },
         'investigation.study.0.publication': null,
         'investigation.study.0.people': null,
-    };*/
+    };
 
     $: console.log(level);
 
     let lastValue;
     $: lastValue = level.split('.');
     $: console.warn(lastValue);
+
+
+    $: component = levelToComponentMapping?.[level]?.component;
+    $: value = levelToComponentMapping?.[level]?.value;
+    $: console.log($value);
+
 </script>
 
 
 <section>
-
-    {#if level == 'investigation'}
-    <svelte:component this={Investigation} bind:value={isaObj} />
-    {/if}
-
-    {#if level == 'investigation.publication'}
-    <svelte:component this={Publications} bind:value={isaObj['publications']} />
-    {/if}
-
-    {#if level == 'investigation.people'}
-    <svelte:component this={People} bind:value={isaObj['people']} />
-    {/if}
-
-    {#if level == 'investigation.studies'}
-    <svelte:component this={Studies} bind:value={isaObj['studies']} />
-    {/if}
-
-
-
-
-    <!--
-    {#if value}
-    <svelte:component this={component} bind:value={value} />
-    {JSON.stringify(value)}
-    {/if}
-    -->
     
+    {#if value}
+    <svelte:component this={component} bind:value={$value} />
+    {/if}
 
 </section>
 

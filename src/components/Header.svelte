@@ -1,21 +1,17 @@
 <script>
     export let isaObj;
-    export let viewportMode;
 
-    import { createEventDispatcher } from 'svelte';
-    const dispatch = createEventDispatcher();
+    import { appstate } from '@/stores/appstate';
 
     import Schemas from '@/lib/schemas.js';
-
 
 
     function startWizardMode() {
         if (Object.keys($isaObj).length == 0) {
             addInvestigation();
         }
-		dispatch('menuAction', {
-            action: 'startWizardMode'
-		});
+
+        $appstate.mode = appstate.WIZARD;
     }
 
     async function loadISA() {
@@ -82,14 +78,14 @@
     </div>
 
     <div class="flex-items">
-        {#if viewportMode == 'main'}
+
         <!--<button on:click|preventDefault={() => loadISA()}>Load minimal example</button> -->
         <button on:click|preventDefault={() => addInvestigation()}>Add new Investigation</button>
         <button on:click|preventDefault={() => saveIsaAsJson()}>Save ISA-JSON as file</button>
         <button on:click|preventDefault={() => loadIsaFromJson()}>Load ISA-JSON from file</button>
         <button on:click|preventDefault={() => startWizardMode()}>Start Wizard mode</button>
         <!--<button on:click|preventDefault={() => sendToArc()}>Send JSON to ARC</button>-->
-        {/if}
+
     </div>
 </header>
 

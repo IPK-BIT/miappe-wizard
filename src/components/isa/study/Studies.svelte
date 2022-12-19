@@ -20,10 +20,10 @@
     <div class="attr">
         <h3>Studies</h3>
 
-        <button on:click|preventDefault={() => addStudy()}>add study</button>
+        <button class="add" on:click|preventDefault={() => addStudy()}>add study</button>
 
         {#each studies as study}
-        <Study bind:study />
+        <Study bind:value={study} />
         {/each}
     </div>
 
@@ -31,6 +31,10 @@
 
 
 <style>
+    section {
+        background: rgba(0,0,0,0.05);
+        margin-bottom: 10px;
+    }
     button {
         margin: 0 0 10px 8px;
     }
