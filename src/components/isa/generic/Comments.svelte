@@ -1,5 +1,7 @@
 <script lang="ts">
-    export let comments: Array<Object>;
+    let comments: Array<Object>;
+    export { comments as value };
+    export let attr = '';
 
     import Comment from '@/components/isa/generic/Comment.svelte';
 

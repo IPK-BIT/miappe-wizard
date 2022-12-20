@@ -16,7 +16,7 @@
         <h4>Assay</h4>
         <input type="text" use:explanationAction data-attr="title" bind:value={assay.title} placeholder="Assay title">
 
-        <Comments bind:comments={assay.comments} />
+        <Comments bind:value={assay.comments} />
 
     </div>
 

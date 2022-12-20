@@ -1,6 +1,7 @@
 <script lang="ts">
     let publications: Array<Object>;
     export { publications as value };
+    export let attr = '';
 
     import { setContext } from 'svelte';
     setContext('isaLevel', 'Publication');

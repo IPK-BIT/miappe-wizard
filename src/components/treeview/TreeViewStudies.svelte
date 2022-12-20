@@ -1,14 +1,14 @@
 <script lang="ts">
-    import TreeViewStudy from "./TreeViewStudy.svelte";
+    export let studies;
 
-    import { createEventDispatcher, getContext, setContext } from 'svelte';
-    const dispatch = createEventDispatcher();
+    import TreeViewStudy from "./TreeViewStudy.svelte";
+    import { partialview } from '@/stores/partialview';
+
+    import { getContext, setContext } from 'svelte';
 
     let context = getContext('isaLevel');
-    setContext('isaLevel', context+".studies");
+    setContext('isaLevel', context+'.studies');
     context = getContext('isaLevel');
-
-    export let studies;
 
     let expanded = true;
 
@@ -17,10 +17,7 @@
     }
 
     function sendTreeViewAction() {
-        dispatch('treeViewAction', {
-            action: 'showIsaLevel',
-            level: context
-        });
+        $partialview.path = context;
     }
 
 </script>
@@ -32,7 +29,7 @@
     <ul>
         {#each studies as study, index}
             <li>
-                <TreeViewStudy on:treeViewAction {index} bind:study={study}/>
+                <TreeViewStudy {index} bind:study={study}/>
             </li>
         {/each}
     </ul>

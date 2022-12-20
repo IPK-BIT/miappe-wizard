@@ -20,7 +20,7 @@
 
         <OntologyAnnotations bind:ontologyAnnotations={person.roles} ontology={ontologyMapping['Person.role']} />
 
-        <Comments bind:comments={person.comments} />
+        <Comments bind:value={person.comments} />
 
     </div>
 

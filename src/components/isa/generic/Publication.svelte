@@ -19,9 +19,7 @@
         <input type="text" use:explanationAction data-attr="pubMedID" bind:value={publication.pubMedID} placeholder="PubMed ID"> <br />
         <input type="text" use:explanationAction data-attr="authorList" bind:value={publication.authorList} placeholder="Author list"> <br />
 
-        
-
-        <Comments bind:comments={publication.comments} />
+        <Comments bind:value={publication.comments} />
 
     </div>
 

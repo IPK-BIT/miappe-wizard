@@ -1,12 +1,13 @@
 <script lang="ts">
-    import { createEventDispatcher, getContext, setContext } from 'svelte';
-    const dispatch = createEventDispatcher();
+    export let publications;
+
+    import { partialview } from '@/stores/partialview';
+
+    import { getContext, setContext } from 'svelte';
 
     let context = getContext('isaLevel');
-    setContext('isaLevel', context+".publication");
+    setContext('isaLevel', context+".publications");
     context = getContext('isaLevel');
-
-    export let publications;
 
     let expanded = true;
 
@@ -15,17 +16,13 @@
     }
 
     function sendTreeViewAction() {
-        dispatch('treeViewAction', {
-            action: 'showIsaLevel',
-            level: context
-        });
+        $partialview.path = context;
     }
 
-    $: arrowDown = expanded;
 </script>
 
 <li>
-    <span on:click={toggle} class="arrow" class:arrowDown>&#x25b6</span>
+    <span on:click={toggle} class="arrow" class:arrowDown={expanded}>&#x25b6</span>
     <a on:click|preventDefault={sendTreeViewAction} href="#">Publications</a> ({publications.length})
     {#if expanded}
     <ul>

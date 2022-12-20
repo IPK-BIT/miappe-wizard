@@ -31,7 +31,7 @@
         <Date bind:value={study.submissionDate} attr="submissionDate" />
         <Date bind:value={study.publicReleaseDate} attr="publicReleaseDate" />
 
-        <Comments bind:comments={study.comments} />
+        <Comments bind:value={study.comments} />
 
         <Publications bind:value={study.publications} attr="publications" />
 
@@ -40,7 +40,7 @@
         <Materials bind:value={study.materials} attr="materials" />
 
         <div class="assays">
-            <Assays bind:assays={study.assays} />
+            <Assays bind:value={study.assays} />
         </div>
 
     </div>

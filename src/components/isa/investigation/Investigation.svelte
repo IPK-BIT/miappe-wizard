@@ -8,6 +8,7 @@
     import Date from '@/components/isa/generic/Date.svelte';
     import People from '@/components/isa/generic/People.svelte';
     import Publications from '@/components/isa/generic/Publications.svelte';
+    import Comments from '@/components/isa/generic/Comments.svelte';
 
     import Studies from '@/components/isa/study/Studies.svelte';
 
@@ -19,6 +20,7 @@
         'submissionDate': Date,
         'publicReleaseDate': Date,
         'publications': Publications,
+        'comments': Comments,
         'people': People,
         'studies': Studies
     };

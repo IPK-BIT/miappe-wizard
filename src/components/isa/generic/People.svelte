@@ -1,5 +1,5 @@
 <script>
-    export let attr;
+    export let attr = '';
     let people;
     export { people as value };
 

@@ -12,20 +12,18 @@
     import Forms from '@/components/Forms.svelte';
     
     import { appstate } from '@/stores/appstate';
+    import { partialview } from '@/stores/partialview';
     import { isaObj, isaStr } from '@/stores/isa.js';
 
 
     let showJson = false;
-    let level;
-    
-    function handleTreeViewAction(event) {
-        if (event.detail.action === 'showIsaLevel') {
-            $appstate.mode = appstate.LEVEL;
-            level = event.detail.level;
-        }
-    }
 
-    console.log();
+    partialview.subscribe($ => {
+        if (typeof($.component) === 'function') {
+            $appstate.mode = appstate.LEVEL;
+        }
+    });
+
 </script>
 
 <main>
@@ -47,7 +45,7 @@
         <div class="leftcol">
 
             {#if $appstate.mode !== appstate.WIZARD}
-            <TreeView on:treeViewAction={handleTreeViewAction} />
+            <TreeView />
             {/if}
         </div>
         
@@ -58,7 +56,7 @@
             {:else if $appstate.mode === appstate.WIZARD}
             <InvestigationWizard bind:isa={$isaObj} on:closeWizard={() => {$appstate.mode = appstate.FORM;}} />
             {:else if $appstate.mode === appstate.LEVEL}
-            <Forms {level} />
+            <Forms />
             {/if}
                 
         </div>

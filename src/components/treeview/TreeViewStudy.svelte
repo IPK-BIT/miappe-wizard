@@ -1,17 +1,18 @@
 <script lang="ts">
+    export let study;
+    export let index;
+
+    import { partialview } from '@/stores/partialview';
+
     import TreeViewAssays from "./TreeViewAssays.svelte";
     import TreeViewPeople from "./TreeViewPeople.svelte";
     import TreeViewPublication from "./TreeViewPublications.svelte";
 
-    export let study;
-    export let index;
-    import { createEventDispatcher, getContext, setContext } from 'svelte';
-    const dispatch = createEventDispatcher();
+    import { getContext, setContext } from 'svelte';
 
     let context = getContext('isaLevel');
-    setContext('isaLevel', context+"."+index);
+    setContext('isaLevel', context+'['+index+']');
     context = getContext('isaLevel');
-
 
     let expanded = true;
 
@@ -20,17 +21,13 @@
     }
 
     function sendTreeViewAction() {
-        dispatch('treeViewAction', {
-            action: 'showIsaLevel',
-            level: context
-        });
+        $partialview.path = context;
     }
 
-    $: arrowDown = expanded;
 </script>
 
     <li>
-        <span on:click={toggle} class="arrow" class:arrowDown>&#x25b6</span>
+        <span on:click={toggle} class="arrow" class:arrowDown={expanded}>&#x25b6</span>
         {#if study.title}
             <a on:click|preventDefault={sendTreeViewAction} href="#">{study.title}</a>
         {:else}
@@ -39,9 +36,9 @@
     </li>
     {#if expanded}
         <ul>
-            <TreeViewPublication on:treeViewAction bind:publications={study.publications}/>
-            <TreeViewPeople on:treeViewAction bind:people={study.people}/>
-            <TreeViewAssays on:treeViewAction bind:assays={study.assays}/>
+            <TreeViewPublication bind:publications={study.publications}/>
+            <TreeViewPeople bind:people={study.people}/>
+            <TreeViewAssays bind:assays={study.assays}/>
         </ul>    
     {/if}
 

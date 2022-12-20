@@ -47,7 +47,7 @@
 <section>
     <div class="box">
         <div>
-            <img width=200 src="data/logo.png"/>
+            <img id="logo" src="data/logo.png" alt="MIAPPE Wizard Logo" />
             <h1>Welcome to the MIAPPE Wizard</h1>
             <p>A biologist-friendly application for creating MIAPPE-compliant metadata for plant phenotyping experiments.</p>
             <button on:click|preventDefault={() => startWizardMode()}>Start Wizard mode</button> <br />
@@ -77,6 +77,10 @@
         background: rgb(240,240,240);
         border: 1px solid rgb(200,200,200);
         box-shadow: 0px 0px 10px rgba(0,0,0,0.08);
+    }
+    #logo {
+        width: 200px;
+        height: 200px;
     }
     h1 {
         font-weight: normal;

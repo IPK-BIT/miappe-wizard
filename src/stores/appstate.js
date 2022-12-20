@@ -1,14 +1,3 @@
-/*import { writable } from 'svelte/store'
-
-const initialAppState = {
-    'mode': 'init' // ['init', 'form', 'wizard', 'level']
-};
-
-export const appstate = writable(initialAppState);
-*/
-
-
-
 import { writable } from 'svelte/store';
 
 function createAppStateStore() {

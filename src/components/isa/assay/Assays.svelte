@@ -1,6 +1,6 @@
 <script lang="ts">
     export let assays: Array<Object>;
-    //export { assays as value };
+    export { assays as value };
 
     import { setContext } from 'svelte';
     setContext('isaLevel', 'Assay');
