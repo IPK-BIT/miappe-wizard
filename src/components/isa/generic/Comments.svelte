@@ -3,10 +3,12 @@
     export { comments as value };
     export let attr = '';
 
+    import Schemas from '@/lib/schemas.js';
     import Comment from '@/components/isa/generic/Comment.svelte';
 
     const addComment = () => {
-        comments = [...comments, {name: '', value: ''}];
+        let emptyComment = Schemas.getObjectFromSchema('comment');
+        comments = [...comments, emptyComment];
     }
 
     function handleRemoveComment(event) {
