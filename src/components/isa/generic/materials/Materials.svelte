@@ -7,7 +7,6 @@
     import Grid from 'gridjs-svelte';
 
     import Schemas from '@/lib/schemas.js';
-    //import Assay from '@/components/isa/assay/Assay.svelte';
 
     const addSources = async (materialIds) => {
         let emptySource = await Schemas.getObjectFromSchema('source');
@@ -15,19 +14,19 @@
         for (let materialId of materialIds) {
             let _emptySource = Object.assign({}, emptySource);
             _emptySource.name = materialId;
-            console.log(_emptySource);
             materials.sources = [...materials.sources, _emptySource];
-            console.log(materials.sources);
         }
         
     }
 
     let materialsInput = '';
 
+    /*
     let materialIds: Array<String>;
     $: materialIds = materialsInput.split(/\r?\n/).filter(item => item != '');
     $: addSources(materialIds);
     $: console.log(materialIds);
+    */
 
     let data = [];
     let columns = [];

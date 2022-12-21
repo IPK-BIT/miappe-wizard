@@ -20,7 +20,7 @@
 
     partialview.subscribe($ => {
         if (typeof($.component) === 'function') {
-            $appstate.mode = appstate.LEVEL;
+            $appstate = appstate.LEVEL;
         }
     });
 
@@ -30,7 +30,7 @@
     
     
 
-    {#if $appstate.mode == appstate.INIT}
+    {#if $appstate == appstate.INIT}
 
     <InitView {isaObj} />
     
@@ -44,18 +44,18 @@
         
         <div class="leftcol">
 
-            {#if $appstate.mode !== appstate.WIZARD}
+            {#if $appstate !== appstate.WIZARD}
             <TreeView />
             {/if}
         </div>
         
         <div class="middlecol">
             
-            {#if $appstate.mode === appstate.FORM}
+            {#if $appstate === appstate.FORM}
             <Investigation bind:value={$isaObj} />
-            {:else if $appstate.mode === appstate.WIZARD}
-            <InvestigationWizard bind:isa={$isaObj} on:closeWizard={() => {$appstate.mode = appstate.FORM;}} />
-            {:else if $appstate.mode === appstate.LEVEL}
+            {:else if $appstate === appstate.WIZARD}
+            <InvestigationWizard bind:isa={$isaObj} on:closeWizard={() => {$appstate = appstate.FORM;}} />
+            {:else if $appstate === appstate.LEVEL}
             <Forms />
             {/if}
                 
@@ -64,7 +64,7 @@
         <div class="rightcol">
             <Explanation />
             
-            {#if $appstate.mode !== appstate.WIZARD}
+            {#if $appstate !== appstate.WIZARD}
             <div id="json">
                 <strong>ISA-JSON (<a href="#" on:click={() => showJson = !showJson}>{showJson ? 'hide' : 'show'}</a>)</strong>
                 

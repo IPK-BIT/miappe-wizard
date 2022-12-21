@@ -12,14 +12,14 @@
             $isaObj = emptyInvestigation;
         }
 
-        $appstate.mode = appstate.WIZARD;
+        $appstate = appstate.WIZARD;
     }
 
     async function addInvestigation() {
         let emptyInvestigation = await Schemas.getObjectFromSchema('investigation');
         $isaObj = emptyInvestigation;
 
-        $appstate.mode = appstate.FORM;
+        $appstate = appstate.FORM;
     }
 
     function loadIsaFromJson() {
@@ -32,7 +32,7 @@
                 let lines = e.target.result;
                 let json = JSON.parse(lines);
                 $isaObj = json;
-                $appstate.mode = appstate.FORM;
+                $appstate = appstate.FORM;
             }
 
             let fr = new FileReader();

@@ -11,7 +11,7 @@
             addInvestigation();
         }
 
-        $appstate.mode = appstate.WIZARD;
+        $appstate = appstate.WIZARD;
     }
 
     async function loadISA() {
@@ -79,7 +79,7 @@
 
     <div class="flex-items">
 
-        {#if $appstate.mode !== appstate.WIZARD}
+        {#if $appstate !== appstate.WIZARD}
         <!--<button on:click|preventDefault={() => loadISA()}>Load minimal example</button> -->
         <!--<button on:click|preventDefault={() => addInvestigation()}>Add new Investigation</button>-->
         <button on:click|preventDefault={() => saveIsaAsJson()}>Save ISA-JSON as file</button>

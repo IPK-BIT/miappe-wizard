@@ -54,16 +54,16 @@
             "type": "array",
             "items": {
                  "anyOf": [
-                        {
-                            "$ref": "sample_schema.json#"
-                        },
-                        {
-                            "$ref": "data_schema.json#"
-                        },
-                        {
+                    {
+                        "$ref": "sample_schema.json#"
+                    },
+                    {
+                        "$ref": "data_schema.json#"
+                    },
+                    {
                         "$ref": "material_schema.json#"
-                        }
-                    ]
+                    }
+                ]
             }
         },
         "comments" : {

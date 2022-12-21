@@ -2,20 +2,19 @@ import { writable } from 'svelte/store';
 
 function createAppStateStore() {
 
-    const initialAppState = {
-        'mode': 'init' // ['init', 'form', 'wizard', 'level']
-    };
+    const states = {
+        INIT: 'init',
+        FORM: 'form',
+        WIZARD: 'wizard',
+        LEVEL: 'level'
+    }
 
-	const store = writable(initialAppState);
+	const store = writable(states.INIT);
 
 	return {
 		subscribe: store.subscribe,
         set: store.set,
-
-        INIT: 'init',
-        FORM: 'form',
-        WIZARD: 'wizard',
-        LEVEL: 'level',
+        ...states
 	};
 }
 
