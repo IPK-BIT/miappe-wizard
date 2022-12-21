@@ -20,7 +20,7 @@ const keyToComponentMapping = {
 
 function createPartialViewStore() {
 
-	const store = writable({
+    const store = writable({
         'path': '',
         'component': ''
     });
@@ -54,10 +54,10 @@ function createPartialViewStore() {
         store.set($);
     }
 
-	return {
-		subscribe: store.subscribe,
+    return {
+        subscribe: store.subscribe,
         set: set
-	};
+    };
 }
 
 export const partialview = createPartialViewStore();

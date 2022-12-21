@@ -3,7 +3,7 @@ import { keyed } from 'svelte-keyed';
 
 function createIsaStoresSynced() {
 
-	const storeIsaObj = writable({});
+    const storeIsaObj = writable({});
     const storeIsaStr = writable('');
 
     const setIsaObj = (isaObj) => {
