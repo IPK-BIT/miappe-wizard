@@ -155,13 +155,13 @@
 
             <div style="margin-top: 45px; display: flow-root;">
                 {#if currentStep > 0}
-                <button class="add" on:click={() => prev()}>Previous</button>
+                <button class="add large" on:click={() => prev()}>Previous</button>
                 {/if}
 
                 {#if currentStep < (steps.length-1)}
-                <button class="add float-right" on:click={() => next()}>Next</button>
+                <button class="add large float-right" on:click={() => next()}>Next</button>
                 {:else}
-                <button class="add float-right" on:click={() => dispatch('closeWizard')}>Close wizard</button>
+                <button class="add large float-right" on:click={() => dispatch('closeWizard')}>Close wizard</button>
                 {/if}
 
             </div>

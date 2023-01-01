@@ -208,7 +208,13 @@
         cursor: pointer;
         border: 1px solid transparent;
     }
+    :global(button.add.large) {
+        padding: 6px 15px;
+        font-size: 100%;
+        border-right: 1px solid rgba(0,0,0,0.5);
+        border-bottom: 1px solid rgba(0,0,0,0.5);
+    }
     :global(button.add:hover) {
-        background: rgb(160, 160, 255);
+        background: rgb(173, 173, 255);
     }
 </style>
