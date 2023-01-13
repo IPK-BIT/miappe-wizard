@@ -3,6 +3,10 @@
     export { comments as value };
     export let attr = '';
 
+    if (!comments) {
+        comments = [];
+    }
+
     import Schemas from '@/lib/schemas.js';
     import Comment from '@/components/isa/generic/Comment.svelte';
 

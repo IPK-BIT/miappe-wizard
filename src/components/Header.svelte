@@ -2,8 +2,8 @@
     export let isaObj;
 
     import { appstate } from '@/stores/appstate';
-
     import Schemas from '@/lib/schemas.js';
+    import { getIsaTab } from '@/lib/getIsaTab';
 
 
     function startWizardMode() {
@@ -68,6 +68,10 @@
         .then(function(res){ console.log(res) })
         .catch(function(res){ console.log(res) })
     }
+
+    function convertToIsaTabArchive() {
+        getIsaTab($isaObj);
+    }
 </script>
 
 
@@ -86,6 +90,9 @@
         <!--<button on:click|preventDefault={() => loadIsaFromJson()}>Load ISA-JSON from file</button>-->
         <button on:click|preventDefault={() => startWizardMode()}>Start Wizard mode</button>
         <!--<button on:click|preventDefault={() => sendToArc()}>Send JSON to ARC</button>-->
+
+        <button on:click|preventDefault={() => convertToIsaTabArchive()}>Convert to ISA-TAB</button>
+        
         {/if}
 
     </div>

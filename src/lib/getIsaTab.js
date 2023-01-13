@@ -1,33 +1,29 @@
 // Uses the small backend at https://github.com/IPK-BIT/isa-json2tab 
-function getIsaTab(isa_json) {
-    return fetch('https://webapps.ipk-gatersleben.de/isa-json2tab/json2tab', {
+export function getIsaTab(isa_json) {
+    let serviceUrl = 'https://webapps.ipk-gatersleben.de/isa-json2tab/json2tab';
+
+    return fetch(serviceUrl, {
         method: 'POST',
-        mode: 'cors',
         cache: 'no-cache',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(isa_json)
-      })
+    })
     .then((result) => result.blob())
-    // We use the download property for triggering the download of the file from our browser. 
-    // More information about the following code can be found here: https://stackoverflow.com/questions/32545632/how-can-i-download-a-file-using-window-fetch. 
-    // The filename from the first promise is used as name of the file.
     .then((blob) => {
         if (blob != null) {
-            var url = window.URL.createObjectURL(blob);
-            var a = document.createElement('a');
+            let url = window.URL.createObjectURL(blob);
+            let a = document.createElement('a');
             a.href = url;
             a.download = "isa-tab.zip";
             document.body.appendChild(a);
             a.click();
             a.remove();
         }
-    })
+    });
 }
 
 
-example_isa_json = {
+const example_isa_json = {
     "comments": [],
     "description": "We could alternatively use the class constructor's parameters to set some default values at the time of creation, however we want to demonstrate how to use the object's instance variables to set values.",
     "identifier": "i1",
