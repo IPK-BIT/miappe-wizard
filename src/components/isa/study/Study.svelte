@@ -1,6 +1,6 @@
 <script lang="ts">
-    let study;
-    export { study as value };
+    let study_obj;
+    export { study_obj as value };
 
     import Comments from '@/components/isa/generic/Comments.svelte';
     import Date from '@/components/isa/generic/Date.svelte';
@@ -18,7 +18,7 @@
     const isaLevel = getContext('isaLevel');
 
     let explanationAction = explanationActionFactory(isaLevel);
-    let prox_study = new Proxy(study, studyHandler)
+    let study = new Proxy(study_obj, studyHandler)
 </script>
 
 <section>
@@ -27,10 +27,10 @@
         <h4>Study</h4>
 
         <String bind:value={study.filename} attr="filename" />
-        <String bind:value={prox_study.identifier} attr="identifier" />
+        <String bind:value={study.identifier} attr="identifier" />
         <String bind:value={study.title} attr="title" />
         <String bind:value={study.description} attr="description" />
-        <String bind:value={prox_study.country} attr="country" />
+        <String bind:value={study.country} attr="country" />
         
         <Date bind:value={study.submissionDate} attr="submissionDate" />
         <Date bind:value={study.publicReleaseDate} attr="publicReleaseDate" />
