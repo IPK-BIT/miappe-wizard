@@ -14,11 +14,11 @@
     import { getContext } from 'svelte';
     import Publications from '../generic/Publications.svelte';
 
-    import { StudyMapper } from '@/lib/miappeMappers';
+    import { studyHandler } from '@/lib/miappeMappers';
     const isaLevel = getContext('isaLevel');
 
     let explanationAction = explanationActionFactory(isaLevel);
-    let studyMapper = new StudyMapper(study);
+    let prox_study = new Proxy(study, studyHandler)
 </script>
 
 <section>
@@ -27,10 +27,10 @@
         <h4>Study</h4>
 
         <String bind:value={study.filename} attr="filename" />
-        <String bind:value={study.identifier} attr="identifier" />
+        <String bind:value={prox_study.identifier} attr="identifier" />
         <String bind:value={study.title} attr="title" />
         <String bind:value={study.description} attr="description" />
-        <String bind:value={studyMapper[StudyMapper.KEYS.country]} attr="country" />
+        <String bind:value={prox_study.country} attr="country" />
         
         <Date bind:value={study.submissionDate} attr="submissionDate" />
         <Date bind:value={study.publicReleaseDate} attr="publicReleaseDate" />
