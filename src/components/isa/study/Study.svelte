@@ -13,9 +13,12 @@
     import { explanationActionFactory } from '@/actions/explanation.js';
     import { getContext } from 'svelte';
     import Publications from '../generic/Publications.svelte';
+
+    import { StudyMapper } from '@/lib/miappeMappers';
     const isaLevel = getContext('isaLevel');
 
     let explanationAction = explanationActionFactory(isaLevel);
+    let studyMapper = new StudyMapper(study);
 </script>
 
 <section>
@@ -27,6 +30,7 @@
         <String bind:value={study.identifier} attr="identifier" />
         <String bind:value={study.title} attr="title" />
         <String bind:value={study.description} attr="description" />
+        <String bind:value={studyMapper[StudyMapper.KEYS.country]} attr="country" />
         
         <Date bind:value={study.submissionDate} attr="submissionDate" />
         <Date bind:value={study.publicReleaseDate} attr="publicReleaseDate" />
