@@ -8,7 +8,7 @@
 
     async function startWizardMode() {
         if (Object.keys($isaObj).length == 0) {
-            let emptyInvestigation = await Schemas.getObjectFromSchema('investigation');
+            let emptyInvestigation = Schemas.getObjectFromSchema('investigation');
             $isaObj = emptyInvestigation;
         }
 
@@ -16,7 +16,7 @@
     }
 
     async function addInvestigation() {
-        let emptyInvestigation = await Schemas.getObjectFromSchema('investigation');
+        let emptyInvestigation = Schemas.getObjectFromSchema('investigation');
         $isaObj = emptyInvestigation;
 
         $appstate = appstate.FORM;
