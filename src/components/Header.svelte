@@ -21,7 +21,7 @@
     }
 
     async function addInvestigation() {
-        let emptyInvestigation = await Schemas.getObjectFromSchema('investigation');
+        let emptyInvestigation = Schemas.getMiappeInvestigation();
         $isaObj = emptyInvestigation;
     }
 

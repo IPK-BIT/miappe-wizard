@@ -13,6 +13,7 @@
     import Studies from '@/components/isa/study/Studies.svelte';
 
     import String from '@/components/isa/generic/String.svelte';
+    import MiappeInvestigationInputs from '@/components/miappe/MiappeInvestigationInputs.svelte';
 
     let componentMapper = {
         'title': String,
@@ -31,14 +32,21 @@
 
 <section>
     {#if Object.keys(isa).length > 0}
-    <h2>Investigation</h2>
-        {#each Object.entries(isa) as [attr, value]}
+        <h2>Investigation</h2>
+        <String bind:value={isa.identifier} attr="identifier"/>
+        <String bind:value={isa.title} attr="title"/>
+        <String bind:value={isa.description} attr="description"/>
 
-            {#if components.includes(attr)}
-                <svelte:component this={componentMapper[attr]} {attr} bind:value={isa[attr]} />
-            {/if}
+        <Date bind:value={isa.submissionDate} attr="submissionDate" />
+        <Date bind:value={isa.publicReleaseDate} attr="publicReleaseDate" />
 
-        {/each}
+        <MiappeInvestigationInputs bind:value={isa} />
+
+        <Comments bind:value={isa.comments} />
+        <Publications bind:value={isa.publications} attr="publications" />
+        <People bind:value={isa.people} attr="people" />
+
+        <Studies bind:value={isa.studies} />
     {/if}
 </section>
 

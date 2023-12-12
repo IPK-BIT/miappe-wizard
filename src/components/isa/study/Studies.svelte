@@ -10,7 +10,7 @@
     import Study from '@/components/isa/study/Study.svelte';
 
     const addStudy = async () => {
-        let emptyStudy = await Schemas.getObjectFromSchema('study');
+        let emptyStudy = Schemas.getMiappeStudy();
         studies = [...studies, emptyStudy];
     }
 
