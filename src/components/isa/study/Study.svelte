@@ -13,6 +13,8 @@
     import { explanationActionFactory } from '@/actions/explanation.js';
     import { getContext } from 'svelte';
     import Publications from '../generic/Publications.svelte';
+
+    import MiappeStudyInputs from '@/components/miappe/MiappeStudyInputs.svelte';
     const isaLevel = getContext('isaLevel');
 
     let explanationAction = explanationActionFactory(isaLevel);
@@ -30,6 +32,8 @@
         
         <Date bind:value={study.submissionDate} attr="submissionDate" />
         <Date bind:value={study.publicReleaseDate} attr="publicReleaseDate" />
+
+        <MiappeStudyInputs bind:value={study} />
 
         <Comments bind:value={study.comments} />
 
@@ -55,12 +59,5 @@
     }
     div.assays {
         margin-top: 15px;
-    }
-    input {
-        margin: 5px 20px 0 0;
-    }
-    div.entity {
-        background: rgb(240,240,240);
-        margin-bottom: 30px;
     }
 </style>
