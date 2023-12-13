@@ -15,17 +15,17 @@
     import Publications from '../generic/Publications.svelte';
 
     import MiappeStudyInputs from '@/components/miappe/MiappeStudyInputs.svelte';
+    import SampleLoad from '@/components/sampleloader/SampleLoad.svelte';
     const isaLevel = getContext('isaLevel');
 
     let explanationAction = explanationActionFactory(isaLevel);
 </script>
 
 <section>
-
     <div class="attr ">
         <h4>Study</h4>
-
-        <String bind:value={study.filename} attr="filename" />
+        
+        <String bind:value={study.filename} attr="filename"/>
         <String bind:value={study.identifier} attr="identifier" />
         <String bind:value={study.title} attr="title" />
         <String bind:value={study.description} attr="description" />
@@ -41,7 +41,7 @@
 
         <People bind:value={study.people} attr="people" />
 
-        <Materials bind:value={study.materials} attr="materials" />
+        <Materials bind:value={study} attr="materials" />
 
         <div class="assays">
             <Assays bind:value={study.assays} />

@@ -1,12 +1,17 @@
 <script lang="ts">
     export let attr;
     let materials: Array<Object>;
-    export { materials as value };
+    // export { materials as value };
 
     import readXlsxFile from 'read-excel-file';
     import Grid from 'gridjs-svelte';
 
     import Schemas from '@/lib/schemas.js';
+    import SampleLoad from '@/components/sampleloader/SampleLoad.svelte';
+
+    let study;
+    export { study as value };  
+    materials = study.materials;
 
     const addSources = async (materialIds) => {
         let emptySource = await Schemas.getObjectFromSchema('source');
@@ -84,6 +89,7 @@
 
         <!-- MY CODE FROM HERE -->
         <div class="material-info">
+            <SampleLoad bind:value={study} />
             Number of materials: {materials.sources.length}<br />
             Number of samples: {materials.samples.length}
         </div>

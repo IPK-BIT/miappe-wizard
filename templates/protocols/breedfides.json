@@ -1,0 +1,55 @@
+{
+    "@id": "",
+    "name": "Breedfides",
+    "description": "",
+    "uri": "",
+    "version": "",
+    "parameters": [
+        {
+            "@id": "",
+            "comments": [],
+            "parameterName": {
+                "@id": "",
+                "annotationValue": "Year",
+                "termSource" : "",
+                "termAccession" : "",
+                "comments" : []
+            }
+        },
+        {
+            "@id": "",
+            "comments": [],
+            "parameterName": {
+                "@id": "",
+                "annotationValue": "Location",
+                "termSource" : "",
+                "termAccession" : "",
+                "comments" : []
+            }
+        },
+        {
+            "@id": "",
+            "comments": [],
+            "parameterName": {
+                "@id": "",
+                "annotationValue": "Repetition",
+                "termSource" : "",
+                "termAccession" : "",
+                "comments" : []
+            }
+        },
+        {
+            "@id": "",
+            "comments": [],
+            "parameterName": {
+                "@id": "",
+                "annotationValue": "Block",
+                "termSource" : "",
+                "termAccession" : "",
+                "comments" : []
+            }
+        }
+    ],
+    "components": [],
+    "comments": []
+}

@@ -4,6 +4,7 @@
     export { date as value };
 
     import { explanationActionFactory } from '@/actions/explanation.js';
+    import { appstate } from '@/stores/appstate';
     import { getContext } from 'svelte';
     const isaLevel = getContext('isaLevel');
 
@@ -13,7 +14,9 @@
     let explanationAction = explanationActionFactory(isaLevel);
 
     function setFocus(el){
-        el.focus();
+        if ($appstate==appstate.WIZARD){
+            el.focus();
+        }
     }
 
 </script>

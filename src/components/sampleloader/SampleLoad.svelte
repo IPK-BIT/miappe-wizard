@@ -2,22 +2,15 @@
     import { isaObj } from '@/stores/isa';
     import DataFrame from 'dataframe-js';
     import Schemas from '@/lib/schemas';
-    import { onMount } from 'svelte';
-    import { appstate } from '@/stores/appstate';
     const previewSize = 5;
     
     let study;
-    
-    onMount(() => {
-        //FIXME: this is a hack to ensure the studies array is not empty
-        study = Schemas.getObjectFromSchema('study');
-        study.title='Breedfides Study';
-    });
+    export {study as value};
     
     let fileUploaded = false;
     let rows = [];
     let columns = [];
-    
+
     function handleDownload() {
         //TODO: make template selection dynamic
         const templatePath = 'data/study_template_breedfides.csv';
@@ -27,9 +20,25 @@
         link.click();
     }
     
-    async function handleFileDrop(event) {
+    function handleFileDrop(event) {
+        console.log(event);
         event.preventDefault();
         const file = event.dataTransfer.files[0];
+        loadFile(file);
+    }
+
+    function handleFileSelection() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.csv'; // Specify the accepted file type(s) here
+        input.addEventListener('change', ()=>{loadFile(input.files[0])});
+        input.click();
+    }
+
+    /**
+     * @param {File} file
+     */
+    async function loadFile(file) {
         fileUploaded = true;
         let df = await DataFrame.fromCSV(file).then(df => df);
         //TODO: check for compliance with template
@@ -37,17 +46,9 @@
         rows = df.toCollection();
     }
     
-    function handleApprove() {
-        //FIXME: Needs refactoring when proxy is available
-        let protocol = Schemas.getObjectFromSchema('protocol');
-        //TODO: store protocol somewhere else
-        protocol.name = 'Breedfides';
-        protocol.parameters = [
-            {'@id': "", 'parameterName': 'Year'}, 
-            {'@id': "", 'parameterName': 'Location'}, 
-            {'@id': "", 'parameterName': 'Repetition'}, 
-            {'@id': "", 'parameterName': 'Block'}
-        ];
+    async function handleApprove() {
+        const response = await fetch('templates/protocols/breedfides.json');
+        let protocol = await response.json();
         study.protocols = [...study.protocols, protocol]
         
         rows.forEach(row => {
@@ -70,7 +71,7 @@
             emptyProcess.parameters = [];
             emptyProcess.parameterValues = [];
             protocol.parameters.forEach(parameter => {
-                emptyProcess.parameterValues.push(row[parameter.parameterName])
+                emptyProcess.parameterValues.push(row[parameter.parameterName.annotationValue])
             });
             study.processSequence.push(
                 emptyProcess
@@ -80,8 +81,8 @@
             study.materials.samples.push(emptySample)
         });
         //@ts-ignore
-        $isaObj.studies = [...$isaObj.studies, study]
-        $appstate = appstate.FORM;  
+        $isaObj.studies = [...$isaObj.studies];
+        fileUploaded = false;
     }
 </script>
 
@@ -89,7 +90,9 @@
     {#if !fileUploaded}
     <button on:click={handleDownload}>Download Template</button>
     <div class="drag-drop-area" role="button" tabindex="0" on:drop={handleFileDrop} on:dragover={(event) => event.preventDefault()}>
-        <p>Drag and drop your filled sample file here</p>
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+        <p on:click={handleFileSelection}>Drag and drop your filled sample file here</p>
     </div>
     {:else}
     <div style="overflow-x: auto">
@@ -120,6 +123,7 @@
     <button style="float: right" on:click={handleApprove}>Approve and Load</button>
     <button style="float: left" on:click={()=>{fileUploaded=false;}}>Go back</button>
     {/if}
+    <br/>
 </section>
 
 <style>
