@@ -66,7 +66,7 @@
     <div class="attr">
         <h3>Materials</h3><br /><br />
 
-        <button on:click|preventDefault={() => loadXLSX()}>Load material sources from Excel file (*.xlsx)</button>
+        <!-- <button on:click|preventDefault={() => loadXLSX()}>Load material sources from Excel file (*.xlsx)</button> -->
 
         
         <!--<textarea bind:value={materialsInput} ></textarea>-->
@@ -78,9 +78,15 @@
         <Assay bind:assay />
         {/each}-->
 
-        {#if data.length > 0}
+        <!-- {#if data.length > 0}
         <Grid {data} {columns} />
-        {/if}
+        {/if} -->
+
+        <!-- MY CODE FROM HERE -->
+        <div class="material-info">
+            Number of materials: {materials.sources.length}<br />
+            Number of samples: {materials.samples.length}
+        </div>
     </div>
 
 </section>
@@ -99,5 +105,8 @@
         display: inline;
         margin: 0 0 10px 0;
         font-style: italic;
+    }
+    .material-info {
+        font-style: bold;
     }
 </style>

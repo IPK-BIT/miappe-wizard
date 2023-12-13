@@ -72,6 +72,10 @@
     function convertToIsaTabArchive() {
         getIsaTab($isaObj);
     }
+
+    function loadSamplesFromTemplate() {
+        $appstate = appstate.SAMPLE;
+    }
 </script>
 
 
@@ -90,6 +94,7 @@
         <!--<button on:click|preventDefault={() => loadIsaFromJson()}>Load ISA-JSON from file</button>-->
         <button on:click|preventDefault={() => startWizardMode()}>Start Wizard mode</button>
         <!--<button on:click|preventDefault={() => sendToArc()}>Send JSON to ARC</button>-->
+        <button on:click|preventDefault={() => loadSamplesFromTemplate()}>Load Samples</button>
 
         <button on:click|preventDefault={() => convertToIsaTabArchive()}>Convert to ISA-TAB</button>
         
