@@ -7,7 +7,7 @@
 
     import { ARC } from '@nfdi4plants/arctrl';
     import { ArcInvestigation_toJsonString, ArcInvestigation_fromJsonString } from "@nfdi4plants/arctrl/ISA/ISA.Json/Investigation.js"
-    import { Validation_validateInvestigation } from '@nfdi4plants/arctrl/ISA/ISA.Json/Validation/JsonSchemaValidation.js';
+    //import { Validation_validateInvestigation } from '@nfdi4plants/arctrl/ISA/ISA.Json/Validation/JsonSchemaValidation.js';
 
     // node_modules\@nfdi4plants\arctrl\ISA\ISA.Json\Validation\JsonSchemaValidation.js
 
@@ -209,7 +209,7 @@
         {#if $appstate !== appstate.WIZARD}
         <!--<button on:click|preventDefault={() => loadISA()}>Load minimal example</button> -->
         <!--<button on:click|preventDefault={() => addInvestigation()}>Add new Investigation</button>-->
-        <button on:click|preventDefault={() => validateIsaJson()}>Validate ISA-JSON</button>
+        <!--<button on:click|preventDefault={() => validateIsaJson()}>Validate ISA-JSON</button>-->
         <button on:click|preventDefault={() => toArc()}>Convert to ARC</button>
         <button on:click|preventDefault={() => saveIsaAsJson()}>Save ISA-JSON as file</button>
         <!--<button on:click|preventDefault={() => loadIsaFromJson()}>Load ISA-JSON from file</button>-->
