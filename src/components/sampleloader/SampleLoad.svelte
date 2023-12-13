@@ -47,7 +47,7 @@
     }
     
     async function handleApprove() {
-        const response = await fetch('data/templates/protocols/breedfides.json');
+        const response = await fetch('data/breedfides.json');
         let protocol = await response.json();
         study.protocols = [...study.protocols, protocol]
         
