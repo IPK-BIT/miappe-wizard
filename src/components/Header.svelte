@@ -5,6 +5,21 @@
     import Schemas from '@/lib/schemas.js';
     import { getIsaTab } from '@/lib/getIsaTab';
 
+    import { ARC } from '@nfdi4plants/arctrl';
+    import { ArcInvestigation_toJsonString, ArcInvestigation_fromJsonString } from "@nfdi4plants/arctrl/ISA/ISA.Json/Investigation.js"
+    import { Validation_validateInvestigation } from '@nfdi4plants/arctrl/ISA/ISA.Json/Validation/JsonSchemaValidation.js';
+
+    // node_modules\@nfdi4plants\arctrl\ISA\ISA.Json\Validation\JsonSchemaValidation.js
+
+    import { Xlsx } from '@fslab/fsspreadsheet';
+    import {toFsWorkbook, fromFsWorkbook} from "@nfdi4plants/arctrl/ISA/ISA.Spreadsheet/ArcInvestigation.js";
+
+
+
+    import { downloadZip } from 'client-zip';
+
+    
+
 
     function startWizardMode() {
         if (Object.keys($isaObj).length == 0) {
@@ -35,6 +50,110 @@
         a.click();
         document.body.removeChild(a);
     }
+
+    async function validateIsaJson() {
+        const investigation = ArcInvestigation_fromJsonString(JSON.stringify($isaObj, null, 2));
+        //let arc = new ARC(investigation);
+
+        let validationResult = Validation_validateInvestigation(investigation);
+        console.log(validationResult);
+    }
+
+    async function toArc() {
+        const investigation = ArcInvestigation_fromJsonString(JSON.stringify($isaObj, null, 2));
+        console.log(investigation);
+        let fswb = toFsWorkbook(investigation);
+
+        let arc = new ARC(investigation);
+        arc.UpdateFileSystem();
+        let contracts = arc.GetWriteContracts();
+        console.log(contracts);
+
+        fulfillWriteContracts(contracts);
+        return true;
+
+        let xlsxBytes = await Xlsx.toBytes(fswb);
+        console.log(xlsxBytes);
+
+        /*const a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([xlsxBytes], {
+            type: 'application/json'
+        }));
+        a.setAttribute('download', 'test.isa.investigation.xlsx');
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);*/
+
+
+        const isaInvestigationXlsx = {
+            name: 'test.isa.investigation.xlsx',
+            lastModified: new Date(),
+            input: xlsxBytes
+        }
+
+        // get the ZIP stream in a Blob
+        const blob = await downloadZip([isaInvestigationXlsx]).blob()
+
+        // make and click a temporary link to download the Blob
+        const link = document.createElement("a")
+        link.href = URL.createObjectURL(blob)
+        link.download = "arc.zip"
+        link.click()
+        link.remove()
+
+    }
+
+
+    async function fulfillWriteContracts(contracts) {
+        /*function ensureDirectory (filePath) {
+            let dirPath = path.dirname(filePath)
+            if (!fs.existsSync(dirPath)){
+                fs.mkdirSync(dirPath, { recursive: true });
+            }
+        }*/
+        //const p = path.join(basePath,contract.Path)
+
+        let filesInZip = [];
+
+        for (const contract of contracts) {
+
+            if (contract.Operation = "CREATE") {
+                if (contract.DTO == undefined) {
+                    //ensureDirectory(p)
+                    //fs.writeFileSync(p, "")
+                } else if (contract.DTOType == "ISA_Assay" || contract.DTOType == "ISA_Study" || contract.DTOType == "ISA_Investigation") {
+                    //ensureDirectory(p)
+                    //await Xlsx.toFile(p, contract.DTO)
+                    //console.log("ISA", p)
+
+                    let xlsxBytes = await Xlsx.toBytes(contract.DTO);
+
+                    filesInZip.push({
+                        name: contract.Path, //'test.isa.investigation.xlsx',
+                        lastModified: new Date(),
+                        input: xlsxBytes
+                    });
+                } else if (contract.DTOType == "PlainText") {
+                    //ensureDirectory(p)
+                    //fs.writeFileSync(p, contract.DTO)
+                } else {
+                    console.log("Warning: The given contract is not a correct ARC write contract: ", contract)
+                }
+            }
+        }
+
+        console.log(filesInZip);
+
+        // get the ZIP stream in a Blob
+        const blob = await downloadZip(filesInZip).blob();
+
+        const link = document.createElement("a")
+        link.href = URL.createObjectURL(blob)
+        link.download = "arc.zip"
+        link.click()
+        link.remove()
+    }
+
 
     function loadIsaFromJson() {
         let input = document.createElement('input');
@@ -90,6 +209,8 @@
         {#if $appstate !== appstate.WIZARD}
         <!--<button on:click|preventDefault={() => loadISA()}>Load minimal example</button> -->
         <!--<button on:click|preventDefault={() => addInvestigation()}>Add new Investigation</button>-->
+        <button on:click|preventDefault={() => validateIsaJson()}>Validate ISA-JSON</button>
+        <button on:click|preventDefault={() => toArc()}>Convert to ARC</button>
         <button on:click|preventDefault={() => saveIsaAsJson()}>Save ISA-JSON as file</button>
         <!--<button on:click|preventDefault={() => loadIsaFromJson()}>Load ISA-JSON from file</button>-->
         <button on:click|preventDefault={() => startWizardMode()}>Start Wizard mode</button>
