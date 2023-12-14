@@ -14,7 +14,7 @@
     import { appstate } from '@/stores/appstate';
     import { partialview } from '@/stores/partialview';
     import { isaObj, isaStr } from '@/stores/isa.js';
-    import ManualExplanation from './components/ManualExplanation.svelte';
+    import ManualExplanation from '@/components/ManualExplanation.svelte';
 
     let showJson = false;
 
