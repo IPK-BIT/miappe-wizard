@@ -1,3 +1,8 @@
 export default {
-    'investigation': 'Investigation'
+    'Investigation': 'Phenotyping Project',
+    'investigation': 'phenotyping project',
+    'Study': 'Experiment',
+    'Studies': 'Experiments',
+    'study': 'experiment',
+    'studies': 'experiments'
 }
