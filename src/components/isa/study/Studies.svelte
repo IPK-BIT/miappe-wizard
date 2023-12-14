@@ -23,8 +23,8 @@
 
         <button class="add" on:click|preventDefault={() => addStudy()}>add study</button>
 
-        {#each studies as study}
-        <Study bind:value={study} />
+        {#each studies as study, i }
+        <Study idx={i} bind:value={study} />
         {/each}
     </div>
 
