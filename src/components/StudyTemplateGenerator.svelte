@@ -3,10 +3,13 @@
     import ParameterOption from "./questionnaire/ParameterOption.svelte";
     import Schemas from "@/lib/schemas";
     import String from "./isa/generic/String.svelte";
+    import { growthProtocols } from '@/stores/growthProtocols.js';
+
+    let study;
+    export { study as value };
 
     let protocol = Schemas.getObjectFromSchema("protocol");
     protocol.name = "Growth";
-
 
     let options = [
         { label:"Growth facility", explanation:"" },
@@ -95,6 +98,22 @@
     ];
     let selected_factor_options = [];
 
+    function save() {
+        protocol.parameters = [];
+        for(let p of [selected_options_fixed, selected_options_variable].flat()) {
+            let param = Schemas.getObjectFromSchema("protocol_parameter");
+            let oa = Schemas.getObjectFromSchema("ontology_annotation");
+            oa.annotationValue = p;
+            param.parameterName = oa;
+            protocol.parameters.push(param);
+        }
+        $growthProtocols.set(study, {
+            protocol: protocol, 
+            fixed_parameters: selected_options_fixed_values
+        });
+        console.log($growthProtocols);
+    }
+
 </script>
 
 <p>
@@ -149,3 +168,5 @@
     allowEditing={true}
     dropdownItem={ParameterOption}
     />
+
+<button on:click={() => save()}>Save</button>

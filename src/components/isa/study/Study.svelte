@@ -17,6 +17,7 @@
     import Publications from '../generic/Publications.svelte';
 
     import MiappeStudyInputs from '@/components/miappe/MiappeStudyInputs.svelte';
+    import StudyTemplateGenerator from '@/components/StudyTemplateGenerator.svelte';
     const isaLevel = getContext('isaLevel');
 
     let explanationAction = explanationActionFactory(isaLevel);
@@ -43,6 +44,7 @@
 
         <People bind:value={study.people} attr="people" />
 
+        <StudyTemplateGenerator bind:value={study} />
         <Materials bind:value={study} attr="materials" />
 
         <div class="assays">
