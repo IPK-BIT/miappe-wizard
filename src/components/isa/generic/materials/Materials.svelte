@@ -90,8 +90,8 @@
         <!-- MY CODE FROM HERE -->
         <div class="material-info">
             <SampleLoad bind:value={study} />
-            Number of materials: {materials.sources.length}<br />
-            Number of samples: {materials.samples.length}
+            Number of materials: {study.materials.sources.length}<br />
+            Number of samples: {study.materials.samples.length}
         </div>
     </div>
 
