@@ -24,8 +24,8 @@
         <h3>{wording.Studies}</h3>
 
         {#if studies.length > 0}
-        {#each studies as study}
-        <Study bind:value={study} />
+        {#each studies as study,i}
+        <Study idx={i} bind:value={study} />
         {/each}
         {:else}
         <p><i>No {wording.studies} have yet been created for this {wording.investigation}.</i></p>

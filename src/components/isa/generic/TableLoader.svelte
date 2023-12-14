@@ -1,11 +1,9 @@
 <script>
-    import { isaObj } from '@/stores/isa';
     import DataFrame from 'dataframe-js';
-    import Schemas from '@/lib/schemas';
+    import { createEventDispatcher } from 'svelte';
     const previewSize = 5;
     
-    let study;
-    export {study as value};
+    export let templatePath;
     
     let fileUploaded = false;
     let rows = [];
@@ -13,15 +11,13 @@
 
     function handleDownload() {
         //TODO: make template selection dynamic
-        const templatePath = 'data/study_template_breedfides.csv';
         const link = document.createElement('a');
         link.href = templatePath;
-        link.download = 'study_template.csv';
+        link.download = 'template.csv';
         link.click();
     }
     
     function handleFileDrop(event) {
-        console.log(event);
         event.preventDefault();
         const file = event.dataTransfer.files[0];
         loadFile(file);
@@ -40,49 +36,22 @@
      */
     async function loadFile(file) {
         fileUploaded = true;
-        let df = await DataFrame.fromCSV(file).then(df => df);
+        let df = await DataFrame.fromCSV(file, false).then(df => df);
         //TODO: check for compliance with template
         columns = df.listColumns();
         rows = df.toCollection();
     }
     
-    async function handleApprove() {
-        const response = await fetch('data/breedfides.json');
-        let protocol = await response.json();
-        study.protocols = [...study.protocols, protocol]
-        
-        rows.forEach(row => {
-            let emptySource = Schemas.getObjectFromSchema('source');
-            emptySource.name = row['Material'];
-            emptySource.characteristics = [];
-            emptySource.characteristics.push({
-                Organism: row['Organism'], 
-                Genus: row['Genus'], 
-                Species: row['Species'], 
-                Infraspecific_name: row['Infraspecific Name'],
-                Biological_material_latitude: row['Latitude'],
-                Biological_material_longitude: row['Longitude'],
-                Variety_name: row['Variety Name'],
-                Variety_database: row['Variety Reference'],
-            });
-            study.materials.sources.push(emptySource);
-            let emptyProcess = Schemas.getObjectFromSchema('process');
-            emptyProcess.executesProtocol = {'name': protocol.name};
-            emptyProcess.parameters = [];
-            emptyProcess.parameterValues = [];
-            protocol.parameters.forEach(parameter => {
-                emptyProcess.parameterValues.push(row[parameter.parameterName.annotationValue])
-            });
-            study.processSequence.push(
-                emptyProcess
-            )
-            let emptySample = Schemas.getObjectFromSchema('sample');
-            emptySample.name = row['Sample'];
-            study.materials.samples.push(emptySample)
+    const dispatch = createEventDispatcher();
+    function createEvent() {
+        const event = new CustomEvent('approve', {
+            detail: {
+                rows: rows,
+                columns: columns
+            }
         });
-        //@ts-ignore
-        $isaObj.studies = [...$isaObj.studies];
         fileUploaded = false;
+        dispatch('approve', event);
     }
 </script>
 
@@ -100,12 +69,12 @@
             <thead>
                 <tr>
                     {#each columns as column}
-                    <th>{column}</th>
+                    <th>{rows[0][column]}</th>
                     {/each}
                 </tr>
             </thead>
             <tbody>
-                {#each rows.slice(0,previewSize) as row}
+                {#each rows.slice(1,previewSize+1) as row}
                 <tr>
                     {#each Object.keys(row) as key}
                     <td>{row[key]}</td>
@@ -120,13 +89,16 @@
         Only the first {previewSize} rows are shown here.
     </p>
     {/if}
-    <button style="float: right" on:click={handleApprove}>Approve and Load</button>
+    <button style="float: right" on:click={createEvent}>Approve and Load</button>
     <button style="float: left" on:click={()=>{fileUploaded=false;}}>Go back</button>
     {/if}
-    <br/>
 </section>
 
 <style>
+    section {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
     .drag-drop-area {
         margin-top: .5em;
         border: 2px dashed #ccc;

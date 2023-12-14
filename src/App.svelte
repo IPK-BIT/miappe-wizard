@@ -14,7 +14,6 @@
     import { appstate } from '@/stores/appstate';
     import { partialview } from '@/stores/partialview';
     import { isaObj, isaStr } from '@/stores/isa.js';
-    import SampleLoad from './components/sampleloader/SampleLoad.svelte';
 
 
     let showJson = false;
@@ -60,8 +59,6 @@
             <InvestigationWizard bind:isa={$isaObj} on:closeWizard={() => {$appstate = appstate.FORM;}} />
             {:else if $appstate === appstate.LEVEL}
             <Forms />
-            {:else if $appstate === appstate.SAMPLE}
-            <SampleLoad />
             {/if}
 
             </div>

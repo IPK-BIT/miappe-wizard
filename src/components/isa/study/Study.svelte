@@ -2,6 +2,8 @@
     let study;
     export { study as value };
 
+    export let idx;
+
     import Comments from '@/components/isa/generic/Comments.svelte';
     import Date from '@/components/isa/generic/Date.svelte';
     import String from '@/components/isa/generic/String.svelte';
@@ -11,14 +13,14 @@
     import Assays from '@/components/isa/assay/Assays.svelte';
 
     import { explanationActionFactory } from '@/actions/explanation.js';
-    import { getContext } from 'svelte';
+    import { getContext, setContext } from 'svelte';
     import Publications from '../generic/Publications.svelte';
 
     import MiappeStudyInputs from '@/components/miappe/MiappeStudyInputs.svelte';
-    import SampleLoad from '@/components/sampleloader/SampleLoad.svelte';
     const isaLevel = getContext('isaLevel');
 
     let explanationAction = explanationActionFactory(isaLevel);
+    setContext('studyIdx', idx);
 </script>
 
 <section>
