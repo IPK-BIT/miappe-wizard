@@ -15,6 +15,7 @@
     import { partialview } from '@/stores/partialview';
     import { isaObj, isaStr } from '@/stores/isa.js';
     import SampleLoad from './components/sampleloader/SampleLoad.svelte';
+    import ManualExplanation from './components/ManualExplanation.svelte';
 
 
     let showJson = false;
@@ -51,7 +52,7 @@
         </div>
         
         <div class="middlecol">
-            
+
             {#if $appstate === appstate.FORM}
             <Investigation bind:value={$isaObj} />
             {:else if $appstate === appstate.WIZARD}
@@ -65,6 +66,7 @@
         </div>
             
         <div class="rightcol">
+            <ManualExplanation />
             <Explanation />
             
             {#if $appstate !== appstate.WIZARD}
