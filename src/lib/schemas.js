@@ -15,6 +15,7 @@ import ontology_annotation_schema from '@/lib/schemas/ontology_annotation_schema
 import ontology_source_reference_schema from '@/lib/schemas/ontology_source_reference_schema.json';
 import person_schema from '@/lib/schemas/person_schema.json';
 import process_schema from '@/lib/schemas/process_schema.json';
+import process_parameter_value_schema from '@/lib/schemas/process_parameter_value_schema.json';
 import protocol_parameter_schema from '@/lib/schemas/protocol_parameter_schema.json';
 import protocol_schema from '@/lib/schemas/protocol_schema.json';
 import publication_schema from '@/lib/schemas/publication_schema.json';
@@ -38,6 +39,7 @@ const mapping = {
     ontology_source_reference: ontology_source_reference_schema,
     person: person_schema,
     process: process_schema,
+    process_parameter_value: process_parameter_value_schema,
     protocol_parameter: protocol_parameter_schema,
     protocol: protocol_schema,
     publication: publication_schema,
@@ -84,9 +86,10 @@ export default class Schemas {
             } else if (v['type'] === 'array') {
                 obj[k] = [];
             } else if (v['type'] === 'object') {
-                
                 let entries = Object.entries(v['properties']);
                 obj[k] = Object.fromEntries( entries.map(x => [x[0], getDatatypeByJsonType(x[1]['type']) ]) );
+            } else {
+                obj[k] = {};
             }
         }
 

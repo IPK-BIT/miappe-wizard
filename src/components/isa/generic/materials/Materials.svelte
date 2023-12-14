@@ -9,7 +9,6 @@
     import Schemas from '@/lib/schemas.js';
     import TableLoader from '../TableLoader.svelte';
     import { isaObj } from '@/stores/isa';
-    import { cons } from '@nfdi4plants/arctrl/fable_modules/fable-library.4.5.0/List';
 
     let study;
     export { study as value };  
@@ -91,7 +90,12 @@
             // emptyProcess.parameters = [];
             emptyProcess.parameterValues = [];
             protocol.parameters.forEach(parameter => {
-                emptyProcess.parameterValues.push(row[columnNames.indexOf(parameter.parameterName.annotationValue)])
+                let emptyParameter = Schemas.getObjectFromSchema('process_parameter_value');
+                console.log(emptyParameter);
+                emptyParameter.values = [];
+                emptyParameter.values.push(row[columnNames.indexOf(parameter.parameterName.annotationValue)]);
+                // emptyProcess.parameterValues.push(row[columnNames.indexOf(parameter.parameterName.annotationValue)])
+                emptyProcess.parameterValues.push(emptyParameter);
             });
             study.processSequence = [...study.processSequence,emptyProcess];
             let emptySample = Schemas.getObjectFromSchema('sample');
