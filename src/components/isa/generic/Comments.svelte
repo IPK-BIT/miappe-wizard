@@ -27,11 +27,15 @@
     <div class="attr">
         <h3>Comments</h3>
 
-        <button class="add" on:click|preventDefault={() => addComment()}>add comment</button>
-
+        {#if comments.length > 0}
         {#each comments as comment, index}
         <Comment on:removeComment={handleRemoveComment} bind:comment {index} />
         {/each}
+        {:else}
+        <p><i>No comments have yet been created.</i></p>
+        {/if}
+
+        <button class="add" on:click|preventDefault={() => addComment()}>add comment</button>
     </div>
 
 </section>
@@ -42,10 +46,12 @@
         margin-top: 10px;
         margin-bottom: 10px;
         background: rgba(0,0,0,0.05);
+        border-radius: 8px;
+        box-shadow: 3px 3px 3px rgba(0,0,0,0.1);
     }
     h3 {
         display: inline;
         margin: 0 10px 10px 0;
-        font-style: italic;
+        font-weight: 500;
     }
 </style>

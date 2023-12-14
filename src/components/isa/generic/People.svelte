@@ -18,7 +18,7 @@
     <div class="attr">
         <h3>People</h3>
 
-        <button on:click|preventDefault={() => addPerson()}>add person</button>
+        <button class="add" on:click|preventDefault={() => addPerson()}>add person</button>
 
         {#each people as person}
         <Person bind:person />
@@ -36,7 +36,7 @@
     h3 {
         display: inline;
         margin: 0 0 10px 0;
-        font-style: italic;
+        font-weight: 500;
     }
     button {
         margin-left: 8px;

@@ -24,6 +24,8 @@
 </script>
 
 <section>
+
+<div class="bbox">
     <ul id="tree-root">
         <li>
             <span on:click={toggle} class="arrow" class:arrowDown={expanded}>&#x25b6</span>
@@ -43,6 +45,8 @@
         {/if}
         </li>
     </ul>
+</div>
+
 </section>
 
 <style>

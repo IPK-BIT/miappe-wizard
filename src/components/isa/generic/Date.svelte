@@ -1,7 +1,12 @@
 <script>
+    export let label = '';
     export let attr;
     let date;
     export { date as value };
+
+    if (!label) {
+        label = attr;
+    }
 
     import { explanationActionFactory } from '@/actions/explanation.js';
     import { appstate } from '@/stores/appstate';
@@ -24,7 +29,7 @@
 
 <section>
 
-    <div class="attr"><label>{attr}:</label> <input use:explanationAction use:setFocus data-attr={attr} class="datepicker" type="date" bind:value={date} /></div>
+    <div class="attr"><label>{label}:</label> <input use:explanationAction use:setFocus data-attr={attr} class="datepicker" type="date" bind:value={date} /></div>
 
 </section>
 

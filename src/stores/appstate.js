@@ -6,8 +6,7 @@ function createAppStateStore() {
         INIT: 'init',
         FORM: 'form',
         WIZARD: 'wizard',
-        LEVEL: 'level',
-        SAMPLE: 'sample'
+        LEVEL: 'level'
     }
 
     const store = writable(states.INIT);

@@ -21,6 +21,7 @@ import publication_schema from '@/lib/schemas/publication_schema.json';
 import sample_schema from '@/lib/schemas/sample_schema.json';
 import source_schema from '@/lib/schemas/source_schema.json';
 import study_schema from '@/lib/schemas/study_schema.json';
+
 import { miappeInvestigationHandler, miappeStudyHandler } from './miappeMappers';
 
 const mapping = {

@@ -192,16 +192,15 @@
         getIsaTab($isaObj);
     }
 
-    function loadSamplesFromTemplate() {
-        $appstate = appstate.SAMPLE;
-    }
 </script>
 
 
 <header class="flex-container">
     <div class="flex-items" style="vertical-align: top;">
         <img src="data/logo.png" alt="MIAPPE Wizard" />
-        <h1>MIAPPE Wizard</h1>
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+        <h1 on:click={()=>{$appstate = appstate.INIT}}>MIAPPE Wizard</h1>
     </div>
 
     <div class="flex-items">
@@ -215,7 +214,6 @@
         <!--<button on:click|preventDefault={() => loadIsaFromJson()}>Load ISA-JSON from file</button>-->
         <button on:click|preventDefault={() => startWizardMode()}>Start Wizard mode</button>
         <!--<button on:click|preventDefault={() => sendToArc()}>Send JSON to ARC</button>-->
-        <button on:click|preventDefault={() => loadSamplesFromTemplate()}>Load Samples</button>
 
         <button on:click|preventDefault={() => convertToIsaTabArchive()}>Convert to ISA-TAB</button>
         
@@ -227,7 +225,8 @@
 
 <style>
 header {
-    color: white;
+    /*color: white;*/
+    color: black;
     padding: 10px 15px;
     /*box-shadow: 0px 5px 10px rgba(0,0,0,0.2);*/
     margin-bottom: 0px;
@@ -239,7 +238,7 @@ h1 {
     padding: 0;
     display: inline-block;
     font-size: 150%;
-    font-weight: normal;
+    font-weight: 500;
     float: left;
 }
 
