@@ -86,9 +86,10 @@ export default class Schemas {
             } else if (v['type'] === 'array') {
                 obj[k] = [];
             } else if (v['type'] === 'object') {
-                
                 let entries = Object.entries(v['properties']);
                 obj[k] = Object.fromEntries( entries.map(x => [x[0], getDatatypeByJsonType(x[1]['type']) ]) );
+            } else {
+                obj[k] = {};
             }
         }
 
