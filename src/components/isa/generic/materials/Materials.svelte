@@ -92,8 +92,9 @@
             protocol.parameters.forEach(parameter => {
                 let emptyParameter = Schemas.getObjectFromSchema('process_parameter_value');
                 console.log(emptyParameter);
-                emptyParameter.values = [];
-                emptyParameter.values.push(row[columnNames.indexOf(parameter.parameterName.annotationValue)]);
+                emptyParameter.unit = {};
+                emptyParameter.category = {};
+                emptyParameter.value = row[columnNames.indexOf(parameter.parameterName.annotationValue)];
                 // emptyProcess.parameterValues.push(row[columnNames.indexOf(parameter.parameterName.annotationValue)])
                 emptyProcess.parameterValues.push(emptyParameter);
             });
