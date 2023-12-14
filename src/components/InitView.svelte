@@ -16,8 +16,10 @@
     }
 
     async function addInvestigation() {
-        let emptyInvestigation = Schemas.getMiappeInvestigation();
-        $isaObj = emptyInvestigation;
+        if (Object.keys($isaObj).length === 0) {
+            let emptyInvestigation = Schemas.getMiappeInvestigation();
+            $isaObj = emptyInvestigation;
+        }
 
         $appstate = appstate.FORM;
     }
