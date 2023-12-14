@@ -8,7 +8,7 @@
     import TreeView from '@/components/treeview/TreeView.svelte';
     
     import Investigation from '@/components/isa/investigation/Investigation.svelte';
-    import InvestigationWizard from '@/components/isa/investigation/InvestigationWizard.svelte';
+    import InvestigationWizard from '@/components/questionnaire/InvestigationWizard.svelte';
     import Forms from '@/components/Forms.svelte';
     
     import { appstate } from '@/stores/appstate';
@@ -51,6 +51,8 @@
         </div>
         
         <div class="middlecol">
+
+            <div class="bbox">
             
             {#if $appstate === appstate.FORM}
             <Investigation bind:value={$isaObj} />
@@ -61,6 +63,8 @@
             {:else if $appstate === appstate.SAMPLE}
             <SampleLoad />
             {/if}
+
+            </div>
                 
         </div>
             
@@ -68,13 +72,15 @@
             <Explanation />
             
             {#if $appstate !== appstate.WIZARD}
+            
             <div id="json">
-                <strong>ISA-JSON (<a href="#" on:click={() => showJson = !showJson}>{showJson ? 'hide' : 'show'}</a>)</strong>
-                
+                <strong>ISA-JSON (<a href="#" on:click={() => showJson = !showJson}>{showJson ? 'hide' : 'show'}</a>)</strong><br />
                 {#if showJson}
                 <textarea bind:value={$isaStr} id="json-textarea"></textarea>
                 {/if}
-            </div> 
+                
+            </div>
+            
             {/if}
         </div>
 
@@ -98,6 +104,7 @@
         margin: 0;
         height: 100vh;
         font-family: 'Roboto', sans-serif;
+        background: rgb(210,210,210);
     }
     :global(#app) {
         padding: 0;
@@ -115,7 +122,7 @@
         display: grid;
         grid-template-columns: 1fr 3fr 1fr;
         grid-template-rows: 60px auto;
-        grid-column-gap: 1px;
+        grid-column-gap: 0px;
         grid-row-gap: 0px;
         padding: 0px 0px;
         border: 0px solid blue;
@@ -124,27 +131,45 @@
     }
     .header {
         grid-area: 1 / 1 / 1 / 4;
-        background: rgb(80, 80, 100);
+        /* background: rgb(80, 80, 100); */
+        /*background: linear-gradient(0deg, hsl(145, 83%, 28%) 0%, hsl(145, 83%, 38%) 100%);*/
+        background: white;
+        border-bottom: 0px solid rgb(140,140,140);
+        box-shadow: 0px 5px 5px rgba(0,0,0,0.2);
     }
     .leftcol {
         grid-area: 2 / 1 / 2 / 2;
-        background: rgb(240,240,240);
+        
         align-self: stretch;
-        padding: 10px 5px;
-        border-right: 1px solid rgb(190,190,190);
+        padding: 20px 0;
+        padding-left: 15px;
+        padding-right: 10px;
+        /*border-right: 1px solid rgb(190,190,190);*/
         /*box-shadow: 0px 0px 15px rgba(0,0,0,0.1);*/
     }
     .middlecol {
         grid-area: 2 / 2 / 2 / 3;
-        overflow-y: scroll;
-        padding: 30px 30px;
+        overflow-y: auto;
+        padding: 20px 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        /*background: rgb(220,220,220);*/
+    }
+    
+    :global(div.bbox) {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 3px 3px 3px rgba(0,0,0,0.15);
     }
     .rightcol {
         grid-area: 2 / 3 / 2 / 4;
-        background: rgb(240,240,240);
+        /*background: rgb(240,240,240);*/
         align-self: stretch;
-        padding: 10px;
-        border-left: 1px solid rgb(190,190,190);
+        padding: 20px 0;
+        padding-left: 10px;
+        padding-right: 15px;
+        border-left: 0px solid rgb(190,190,190);
     }
     #json {
         padding: 10px;
@@ -180,19 +205,20 @@
     }
     :global(label) {
         display: inline-block;
-        width: 150px;
+        width: 250px;
     }
     :global(input) {
-        padding: 4px 8px;
+        padding: 10px 10px;
         font-size: 100%;
-        border: 1px solid rgb(80,80,80);
-        border-radius: 5px;
+        border: 1px solid rgb(160,160,160);
+        border-radius: 2px;
         box-sizing: border-box;
+        outline: none;
     }
     :global(button) {
-        background: rgb(210,210,210);
+        background: rgb(250,250,250);
         border: 0;
-        border-radius: 5px;
+        border-radius: 1px;
         padding: 3px 6px;
         cursor: pointer;
         border: 1px solid transparent;
@@ -203,13 +229,14 @@
     }
 
     :global(button.add) {
-        background: rgb(130, 130, 230);
+        /*background: rgb(130, 130, 230);*/
+        background: linear-gradient(0deg, hsl(145, 83%, 28%) 0%, hsl(145, 83%, 38%) 100%);
         color: white;
         border: 0;
         border-radius: 5px;
         padding: 3px 6px;
         cursor: pointer;
-        border: 1px solid transparent;
+        /*border: 1px solid transparent;*/
     }
     :global(button.add.large) {
         padding: 6px 15px;
@@ -218,6 +245,7 @@
         border-bottom: 1px solid rgba(0,0,0,0.5);
     }
     :global(button.add:hover) {
-        background: rgb(173, 173, 255);
+        /* background: rgb(173, 173, 255); */
+        background: linear-gradient(0deg, hsl(145, 83%, 28%) 0%, hsl(145, 83%, 38%) 100%);
     }
 </style>

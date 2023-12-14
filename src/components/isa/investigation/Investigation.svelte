@@ -5,6 +5,8 @@
     import { setContext } from 'svelte';
     setContext('isaLevel', 'Investigation');
 
+    import wording from '@/lib/wording';
+
     import Date from '@/components/isa/generic/Date.svelte';
     import People from '@/components/isa/generic/People.svelte';
     import Publications from '@/components/isa/generic/Publications.svelte';
@@ -32,19 +34,19 @@
 
 <section>
     {#if Object.keys(isa).length > 0}
-        <h2>Investigation</h2>
-        <String bind:value={isa.identifier} attr="identifier"/>
-        <String bind:value={isa.title} attr="title"/>
-        <String bind:value={isa.description} attr="description"/>
+        <h2>{wording.Investigation}</h2>
+        <String bind:value={isa.identifier} label="Identifier" attr="identifier" />
+        <String bind:value={isa.title} label="Title" attr="title" />
+        <String bind:value={isa.description} label="Description" attr="description" />
 
-        <Date bind:value={isa.submissionDate} attr="submissionDate" />
-        <Date bind:value={isa.publicReleaseDate} attr="publicReleaseDate" />
+        <Date bind:value={isa.submissionDate} label="Date of submission" attr="submissionDate" />
+        <Date bind:value={isa.publicReleaseDate} label="Date of public release" attr="publicReleaseDate" />
 
         <MiappeInvestigationInputs bind:value={isa} />
 
         <Comments bind:value={isa.comments} />
         <Publications bind:value={isa.publications} attr="publications" />
-        <People bind:value={isa.people} attr="people" />
+        <!-- <People bind:value={isa.people} attr="people" /> -->
 
         <Studies bind:value={isa.studies} />
     {/if}
@@ -54,10 +56,11 @@
 <style>
     section {
         /*background: rgb(247,247,247);*/
-        border-left: 3px solid rgb(180,180,180);
-        padding: 10px;
+        /*border-left: 3px solid rgb(180,180,180);*/
+        padding: 0px;
     }
     h2 {
         margin-top: 0;
+        font-weight: 500;
     }
 </style>

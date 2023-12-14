@@ -6,6 +6,8 @@
     import { setContext } from 'svelte';
     setContext('isaLevel', 'Study');
 
+    import wording from '@/lib/wording';
+
     import Schemas from '@/lib/schemas.js';
     import Study from '@/components/isa/study/Study.svelte';
 
@@ -19,13 +21,17 @@
 <section>
 
     <div class="attr">
-        <h3>Studies</h3>
+        <h3>{wording.Studies}</h3>
 
-        <button class="add" on:click|preventDefault={() => addStudy()}>add study</button>
-
+        {#if studies.length > 0}
         {#each studies as study}
         <Study bind:value={study} />
         {/each}
+        {:else}
+        <p><i>No {wording.studies} have yet been created for this {wording.investigation}.</i></p>
+        {/if}
+
+        <button class="add" on:click|preventDefault={() => addStudy()}>add {wording.study}</button>
     </div>
 
 </section>
@@ -37,11 +43,11 @@
         margin-bottom: 10px;
     }
     button {
-        margin: 0 0 10px 8px;
+        margin: 0 0 10px 0;
     }
     h3 {
         display: inline;
         margin: 0 0 10px 0;
-        font-style: italic;
+        font-weight: 500;
     }
 </style>

@@ -16,6 +16,9 @@
 
     import MultipleChoice from '@/components/questionnaire/MultipleChoice.svelte';
 
+    import miappe from '@/lib/miappe/miappeChecklist';
+    import wording from '@/lib/wording';
+
     let options = {};
 
     options['phenotypingExperimentType'] = [
@@ -65,52 +68,65 @@
     let currentStep = 0;
 
     let steps = [
+        // {
+        //     question: 'What type of plant phenotyping experiment did you perform?',
+        //     key: null,
+        //     component: MultipleChoice,
+        //     questionId: 'phenotypingExperimentType'
+        // },
+        // {
+        //     question: 'In which environment or technical facility did the plants grow up?',
+        //     key: null,
+        //     component: MultipleChoice,
+        //     questionId: 'growthFacilityType'
+        // },
         {
-            question: 'What type of plant phenotyping experiment did you perform?',
-            key: null,
-            component: MultipleChoice,
-            questionId: 'phenotypingExperimentType'
-        },
-        {
-            question: 'In which environment or technical facility did the plants grow up?',
-            key: null,
-            component: MultipleChoice,
-            questionId: 'growthFacilityType'
-        },
-        {
-            question: 'What is the title of your investigation?',
+            question: 'What is the title of your plant phenotyping project?', // miappe['DM-3'].question, //
             key: 'title',
-            component: String
+            label: 'Title',
+            component: String,
+
         },
         {
-            question: 'What is the description of your investigation?',
+            question: 'What is the description of your plant phenotyping project?',
             key: 'description',
+            label: 'Description',
             component: String
         },
         {
-            question: 'What is the submission date of your investigation?',
+            question: 'What is the submission date of your plant phenotyping project?',
             key: 'submissionDate',
+            label: 'Date of submission',
             component: Date
         },
         {
-            question: 'What is the public release date of your investigation?',
+            question: 'What is the public release date of your plant phenotyping project?',
             key: 'publicReleaseDate',
+            label: 'Date of public release',
             component: Date
         },
-        {
+        /*{
             question: 'You can add one or multiple authors:',
             key: 'people',
             component: People
-        },
+        },*/
         {
-            question: 'You can add one or multiple studies:',
+            question: 'You can add one or multiple '+wording.studies+':',
             key: 'studies',
             component: Studies
+        },
+        { // <String bind:value={study.contactInstitution} attr="contactInstitution" />
+            question: 'What is the contact of your institution?',
+            level: 'Study',
+            key: 'contactInstitution',
+            label: 'Contact of institute',
+            component: String
         },
     ];
 
     function prev() {
         currentStep = currentStep - 1;
+        executeStepHooks(currentStep);
     }
 
     function next() {
@@ -118,6 +134,11 @@
             steps[currentStep].saveSelectedValue();
         }*/
         currentStep = currentStep + 1;
+        executeStepHooks(currentStep);
+    }
+
+    function executeStepHooks() {
+
     }
 
     function handleKeypress(event) {
@@ -132,12 +153,11 @@
 <section>
     {#if Object.keys(isa).length > 0}
     
-
-        <div style="background: rgb(240,240,240); padding: 20px; border: 1px solid rgb(200,200,200);">
-
             <p id="question">{steps[currentStep].question}</p>
 
-            <div on:keypress={handleKeypress}>
+            <div class="input-wrapper">
+
+            <div on:keypress={handleKeypress} role="button" tabindex="0" aria-pressed="false">
 
                 {#if steps[currentStep].key === null}
 
@@ -148,8 +168,16 @@
                     {/if}
 
                 {:else}
-                <svelte:component this={steps[currentStep].component} bind:value={isa[steps[currentStep].key]} attr={steps[currentStep].key} />
+
+                    {#if steps[currentStep].level === 'Study'}
+                    <svelte:component this={steps[currentStep].component} bind:value={isa['studies'][0][steps[currentStep].key]} showLabel={false} label={steps[currentStep].label} attr={steps[currentStep].key} />
+                    {:else}
+                    <svelte:component this={steps[currentStep].component} bind:value={isa[steps[currentStep].key]} showLabel={false} label={steps[currentStep].label} attr={steps[currentStep].key} />
+                    {/if}
+
                 {/if}
+
+            </div>
 
             </div>
 
@@ -165,7 +193,7 @@
                 {/if}
 
             </div>
-        </div>
+        
 
     {/if}
 
@@ -180,6 +208,16 @@
         font-size: 115%;
         color: rgb(30,30,30);
         margin-bottom: 40px;
+    }
+
+    .input-wrapper {
+        /*background: rgb(240,240,240);*/
+        padding: 0px;
+        border: 0px solid rgb(200,200,200);
+    }
+
+    :global(input[type="text"]) {
+        /*width: 80%;*/
     }
 
     .float-right {
