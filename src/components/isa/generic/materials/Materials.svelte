@@ -75,16 +75,24 @@
             let emptySource = Schemas.getObjectFromSchema('source');
             emptySource.name = row[columnNames.indexOf('Material Name')];
             emptySource.characteristics = [];
-            emptySource.characteristics.push({
-                Organism: row[columnNames.indexOf('Organism')], 
-                Genus: row[columnNames.indexOf('Genus')], 
-                Species: row[columnNames.indexOf('Species')],
-                Infraspecific_name: row[columnNames.indexOf('Infraspecific Name')],
-                Biological_material_latitude: row[columnNames.indexOf('Latitude')],
-                Biological_material_longitude: row[columnNames.indexOf('Longitude')],
-                Variety_name: row[columnNames.indexOf('Variety Name')],
-                Variety_database: row[columnNames.indexOf('Variety Database')],
-            });
+            // emptySource.characteristics.push({
+            //     Organism: row[columnNames.indexOf('Organism')], 
+            //     Genus: row[columnNames.indexOf('Genus')], 
+            //     Species: row[columnNames.indexOf('Species')],
+            //     Infraspecific_name: row[columnNames.indexOf('Infraspecific Name')],
+            //     Biological_material_latitude: row[columnNames.indexOf('Latitude')],
+            //     Biological_material_longitude: row[columnNames.indexOf('Longitude')],
+            //     Variety_name: row[columnNames.indexOf('Variety Name')],
+            //     Variety_database: row[columnNames.indexOf('Variety Database')],
+            // });
+            emptySource.characteristics.push(Schemas.createCharacteristicObject('Organism', row[columnNames.indexOf('Organism')]));
+            emptySource.characteristics.push(Schemas.createCharacteristicObject('Genus', row[columnNames.indexOf('Genus')]));
+            emptySource.characteristics.push(Schemas.createCharacteristicObject('Species', row[columnNames.indexOf('Species')]));
+            emptySource.characteristics.push(Schemas.createCharacteristicObject('Infraspecific_name', row[columnNames.indexOf('Infraspecific Name')]));
+            emptySource.characteristics.push(Schemas.createCharacteristicObject('Biological_material_latitude', row[columnNames.indexOf('Latitude')]));
+            emptySource.characteristics.push(Schemas.createCharacteristicObject('Biological_material_longitude', row[columnNames.indexOf('Longitude')]));
+            emptySource.characteristics.push(Schemas.createCharacteristicObject('Variety_name', row[columnNames.indexOf('Variety Name')]));
+            emptySource.characteristics.push(Schemas.createCharacteristicObject('Variety_database', row[columnNames.indexOf('Variety Database')]));
             study.materials.sources.push(emptySource);
             let emptySample = Schemas.getObjectFromSchema('sample');
             emptySample.name = row[columnNames.indexOf('Sample Name')];
