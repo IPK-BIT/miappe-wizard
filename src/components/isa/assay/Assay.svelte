@@ -29,7 +29,25 @@
             let emptyProcess = Schemas.getObjectFromSchema('process');
             emptyProcess.executesProtocol = protocol;
             protocol.parameters.forEach(parameter => {
-                emptyProcess.parameterValues.push(row[columnNames.indexOf(parameter.parameterName.annotationValue)])
+                // emptyProcess.parameterValues.push(row[columnNames.indexOf(parameter.parameterName.annotationValue)])
+                let emptyParameter = Schemas.getObjectFromSchema('process_parameter_value');
+                // let emptyCategory = Schemas.getObjectFromSchema('protocol_parameter');
+                let emptyOntologyAnnotation = Schemas.getObjectFromSchema('ontology_annotation');
+                emptyOntologyAnnotation.annotationValue="";
+                // emptyOntologyAnnotation.annotationValue = parameter.parameterName.annotationValue;
+                // emptyCategory.parameterName = parameter.parameterName.annotationValue;
+                emptyParameter.category = parameter;
+                emptyParameter.value = row[columnNames.indexOf(parameter.parameterName.annotationValue)];
+                emptyParameter.unit = emptyOntologyAnnotation;
+                // emptyProcess.parameterValues.push(row[columnNames.indexOf(parameter.parameterName.annotationValue)])
+                console.log(emptyParameter);
+                emptyProcess.parameterValues.push(emptyParameter);
+                emptyProcess.inputs = [];
+                emptyProcess.outputs = [];
+                emptyProcess.inputs.push(emptySample);
+                let emptyOutput = Schemas.getObjectFromSchema('sample');
+                emptyOutput.name = row[columnNames.indexOf('Assay Name')];
+                emptyProcess.outputs.push(emptyOutput   );
             });
             assay.processSequence = [...assay.processSequence,emptyProcess];
         });
