@@ -1,0 +1,1637 @@
+{
+    "@id": "",
+    "filename": "",
+    "identifier": "",
+    "title": "",
+    "description": "",
+    "submissionDate": "",
+    "publicReleaseDate": "",
+    "ontologySourceReferences": [],
+    "publications": [],
+    "people": [],
+    "studies": [
+      {
+        "@id": "",
+        "filename": "studies/test/isa.study.xlsx",
+        "identifier": "",
+        "title": "test",
+        "description": "",
+        "submissionDate": "",
+        "publicReleaseDate": "",
+        "publications": [],
+        "people": [],
+        "studyDesignDescriptors": [],
+        "protocols": [
+          {
+            "@id": "",
+            "name": "Breedfides Growth",
+            "description": "",
+            "uri": "",
+            "version": "",
+            "parameters": [
+              {
+                "@id": "",
+                "comments": [],
+                "parameterName": {
+                  "@id": "",
+                  "annotationValue": "Year",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "@id": "",
+                "comments": [],
+                "parameterName": {
+                  "@id": "",
+                  "annotationValue": "Location",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "@id": "",
+                "comments": [],
+                "parameterName": {
+                  "@id": "",
+                  "annotationValue": "Repetition",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "@id": "",
+                "comments": [],
+                "parameterName": {
+                  "@id": "",
+                  "annotationValue": "Block",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              }
+            ],
+            "components": [],
+            "comments": []
+          }
+        ],
+        "materials": {
+          "sources": [
+            {
+              "@id": "",
+              "characteristics": [
+                {
+                  "Organism": "Triticum aestivum",
+                  "Genus": "Triticum",
+                  "Species": "aestivum",
+                  "Biological_material_latitude": "48.1333333333333",
+                  "Biological_material_longitude": "1.13333333333333",
+                  "Variety_name": "Actros"
+                }
+              ]
+            },
+            {
+              "@id": "",
+              "characteristics": [
+                {
+                  "Organism": "Triticum aestivum",
+                  "Genus": "Triticum",
+                  "Species": "aestivum",
+                  "Biological_material_latitude": "50.5",
+                  "Biological_material_longitude": "3.83333333333333",
+                  "Variety_name": "Actros"
+                }
+              ]
+            },
+            {
+              "@id": "",
+              "characteristics": [
+                {
+                  "Organism": "Triticum aestivum",
+                  "Genus": "Triticum",
+                  "Species": "aestivum",
+                  "Biological_material_latitude": "50",
+                  "Biological_material_longitude": "8.15",
+                  "Variety_name": "Actros"
+                }
+              ]
+            },
+            {
+              "@id": "",
+              "characteristics": [
+                {
+                  "Organism": "Triticum aestivum",
+                  "Genus": "Triticum",
+                  "Species": "aestivum",
+                  "Biological_material_latitude": "50",
+                  "Biological_material_longitude": "8.15",
+                  "Variety_name": "Actros"
+                }
+              ]
+            },
+            {
+              "@id": "",
+              "characteristics": [
+                {
+                  "Organism": "Triticum aestivum",
+                  "Genus": "Triticum",
+                  "Species": "aestivum",
+                  "Biological_material_latitude": "50",
+                  "Biological_material_longitude": "8.15",
+                  "Variety_name": "Actros"
+                }
+              ]
+            },
+            {
+              "@id": "",
+              "characteristics": [
+                {
+                  "Organism": "Triticum aestivum",
+                  "Genus": "Triticum",
+                  "Species": "aestivum",
+                  "Biological_material_latitude": "48.3333333333333",
+                  "Biological_material_longitude": "1.13333333333333",
+                  "Variety_name": "Actros"
+                }
+              ]
+            },
+            {
+              "@id": "",
+              "characteristics": [
+                {
+                  "Organism": "Triticum aestivum",
+                  "Genus": "Triticum",
+                  "Species": "aestivum",
+                  "Biological_material_latitude": "48.3333333333333",
+                  "Biological_material_longitude": "1.13333333333333",
+                  "Variety_name": "Actros"
+                }
+              ]
+            },
+            {
+              "@id": "",
+              "characteristics": [
+                {
+                  "Organism": "Triticum aestivum",
+                  "Genus": "Triticum",
+                  "Species": "aestivum",
+                  "Biological_material_latitude": "50",
+                  "Biological_material_longitude": "8.15",
+                  "Variety_name": "Actros"
+                }
+              ]
+            },
+            {
+              "@id": "",
+              "characteristics": [
+                {
+                  "Organism": "Triticum aestivum",
+                  "Genus": "Triticum",
+                  "Species": "aestivum",
+                  "Biological_material_latitude": "54.6666666666667",
+                  "Biological_material_longitude": "9.03333333333333",
+                  "Variety_name": "Actros"
+                }
+              ]
+            }
+          ],
+          "samples": [
+            {
+              "@id": "",
+              "characteristics": [],
+              "factorValues": [],
+              "derivesFrom": []
+            },
+            {
+              "@id": "",
+              "characteristics": [],
+              "factorValues": [],
+              "derivesFrom": []
+            },
+            {
+              "@id": "",
+              "characteristics": [],
+              "factorValues": [],
+              "derivesFrom": []
+            },
+            {
+              "@id": "",
+              "characteristics": [],
+              "factorValues": [],
+              "derivesFrom": []
+            },
+            {
+              "@id": "",
+              "characteristics": [],
+              "factorValues": [],
+              "derivesFrom": []
+            },
+            {
+              "@id": "",
+              "characteristics": [],
+              "factorValues": [],
+              "derivesFrom": []
+            },
+            {
+              "@id": "",
+              "characteristics": [],
+              "factorValues": [],
+              "derivesFrom": []
+            },
+            {
+              "@id": "",
+              "characteristics": [],
+              "factorValues": [],
+              "derivesFrom": []
+            },
+            {
+              "@id": "",
+              "characteristics": [],
+              "factorValues": [],
+              "derivesFrom": []
+            }
+          ],
+          "otherMaterials": []
+        },
+        "processSequence": [
+          {
+            "@id": "",
+            "name": "",
+            "executesProtocol": {
+              "@id": "",
+              "name": "Breedfides Growth",
+              "description": "",
+              "uri": "",
+              "version": "",
+              "parameters": [
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Year",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Location",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Repetition",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Block",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                }
+              ],
+              "components": [],
+              "comments": []
+            },
+            "parameterValues": [
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Year",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "2009",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Location",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "AND",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Repetition",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "2",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Block",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "47",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              }
+            ],
+            "performer": "",
+            "date": "",
+            "previousProcess": {},
+            "nextProcess": {},
+            "inputs": [],
+            "outputs": [],
+            "comments": []
+          },
+          {
+            "@id": "",
+            "name": "",
+            "executesProtocol": {
+              "@id": "",
+              "name": "Breedfides Growth",
+              "description": "",
+              "uri": "",
+              "version": "",
+              "parameters": [
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Year",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Location",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Repetition",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Block",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                }
+              ],
+              "components": [],
+              "comments": []
+            },
+            "parameterValues": [
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Year",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "2010",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Location",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "SAU",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Repetition",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "2",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Block",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "12",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              }
+            ],
+            "performer": "",
+            "date": "",
+            "previousProcess": {},
+            "nextProcess": {},
+            "inputs": [],
+            "outputs": [],
+            "comments": []
+          },
+          {
+            "@id": "",
+            "name": "",
+            "executesProtocol": {
+              "@id": "",
+              "name": "Breedfides Growth",
+              "description": "",
+              "uri": "",
+              "version": "",
+              "parameters": [
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Year",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Location",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Repetition",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Block",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                }
+              ],
+              "components": [],
+              "comments": []
+            },
+            "parameterValues": [
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Year",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "2009",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Location",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "SEL",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Repetition",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "1",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Block",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "2",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              }
+            ],
+            "performer": "",
+            "date": "",
+            "previousProcess": {},
+            "nextProcess": {},
+            "inputs": [],
+            "outputs": [],
+            "comments": []
+          },
+          {
+            "@id": "",
+            "name": "",
+            "executesProtocol": {
+              "@id": "",
+              "name": "Breedfides Growth",
+              "description": "",
+              "uri": "",
+              "version": "",
+              "parameters": [
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Year",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Location",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Repetition",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Block",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                }
+              ],
+              "components": [],
+              "comments": []
+            },
+            "parameterValues": [
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Year",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "2010",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Location",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "SEL",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Repetition",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "2",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Block",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "48",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              }
+            ],
+            "performer": "",
+            "date": "",
+            "previousProcess": {},
+            "nextProcess": {},
+            "inputs": [],
+            "outputs": [],
+            "comments": []
+          },
+          {
+            "@id": "",
+            "name": "",
+            "executesProtocol": {
+              "@id": "",
+              "name": "Breedfides Growth",
+              "description": "",
+              "uri": "",
+              "version": "",
+              "parameters": [
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Year",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Location",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Repetition",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Block",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                }
+              ],
+              "components": [],
+              "comments": []
+            },
+            "parameterValues": [
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Year",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "2010",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Location",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "SEL",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Repetition",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "1",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Block",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "18",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              }
+            ],
+            "performer": "",
+            "date": "",
+            "previousProcess": {},
+            "nextProcess": {},
+            "inputs": [],
+            "outputs": [],
+            "comments": []
+          },
+          {
+            "@id": "",
+            "name": "",
+            "executesProtocol": {
+              "@id": "",
+              "name": "Breedfides Growth",
+              "description": "",
+              "uri": "",
+              "version": "",
+              "parameters": [
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Year",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Location",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Repetition",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Block",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                }
+              ],
+              "components": [],
+              "comments": []
+            },
+            "parameterValues": [
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Year",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "2010",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Location",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "JAN",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Repetition",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "1",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Block",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "20",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              }
+            ],
+            "performer": "",
+            "date": "",
+            "previousProcess": {},
+            "nextProcess": {},
+            "inputs": [],
+            "outputs": [],
+            "comments": []
+          },
+          {
+            "@id": "",
+            "name": "",
+            "executesProtocol": {
+              "@id": "",
+              "name": "Breedfides Growth",
+              "description": "",
+              "uri": "",
+              "version": "",
+              "parameters": [
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Year",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Location",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Repetition",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Block",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                }
+              ],
+              "components": [],
+              "comments": []
+            },
+            "parameterValues": [
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Year",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "2010",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Location",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "JAN",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Repetition",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "2",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Block",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "13",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              }
+            ],
+            "performer": "",
+            "date": "",
+            "previousProcess": {},
+            "nextProcess": {},
+            "inputs": [],
+            "outputs": [],
+            "comments": []
+          },
+          {
+            "@id": "",
+            "name": "",
+            "executesProtocol": {
+              "@id": "",
+              "name": "Breedfides Growth",
+              "description": "",
+              "uri": "",
+              "version": "",
+              "parameters": [
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Year",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Location",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Repetition",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Block",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                }
+              ],
+              "components": [],
+              "comments": []
+            },
+            "parameterValues": [
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Year",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "2009",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Location",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "SEL",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Repetition",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "2",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Block",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "44",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              }
+            ],
+            "performer": "",
+            "date": "",
+            "previousProcess": {},
+            "nextProcess": {},
+            "inputs": [],
+            "outputs": [],
+            "comments": []
+          },
+          {
+            "@id": "",
+            "name": "",
+            "executesProtocol": {
+              "@id": "",
+              "name": "Breedfides Growth",
+              "description": "",
+              "uri": "",
+              "version": "",
+              "parameters": [
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Year",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Location",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Repetition",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Block",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                }
+              ],
+              "components": [],
+              "comments": []
+            },
+            "parameterValues": [
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Year",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "2009",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Location",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "WOH",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Repetition",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "2",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              },
+              {
+                "category": {
+                  "@id": "",
+                  "comments": [],
+                  "parameterName": {
+                    "@id": "",
+                    "annotationValue": "Block",
+                    "termSource": "",
+                    "termAccession": "",
+                    "comments": []
+                  }
+                },
+                "value": "58",
+                "unit": {
+                  "@id": "",
+                  "annotationValue": "",
+                  "termSource": "",
+                  "termAccession": "",
+                  "comments": []
+                }
+              }
+            ],
+            "performer": "",
+            "date": "",
+            "previousProcess": {},
+            "nextProcess": {},
+            "inputs": [],
+            "outputs": [],
+            "comments": []
+          }
+        ],
+        "assays": [],
+        "factors": [],
+        "characteristicCategories": [],
+        "unitCategories": [],
+        "comments": []
+      }
+    ],
+    "comments": []
+  }
