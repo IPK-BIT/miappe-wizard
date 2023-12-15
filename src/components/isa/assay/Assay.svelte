@@ -8,6 +8,7 @@
     import TableLoader from '../generic/TableLoader.svelte';
     import Schemas from '@/lib/schemas';
     import { isaObj } from '@/stores/isa';
+    import String from '../generic/String.svelte';
     const isaLevel = getContext('isaLevel');
 
     let explanationAction = explanationActionFactory(isaLevel);
@@ -57,7 +58,9 @@
 <section>
     <div class="attr entity">
         <h4>Assay</h4>
-        <input type="text" use:explanationAction data-attr="title" bind:value={assay.title} placeholder="Assay title">
+        <String bind:value={assay.filename} attr="filename"/>
+        <String bind:value={assay.title} attr="Assay Title"/>
+        <!-- <input type="text" use:explanationAction data-attr="title" bind:value={assay.title} placeholder="Assay title"> -->
         <TableLoader templatePath={"data/templates/uploads/breedfides_assay.csv"} on:approve={handleApprove}/>
         Number of samples: {assay.materials.samples.length}
         <Comments bind:value={assay.comments} />
