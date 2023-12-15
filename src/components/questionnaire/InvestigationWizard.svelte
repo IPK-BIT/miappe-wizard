@@ -27,6 +27,7 @@
     import miappe from '@/lib/miappe/miappeChecklist';
     import wording from '@/lib/wording';
     import { isaObj } from '@/stores/isa';
+    import StudyTemplateGenerator from '../StudyTemplateGenerator.svelte';
 
     let options = {};
 
@@ -148,6 +149,13 @@
             component: StudyContactSection
         },
         // <Materials bind:value={study} attr="materials" />
+        {
+            question: 'Growth Protocol',
+            level: 'Study',
+            key: null,
+            label: 'Growth Protocol',
+            component: StudyTemplateGenerator
+        },
         {
             question: 'Materials',
             level: 'Study',
