@@ -111,10 +111,13 @@
             protocol: protocol, 
             fixed_parameters: selected_options_fixed_values
         });
+        $growthProtocols = $growthProtocols;
         console.log($growthProtocols);
     }
 
 </script>
+
+<h3>Growth Protocol</h3>
 
 <p>
     In this step, we will define the growth protocol for your plants.
@@ -157,7 +160,7 @@
 
 <p>
     Were there any growth parameters which were <b>not</b> the same for all plants but which were also not experimental treatments defined earlier?
-    You will be able to enter values for each plant in the next step.
+    You will be able to enter values for each plant in the next table below.
 </p>
 
 <Svelecte options={options_variable} bind:value={selected_options_variable} 

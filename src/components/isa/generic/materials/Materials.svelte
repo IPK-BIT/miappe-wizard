@@ -9,10 +9,31 @@
     import Schemas from '@/lib/schemas.js';
     import TableLoader from '../TableLoader.svelte';
     import { isaObj } from '@/stores/isa';
+    import { growthProtocols } from '@/stores/growthProtocols.js';
 
     let study;
+    let template = new Blob([""], { type: 'text/csv;charset=utf-8,' });
     export { study as value };  
     materials = study.materials;
+
+    $: {
+        if($growthProtocols.has(study))
+            template = createCSV($growthProtocols.get(study));
+    }
+
+    function createCSV(growthProtocol) {
+        console.log(growthProtocol);
+        let fixed_parameters = growthProtocol.fixed_parameters ? Object.keys(growthProtocol.fixed_parameters) : [];
+        let parameters = growthProtocol.protocol.parameters.map((p) => p.parameterName.annotationValue);
+        parameters = parameters.filter((p) => !fixed_parameters.includes(p));
+
+        let csv = "Material Name,Organism,Observation Unit Type,Variety Name,Variety Reference,Latitude,Longitude,Original Coding,Sample Name,Year,Location,Repetition,Block";
+        for(let p of parameters)
+            csv = csv + "," + p;
+        csv += "\n";
+
+        return(new Blob([csv], { type: 'text/csv;charset=utf-8,' }));
+    }
 
     const addSources = async (materialIds) => {
         let emptySource = await Schemas.getObjectFromSchema('source');
@@ -129,7 +150,7 @@
 
         <!-- MY CODE FROM HERE -->
         <div class="material-info">
-            <TableLoader templatePath={"data/templates/uploads/breedfides_study.csv"} on:approve={handleApprove}/>
+            <TableLoader template={template} on:approve={handleApprove} />
             Number of materials: {study.materials.sources.length}<br />
             Number of samples: {study.materials.samples.length}
         </div>

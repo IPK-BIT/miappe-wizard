@@ -3,7 +3,7 @@
     import { createEventDispatcher } from 'svelte';
     const previewSize = 5;
     
-    export let templatePath;
+    export let template;
     
     let fileUploaded = false;
     let rows = [];
@@ -12,7 +12,7 @@
     function handleDownload() {
         //TODO: make template selection dynamic
         const link = document.createElement('a');
-        link.href = templatePath;
+        link.href = URL.createObjectURL(template);
         link.download = 'template.csv';
         link.click();
     }
