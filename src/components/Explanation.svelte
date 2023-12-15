@@ -34,7 +34,19 @@
             'publicReleaseDate': miappe['DM-6'],
         },
         'Study': {
-            'title': 'This is the title of your study.'
+            'identifier': miappe['DM-11'],
+            'title': miappe['DM-12'],
+            'description': miappe['DM-13'],
+            'startDate': miappe['DM-14'],
+            'endDate': miappe['DM-15'],
+            'contactInstitution': miappe['DM-16'],
+            'country': miappe['DM-17'],
+            'latitude': miappe['DM-19'],
+            'longitude': miappe['DM-20'],
+            'altitude': miappe['DM-21'],
+            'dataFileLink': miappe['DM-37'],
+            'dataFileDescription': miappe['DM-38'],
+            'dataFileVersion': miappe['DM-39'],
         }
     }
 </script>

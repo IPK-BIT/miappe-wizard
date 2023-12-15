@@ -30,8 +30,8 @@
         <String bind:value={study.title} attr="title" />
         <String bind:value={study.description} attr="description" />
         
-        <Date bind:value={study.submissionDate} attr="submissionDate" />
-        <Date bind:value={study.publicReleaseDate} attr="publicReleaseDate" />
+        <!-- <Date bind:value={study.submissionDate} attr="submissionDate" />
+        <Date bind:value={study.publicReleaseDate} attr="publicReleaseDate" /> -->
 
         <MiappeStudyInputs bind:value={study} />
 

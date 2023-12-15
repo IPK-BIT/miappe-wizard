@@ -8,9 +8,9 @@
 
 <section>
 
-    <div class="attr comment">Comment: 
-        <input type="text" bind:value={comment.name} placeholder="name" />
-        <input type="text" bind:value={comment.value} placeholder="value" />
+    <div class="attr comment">
+        Name: <input type="text" bind:value={comment.name} placeholder="name" />
+        &nbsp; Value: <input type="text" bind:value={comment.value} placeholder="value" />
         <button on:click={() => dispatch('removeComment', {index} )}>X</button>
     </div>
 
