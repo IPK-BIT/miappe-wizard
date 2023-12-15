@@ -9,6 +9,7 @@
     import Schemas from '@/lib/schemas.js';
     import TableLoader from '../TableLoader.svelte';
     import { isaObj } from '@/stores/isa';
+    import { cons } from '@nfdi4plants/arctrl/fable_modules/fable-library.4.5.0/List';
 
     let study;
     export { study as value };  
@@ -85,23 +86,32 @@
                 Variety_database: row[columnNames.indexOf('Variety Database')],
             });
             study.materials.sources.push(emptySource);
+            let emptySample = Schemas.getObjectFromSchema('sample');
+            emptySample.name = row[columnNames.indexOf('Sample Name')];
+            // console.log(emptySample);
+            study.materials.samples.push(emptySample)
             let emptyProcess = Schemas.getObjectFromSchema('process');
             emptyProcess.executesProtocol = protocol;
             // emptyProcess.parameters = [];
             emptyProcess.parameterValues = [];
             protocol.parameters.forEach(parameter => {
                 let emptyParameter = Schemas.getObjectFromSchema('process_parameter_value');
-                console.log(emptyParameter);
-                emptyParameter.unit = {};
-                emptyParameter.category = {};
+                // let emptyCategory = Schemas.getObjectFromSchema('protocol_parameter');
+                let emptyOntologyAnnotation = Schemas.getObjectFromSchema('ontology_annotation');
+                emptyOntologyAnnotation.annotationValue="";
+                // emptyOntologyAnnotation.annotationValue = parameter.parameterName.annotationValue;
+                // emptyCategory.parameterName = parameter.parameterName.annotationValue;
+                emptyParameter.category = parameter;
                 emptyParameter.value = row[columnNames.indexOf(parameter.parameterName.annotationValue)];
+                emptyParameter.unit = emptyOntologyAnnotation;
                 // emptyProcess.parameterValues.push(row[columnNames.indexOf(parameter.parameterName.annotationValue)])
                 emptyProcess.parameterValues.push(emptyParameter);
+                emptyProcess.outputs = [];
+                emptyProcess.inputs = [];
+                emptyProcess.inputs.push(emptySource);
+                emptyProcess.outputs.push(emptySample);
             });
             study.processSequence = [...study.processSequence,emptyProcess];
-            let emptySample = Schemas.getObjectFromSchema('sample');
-            emptySample.name = row[columnNames.indexOf('Sample Name')];
-            study.materials.samples.push(emptySample)
         });
         //@ts-ignore
         $isaObj.studies = [...$isaObj.studies];
