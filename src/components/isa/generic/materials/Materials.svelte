@@ -12,7 +12,7 @@
     import { growthProtocols } from '@/stores/growthProtocols.js';
 
     let study;
-    let template = new Blob([""], { type: 'text/csv;charset=utf-8,' });
+    let template = new Blob(["Material Name,Organism,Observation Unit Type,Variety Name,Variety Reference,Latitude,Longitude,Original Coding,Sample Name,Year,Location,Repetition,Block"], { type: 'text/csv;charset=utf-8,' });
     export { study as value };  
     materials = study.materials;
 
