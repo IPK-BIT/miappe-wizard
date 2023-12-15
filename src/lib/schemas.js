@@ -104,4 +104,19 @@ export default class Schemas {
         return new Proxy(Schemas.getObjectFromSchema("study"), miappeStudyHandler);
     }
 
+    static createCharacteristicObject(key, value) {
+        let emptyCharacteristic = Schemas.getObjectFromSchema('material_attribute_value');
+        emptyCharacteristic.value = value;
+
+        let emptyOntologyAnnotation = Schemas.getObjectFromSchema('ontology_annotation');
+        emptyOntologyAnnotation.annotationValue = key;
+        let emptyCategory = Schemas.getObjectFromSchema('material_attribute');
+        emptyCategory.characteristicType = emptyOntologyAnnotation;
+        emptyCharacteristic.category = emptyCategory;
+
+        emptyOntologyAnnotation = Schemas.getObjectFromSchema('ontology_annotation');
+        emptyCharacteristic.unit = null;
+
+        return emptyCharacteristic;
+    }
 }

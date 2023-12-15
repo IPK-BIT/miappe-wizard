@@ -132,7 +132,7 @@
         /* background: rgb(80, 80, 100); */
         /*background: linear-gradient(0deg, hsl(145, 83%, 28%) 0%, hsl(145, 83%, 38%) 100%);*/
         background: white;
-        border-bottom: 0px solid rgb(140,140,140);
+        border-bottom: 2px solid rgb(170,170,170);
         box-shadow: 0px 5px 5px rgba(0,0,0,0.2);
     }
     .leftcol {

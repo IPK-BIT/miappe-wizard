@@ -9,6 +9,9 @@
 
     import { questionnaire } from '@/stores/questionnaire';
 
+    import Schemas from '@/lib/schemas.js';
+
+
     import Date from '@/components/isa/generic/Date.svelte';
     import People from '@/components/isa/generic/People.svelte';
     import Studies from '@/components/isa/study/Studies.svelte';
@@ -16,8 +19,14 @@
 
     import MultipleChoice from '@/components/questionnaire/MultipleChoice.svelte';
 
+    import StudyBasicsSection from './miappe/StudyBasicsSection.svelte';
+    import StudyContactSection from './miappe/StudyContactSection.svelte';
+
+    import Materials from '@/components/isa/generic/materials/Materials.svelte';
+
     import miappe from '@/lib/miappe/miappeChecklist';
     import wording from '@/lib/wording';
+    import { isaObj } from '@/stores/isa';
 
     let options = {};
 
@@ -103,42 +112,74 @@
             question: 'What is the public release date of your plant phenotyping project?',
             key: 'publicReleaseDate',
             label: 'Date of public release',
-            component: Date
+            component: Date,
+            postHook: addStudy
         },
         /*{
             question: 'You can add one or multiple authors:',
             key: 'people',
             component: People
         },*/
-        {
+        /*{
             question: 'You can add one or multiple '+wording.studies+':',
             key: 'studies',
             component: Studies
-        },
-        { // <String bind:value={study.contactInstitution} attr="contactInstitution" />
+        },*/
+        /*{
             question: 'What is the contact of your institution?',
             level: 'Study',
             key: 'contactInstitution',
             label: 'Contact of institute',
             component: String
+        },*/
+        // StudyContactSection
+        {
+            question: 'Please provide basic information about your experiment.',
+            level: 'Study',
+            key: null,
+            label: 'Basics',
+            component: StudyBasicsSection
+        },
+        {
+            question: 'Please provide contact and address of your institute.',
+            level: 'Study',
+            key: null,
+            label: 'Contact of institute',
+            component: StudyContactSection
+        },
+        // <Materials bind:value={study} attr="materials" />
+        {
+            question: 'Materials',
+            level: 'Study',
+            key: null,
+            label: 'Materials',
+            component: Materials
         },
     ];
 
+    function addStudy() {
+        let emptyStudy = Schemas.getMiappeStudy();
+        isa['studies'] = [ ...isa['studies'], emptyStudy];
+    }
+
     function prev() {
         currentStep = currentStep - 1;
-        executeStepHooks(currentStep);
+        executeStepHooks();
     }
 
     function next() {
         /*if (typeof(steps[currentStep].saveSelectedValue) === 'function') {
             steps[currentStep].saveSelectedValue();
         }*/
+        executeStepHooks();
         currentStep = currentStep + 1;
-        executeStepHooks(currentStep);
     }
 
     function executeStepHooks() {
-
+        if (steps[currentStep].postHook) {
+            steps[currentStep].postHook();
+            console.log('execute hook: ', 'steps[currentStep].postHook();')
+        }
     }
 
     function handleKeypress(event) {
@@ -164,7 +205,7 @@
                     {#if steps[currentStep].questionId !== undefined && steps[currentStep].questionId != ''}
                     <svelte:component this={steps[currentStep].component} options={options[steps[currentStep].questionId]} questionId={steps[currentStep].questionId} />
                     {:else}
-                    <svelte:component this={steps[currentStep].component} />
+                    <svelte:component this={steps[currentStep].component} bind:value={isa['studies'][0]} />
                     {/if}
 
                 {:else}
