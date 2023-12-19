@@ -1,5 +1,5 @@
 <script>
-    export let isaObj;
+    import { isaObj } from '@/stores/isa.js';
 
     import { appstate } from '@/stores/appstate';
 
@@ -34,6 +34,7 @@
                 let lines = e.target.result;
                 let json = JSON.parse(lines);
                 $isaObj = json;
+                isaObj.addProxies();
                 $appstate = appstate.FORM;
             }
 

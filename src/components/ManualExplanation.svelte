@@ -7,7 +7,7 @@
 <section>
 
     {#if $manualExplanation}
-    <div id="manual-explanation-content">
+    <div id="manual-explanation-content" class="bbox">
         <strong>Explanation:</strong>
         <p>{$manualExplanation}</p>
     </div>
@@ -20,7 +20,5 @@
 #manual-explanation-content {
     padding: 10px;
     margin-bottom: 20px;
-    background: white;
-    border: 1px solid rgb(150,150,150);
 }
 </style>

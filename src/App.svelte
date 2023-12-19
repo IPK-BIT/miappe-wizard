@@ -32,14 +32,14 @@
 
     {#if $appstate == appstate.INIT}
 
-    <InitView {isaObj} />
+    <InitView />
     
     {:else}
     
     <div class="content">
 
         <div class="header">
-            <Header {isaObj} />
+            <Header />
         </div>
         
         <div class="leftcol">
@@ -70,15 +70,13 @@
             <Explanation />
             
             {#if $appstate !== appstate.WIZARD}
-            
-            <div id="json">
+            <div class="bbox" id="json">
                 <strong>ISA-JSON (<a href="#" on:click={() => showJson = !showJson}>{showJson ? 'hide' : 'show'}</a>)</strong><br />
                 {#if showJson}
                 <textarea bind:value={$isaStr} id="json-textarea"></textarea>
                 {/if}
                 
             </div>
-            
             {/if}
         </div>
 
@@ -102,7 +100,7 @@
         margin: 0;
         height: 100vh;
         font-family: 'Roboto', sans-serif;
-        background: rgb(210,210,210);
+        background: rgb(190,190,190);
     }
     :global(#app) {
         padding: 0;
@@ -132,12 +130,11 @@
         /* background: rgb(80, 80, 100); */
         /*background: linear-gradient(0deg, hsl(145, 83%, 28%) 0%, hsl(145, 83%, 38%) 100%);*/
         background: white;
-        border-bottom: 2px solid rgb(170,170,170);
+        border-bottom: 2px solid rgb(150,150,150);
         box-shadow: 0px 5px 5px rgba(0,0,0,0.2);
     }
     .leftcol {
         grid-area: 2 / 1 / 2 / 2;
-        
         align-self: stretch;
         padding: 20px 0;
         padding-left: 15px;
@@ -148,17 +145,18 @@
     .middlecol {
         grid-area: 2 / 2 / 2 / 3;
         overflow-y: auto;
-        padding: 20px 0;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding: 0 10px 20px 10px;
+        margin-top: 20px;
         /*background: rgb(220,220,220);*/
     }
     
     :global(div.bbox) {
         background: white;
-        border-radius: 8px;
+        border-radius: 6px;
         padding: 20px;
-        box-shadow: 3px 3px 3px rgba(0,0,0,0.15);
+        box-shadow: 1px 1px 4px rgba(0,0,0,0.25);
+        /*border-right: 1px solid rgb(140,140,140);
+        border-bottom: 1px solid rgb(140,140,140);*/
     }
     .rightcol {
         grid-area: 2 / 3 / 2 / 4;
@@ -172,7 +170,7 @@
     #json {
         padding: 10px;
         background: white;
-        border: 1px solid rgb(150,150,150);
+        /*border: 1px solid rgb(150,150,150);*/
     }
     #json-textarea {
         box-sizing: border-box;

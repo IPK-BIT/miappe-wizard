@@ -6,7 +6,6 @@
     import OntologyAnnotations from '@/components/isa/generic/OntologyAnnotations.svelte';
 
     import ontologyMapping from '@/lib/ontologyMapping';
-    console.log(ontologyMapping);
 </script>
 
 <section>

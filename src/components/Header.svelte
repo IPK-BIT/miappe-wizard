@@ -1,5 +1,5 @@
 <script>
-    export let isaObj;
+    import { isaObj } from '@/stores/isa.js';
 
     import { appstate } from '@/stores/appstate';
     import Schemas from '@/lib/schemas.js';
@@ -52,11 +52,13 @@
     }
 
     async function validateIsaJson() {
-        const investigation = ArcInvestigation_fromJsonString(JSON.stringify($isaObj, null, 2));
+        /*const investigation = ArcInvestigation_fromJsonString(JSON.stringify($isaObj, null, 2));
         //let arc = new ARC(investigation);
 
         let validationResult = Validation_validateInvestigation(investigation);
-        console.log(validationResult);
+        console.log(validationResult);*/
+
+        Schemas.validateIsaJson($isaObj);
     }
 
     async function toArc() {
@@ -208,7 +210,7 @@
         {#if $appstate !== appstate.WIZARD}
         <!--<button on:click|preventDefault={() => loadISA()}>Load minimal example</button> -->
         <!--<button on:click|preventDefault={() => addInvestigation()}>Add new Investigation</button>-->
-        <!--<button on:click|preventDefault={() => validateIsaJson()}>Validate ISA-JSON</button>-->
+        <button on:click|preventDefault={() => validateIsaJson()}>Validate ISA-JSON</button>
         <button on:click|preventDefault={() => toArc()}>Convert to ARC</button>
         <button on:click|preventDefault={() => saveIsaAsJson()}>Save ISA-JSON as file</button>
         <!--<button on:click|preventDefault={() => loadIsaFromJson()}>Load ISA-JSON from file</button>-->

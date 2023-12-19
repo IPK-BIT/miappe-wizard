@@ -1,6 +1,8 @@
 import { writable, get } from 'svelte/store';
 import { keyed } from 'svelte-keyed';
 
+import { miappeInvestigationHandler, miappeStudyHandler } from '@/lib/miappeMappers';
+
 function createIsaStoresSynced() {
 
     const storeIsaObj = writable({});
@@ -21,11 +23,23 @@ function createIsaStoresSynced() {
         storeIsaStr.set(isaStr);
     }
 
+    const addProxies = () => {
+        let isaObj = get(storeIsaObj);
+        isaObj = new Proxy(isaObj, miappeInvestigationHandler);
+        if (isaObj.studies.length > 0) {
+            for (const [i, study] of isaObj.studies.entries()) {
+                isaObj.studies[i] = new Proxy(isaObj.studies[i], miappeStudyHandler);
+            }
+        }
+        storeIsaObj.set(isaObj);
+    }
+
     const storesSynced = {
         isaObj: {
             subscribe: storeIsaObj.subscribe,
             update: updateIsaObj,
-            set: setIsaObj
+            set: setIsaObj,
+            addProxies: addProxies
         },
         isaStr: {
             subscribe: storeIsaStr.subscribe,

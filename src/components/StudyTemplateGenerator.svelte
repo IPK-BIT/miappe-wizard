@@ -107,12 +107,12 @@
             param.parameterName = oa;
             protocol.parameters.push(param);
         }
-        $growthProtocols.set(study, {
+        let _protocol = {
             protocol: protocol, 
             fixed_parameters: selected_options_fixed_values
-        });
-        $growthProtocols = $growthProtocols;
-        console.log($growthProtocols);
+        };
+
+        $growthProtocols = ($growthProtocols).set(study, _protocol);
     }
 
 </script>
@@ -172,4 +172,4 @@
     dropdownItem={ParameterOption}
     />
 
-<button on:click={() => save()}>Save</button>
+<button class="add" on:click={() => save()}>Save</button>

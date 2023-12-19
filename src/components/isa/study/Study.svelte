@@ -8,6 +8,8 @@
     import Date from '@/components/isa/generic/Date.svelte';
     import String from '@/components/isa/generic/String.svelte';
 
+    import Factors from './Factors.svelte';
+    import Protocols from './Protocols.svelte';
     import People from '@/components/isa/generic/People.svelte';
     import Materials from '@/components/isa/generic/materials/Materials.svelte';
     import Assays from '@/components/isa/assay/Assays.svelte';
@@ -37,6 +39,9 @@
         <Date bind:value={study.publicReleaseDate} attr="publicReleaseDate" /> -->
 
         <MiappeStudyInputs bind:value={study} />
+
+        <Factors bind:value={study.factors} />
+        <Protocols bind:value={study.protocols} />
 
         <Comments bind:value={study.comments} />
 

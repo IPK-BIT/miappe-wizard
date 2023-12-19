@@ -13,13 +13,22 @@
 
     let study;
     let template = new Blob(["Material Name,Organism,Observation Unit Type,Variety Name,Variety Reference,Latitude,Longitude,Original Coding,Sample Name,Year,Location,Repetition,Block"], { type: 'text/csv;charset=utf-8,' });
+
+
     export { study as value };  
     materials = study.materials;
 
-    $: {
-        if($growthProtocols.has(study))
-            template = createCSV($growthProtocols.get(study));
+
+
+    function updateTemplate(growthProtocols) {
+        console.log(growthProtocols);
+        if(growthProtocols.has(study)) {
+            template = createCSV(growthProtocols.get(study));
+        }
     }
+
+    $: updateTemplate($growthProtocols);
+
 
     function createCSV(growthProtocol) {
         console.log(growthProtocol);
@@ -102,8 +111,9 @@
             emptySource.characteristics.push(Schemas.createCharacteristicObject('Biological_material_latitude', row[columnNames.indexOf('Latitude')]));
             emptySource.characteristics.push(Schemas.createCharacteristicObject('Biological_material_longitude', row[columnNames.indexOf('Longitude')]));
             emptySource.characteristics.push(Schemas.createCharacteristicObject('Variety_name', row[columnNames.indexOf('Variety Name')]));
-            emptySource.characteristics.push(Schemas.createCharacteristicObject('Variety_database', row[columnNames.indexOf('Variety Database')]));
+            emptySource.characteristics.push(Schemas.createCharacteristicObject('Variety_database', row[columnNames.indexOf('Variety Reference')]));
             study.materials.sources.push(emptySource);
+
             let emptySample = Schemas.getObjectFromSchema('sample');
             emptySample.name = row[columnNames.indexOf('Sample Name')];
             // console.log(emptySample);

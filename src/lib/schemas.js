@@ -1,5 +1,6 @@
-//import investigationSchema from '@/lib/schemas/investigation_schema.json';
-//import xyz from '@/lib/schemas/';
+import Ajv from 'ajv';
+
+import { miappeInvestigationHandler, miappeStudyHandler } from './miappeMappers';
 
 
 import assay_schema from '@/lib/schemas/assay_schema.json';
@@ -23,7 +24,10 @@ import sample_schema from '@/lib/schemas/sample_schema.json';
 import source_schema from '@/lib/schemas/source_schema.json';
 import study_schema from '@/lib/schemas/study_schema.json';
 
-import { miappeInvestigationHandler, miappeStudyHandler } from './miappeMappers';
+
+const ajv = new Ajv({ allErrors: true });
+
+
 
 const mapping = {
     assay: assay_schema,
@@ -47,6 +51,19 @@ const mapping = {
     source: source_schema,
     study: study_schema
 }
+
+
+//const mainSchema = JSON.parse(investigation_schema);
+//console.log(investigation_schema);
+
+
+for (let [schemaId, schema] of Object.entries(mapping)) {
+    //console.log(schemaId);
+    //console.log(schema);
+    ajv.addSchema(schema, schemaId + '_schema.json');
+    //break;
+}
+
 
 export default class Schemas {
 
@@ -118,5 +135,16 @@ export default class Schemas {
         emptyCharacteristic.unit = null;
 
         return emptyCharacteristic;
+    }
+
+    static validateIsaJson(dataToValidate) {
+        const validate = ajv.compile(investigation_schema);
+        const isValid = validate(dataToValidate);
+        if (isValid) {
+            console.log('Validation passed');
+        } else {
+            console.log('Validation failed');
+            console.log(validate.errors);
+        }
     }
 }
