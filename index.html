@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MIAPPE-Wizard</title>
-  </head>
-  <body>
+<head>
+<meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MIAPPE-Wizard</title>
+
+<script type="module" src="/wizard.config.js"></script>
+
+<script type="module" src="/src/main.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        //console.log(wizardConfig);
+
+        let fetchConfig = await fetch('wizard.config.json');
+        let config = await fetchConfig.json();
+
+        miappeWizard.startApp({
+            config: config
+        });
+    });
+</script>
+
+</head>
+<body>
     <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+</body>
 </html>

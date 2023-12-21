@@ -47,6 +47,9 @@
             'dataFileLink': miappe['DM-37'],
             'dataFileDescription': miappe['DM-38'],
             'dataFileVersion': miappe['DM-39'],
+        },
+        'Protocol': {
+            'description': miappe['DM-67']
         }
     }
 </script>

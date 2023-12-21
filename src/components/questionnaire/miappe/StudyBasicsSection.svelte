@@ -9,12 +9,12 @@
     setContext('isaLevel', 'Study');
 </script>
 
-<p>Basic information about your experiment</p>
+<!--<p>Basic information about your experiment</p>-->
 
-<String bind:value={study.filename} attr="filename"/>
-<String bind:value={study.identifier} attr="identifier" />
-<String bind:value={study.title} attr="title" />
-<String bind:value={study.description} attr="description" />
+<!--<String bind:value={study.filename} label="Filename" attr="filename"/>-->
+<String bind:value={study.identifier} label="Unique Identifier" attr="identifier" focus={true} />
+<String bind:value={study.title} label="Title" attr="title" />
+<String bind:value={study.description} label="Description" attr="description" />
 
 <!-- <Date bind:value={study.submissionDate} attr="submissionDate" />
 <Date bind:value={study.publicReleaseDate} attr="publicReleaseDate" /> -->

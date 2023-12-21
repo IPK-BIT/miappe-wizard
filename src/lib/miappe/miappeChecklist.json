@@ -93,83 +93,91 @@
         "cardinality": "0-1"
     },
     {
-    "id": "DM-12",
-    "miappeTerm": "Study title",
-    "definition": "Human-readable text summarising the study",
-    "example": "2002 evaluation of flowering time for a panel of 375 maize lines at the experimental station of Maugio (France).",
-    "format": "Free text (short)",
-    "cardinality": "1"
+        "id": "DM-12",
+        "miappeTerm": "Study title",
+        "definition": "Human-readable text summarising the study",
+        "example": "2002 evaluation of flowering time for a panel of 375 maize lines at the experimental station of Maugio (France).",
+        "format": "Free text (short)",
+        "cardinality": "1"
     },
     {
-    "id": "DM-13",
-    "miappeTerm": "Study description",
-    "definition": "Human-readable text describing the study",
-    "example": "2002 evaluation of male and female flowering time for a panel of 375 maize lines representing the worldwide genetic diversity at the experimental station of Maugio, France.",
-    "format": "Free text",
-    "cardinality": "0-1"
+        "id": "DM-13",
+        "miappeTerm": "Study description",
+        "definition": "Human-readable text describing the study",
+        "example": "2002 evaluation of male and female flowering time for a panel of 375 maize lines representing the worldwide genetic diversity at the experimental station of Maugio, France.",
+        "format": "Free text",
+        "cardinality": "0-1"
     },
     {
-    "id": "DM-14",
-    "miappeTerm": "Start date of study",
-    "definition": "Date and, if relevant, time when the experiment started",
-    "example": "\"2002-04-04\n2006-09-27T10:23:21+00:00\"",
-    "format": "Date/Time (ISO 8601, optional time zone)",
-    "cardinality": "1"
+        "id": "DM-14",
+        "miappeTerm": "Start date of study",
+        "definition": "Date and, if relevant, time when the experiment started",
+        "example": "\"2002-04-04\n2006-09-27T10:23:21+00:00\"",
+        "format": "Date/Time (ISO 8601, optional time zone)",
+        "cardinality": "1"
     },
     {
-    "id": "DM-15",
-    "miappeTerm": "End date of study",
-    "definition": "Date and, if relevant, time when the experiment ended",
-    "example": "2002-11-27",
-    "format": "Date/Time (ISO 8601, optional time zone)",
-    "cardinality": "0-1"
+        "id": "DM-15",
+        "miappeTerm": "End date of study",
+        "definition": "Date and, if relevant, time when the experiment ended",
+        "example": "2002-11-27",
+        "format": "Date/Time (ISO 8601, optional time zone)",
+        "cardinality": "0-1"
     },
     {
-    "id": "DM-16",
-    "miappeTerm": "Contact institution",
-    "definition": "Name and address of the institution responsible for the study.",
-    "example": "IPK Gatersleben, Stadt Seeland, Germany",
-    "format": "Free text (short)",
-    "cardinality": "1"
+        "id": "DM-16",
+        "miappeTerm": "Contact institution",
+        "definition": "Name and address of the institution responsible for the study.",
+        "example": "IPK Gatersleben, Stadt Seeland, Germany",
+        "format": "Free text (short)",
+        "cardinality": "1"
     },
     {
-    "id": "DM-17",
-    "miappeTerm": "Geographic location (country)",
-    "definition": "The country where the experiment took place, either as a full name or preferably as a 2-letter code.",
-    "example": "FR",
-    "format": "Country name or 2-letter code (ISO 3166)",
-    "cardinality": "1"
+        "id": "DM-17",
+        "miappeTerm": "Geographic location (country)",
+        "definition": "The country where the experiment took place, either as a full name or preferably as a 2-letter code.",
+        "example": "FR",
+        "format": "Country name or 2-letter code (ISO 3166)",
+        "cardinality": "1"
     },
     {
-    "id": "DM-18",
-    "miappeTerm": "Experimental site name",
-    "definition": "The name of the natural site, experimental field, greenhouse, phenotyping facility, etc. where the experiment took place.",
-    "example": "Experimental field west, IPK Gatersleben, Germany",
-    "format": "Free text (short)",
-    "cardinality": "1"
+        "id": "DM-18",
+        "miappeTerm": "Experimental site name",
+        "definition": "The name of the natural site, experimental field, greenhouse, phenotyping facility, etc. where the experiment took place.",
+        "example": "Experimental field west, IPK Gatersleben, Germany",
+        "format": "Free text (short)",
+        "cardinality": "1"
     },
     {
-    "id": "DM-19",
-    "miappeTerm": "Geographic location (latitude)",
-    "definition": "Latitude of the experimental site in degrees, in decimal format.",
-    "example": "+43.619264",
-    "format": "Degrees in the decimal format (ISO 6709)",
-    "cardinality": "0-1 (1 if longitude is provided)"
+        "id": "DM-19",
+        "miappeTerm": "Geographic location (latitude)",
+        "definition": "Latitude of the experimental site in degrees, in decimal format.",
+        "example": "+43.619264",
+        "format": "Degrees in the decimal format (ISO 6709)",
+        "cardinality": "0-1 (1 if longitude is provided)"
     },
     {
-    "id": "DM-20",
-    "miappeTerm": "Geographic location (longitude)",
-    "definition": "Longitude of the experimental site in degrees, in decimal format.",
-    "example": "+3.967454",
-    "format": "Degrees in the decimal format (ISO 6709)",
-    "cardinality": "0-1 (1 if latitude is provided)"
+        "id": "DM-20",
+        "miappeTerm": "Geographic location (longitude)",
+        "definition": "Longitude of the experimental site in degrees, in decimal format.",
+        "example": "+3.967454",
+        "format": "Degrees in the decimal format (ISO 6709)",
+        "cardinality": "0-1 (1 if latitude is provided)"
     },
     {
-    "id": "DM-21",
-    "miappeTerm": "Geographic location (altitude)",
-    "definition": "Altitude of the experimental site, provided in metres (m).",
-    "example": "100 m",
-    "format": "Numeric + unit abbreviation",
-    "cardinality": "0-1"
+        "id": "DM-21",
+        "miappeTerm": "Geographic location (altitude)",
+        "definition": "Altitude of the experimental site, provided in metres (m).",
+        "example": "100 m",
+        "format": "Numeric + unit abbreviation",
+        "cardinality": "0-1"
+    },
+    {
+        "id": "DM-67",
+        "miappeTerm": "Growth Protocol Description",
+        "definition": "Human-readable text describing how the plants growed up.",
+        "example": "The plants were grown in a Lemna-Tec greenhouse under constant conditions.",
+        "format": "",
+        "cardinality": "0-1"
     }
 ]

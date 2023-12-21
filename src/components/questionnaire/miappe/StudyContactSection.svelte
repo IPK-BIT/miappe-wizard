@@ -8,10 +8,10 @@
     setContext('isaLevel', 'Study');
 </script>
 
-<p>Contacts of your institute</p>
+<!--<p>Contacts of your institute</p>-->
 
-<String bind:value={study.contactInstitution} attr="contactInstitution" />
-<String bind:value={study.country} attr="country" />
-<String bind:value={study.latitude} attr="latitude" />
-<String bind:value={study.longitude} attr="longitude" />
-<String bind:value={study.altitude} attr="altitude" />
+<String bind:value={study.contactInstitution} label="Contact" attr="contactInstitution" />
+<String bind:value={study.country} label="Country" attr="country" />
+<String bind:value={study.latitude} label="Latitude" attr="latitude" />
+<String bind:value={study.longitude} label="Longitude" attr="longitude" />
+<String bind:value={study.altitude} label="Altitude" attr="altitude" />

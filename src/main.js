@@ -1,12 +1,23 @@
 //import './app.css'
 import App from './App.svelte'
 
+let config = {};
+
 const target = document.querySelector('#app');
 //const shadowRoot = target.attachShadow({ mode: "open" });
 
-const app = new App({
-    //target: document.getElementById('app')
-    target: target
-})
+function startApp(params) {
+    const app = new App({
+        //target: document.getElementById('app')
+        target: target,
+        props: {
+            config: params.config
+        }
+    });
+}
 
-export default app
+window.miappeWizard = {
+    startApp: startApp
+}
+
+//export default app

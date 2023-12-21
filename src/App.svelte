@@ -1,28 +1,36 @@
 <script>
-    import '@fontsource/roboto';
-    import '@fontsource/roboto/500.css';
 
-    import Header from '@/components/Header.svelte';
-    import InitView from '@/components/InitView.svelte';
-    import Explanation from '@/components/Explanation.svelte';
-    import TreeView from '@/components/treeview/TreeView.svelte';
-    
-    import Investigation from '@/components/isa/investigation/Investigation.svelte';
-    import InvestigationWizard from '@/components/questionnaire/InvestigationWizard.svelte';
-    import Forms from '@/components/Forms.svelte';
-    
-    import { appstate } from '@/stores/appstate';
-    import { partialview } from '@/stores/partialview';
-    import { isaObj, isaStr } from '@/stores/isa.js';
-    import ManualExplanation from '@/components/ManualExplanation.svelte';
+export let config;
 
-    let showJson = false;
+import { setConfig } from './stores/config';
+setConfig(config);
 
-    partialview.subscribe($ => {
-        if (typeof($.component) === 'function') {
-            $appstate = appstate.LEVEL;
-        }
-    });
+import { wizard } from '@/stores/wizard';
+
+import '@fontsource/roboto';
+import '@fontsource/roboto/500.css';
+
+import Header from '@/components/Header.svelte';
+import InitView from '@/components/InitView.svelte';
+import Explanation from '@/components/Explanation.svelte';
+import TreeView from '@/components/treeview/TreeView.svelte';
+
+import Investigation from '@/components/isa/investigation/Investigation.svelte';
+import InvestigationWizard from '@/components/questionnaire/InvestigationWizard.svelte';
+import Forms from '@/components/Forms.svelte';
+
+import { appstate } from '@/stores/appstate';
+import { partialview } from '@/stores/partialview';
+import { isaObj, isaStr } from '@/stores/isa.js';
+import ManualExplanation from '@/components/ManualExplanation.svelte';
+
+let showJson = false;
+
+partialview.subscribe($ => {
+    if (typeof($.component) === 'function') {
+        $appstate = appstate.LEVEL;
+    }
+});
 
 </script>
 
@@ -47,6 +55,17 @@
             {#if $appstate !== appstate.WIZARD}
             <TreeView />
             {/if}
+
+            {#if $appstate === appstate.WIZARD}
+            <div class="bbox">
+                <p style="margin: 0 0 5px 0;">Your progress:</p>
+                <div id="progress-bar">
+                    <div id="progress" style:width={(($wizard.currentStep / $wizard.steps)*100)+'%'}></div>
+                </div>
+            </div>
+            {/if}
+            
+
         </div>
         
         <div class="middlecol">
@@ -87,6 +106,19 @@
 </main>
     
 <style>
+
+#progress-bar {
+    /*border: 1px solid rgb(130,130,130);*/
+    background: rgb(225,225,225);
+    height: 25px;
+}
+
+#progress {
+    background: rgb(30, 206, 7);
+    height: 100%;
+    width: 0%;
+}
+
     :global(*) {
         box-sizing: border-box;
     }

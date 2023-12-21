@@ -8,6 +8,7 @@
     const dispatch = createEventDispatcher();
 
     import { questionnaire } from '@/stores/questionnaire';
+    import { wizard } from '@/stores/wizard';
 
     import Schemas from '@/lib/schemas.js';
 
@@ -133,7 +134,6 @@
             label: 'Contact of institute',
             component: String
         },*/
-        // StudyContactSection
         {
             question: 'Please provide basic information about your experiment.',
             level: 'Study',
@@ -165,6 +165,8 @@
         },
     ];
 
+    $wizard.steps = steps.length;
+
     function addStudy() {
         let emptyStudy = Schemas.getMiappeStudy();
         isa['studies'] = [ ...isa['studies'], emptyStudy];
@@ -172,6 +174,7 @@
 
     function prev() {
         currentStep = currentStep - 1;
+        $wizard.currentStep = currentStep;
         executeStepHooks();
     }
 
@@ -181,6 +184,7 @@
         }*/
         executeStepHooks();
         currentStep = currentStep + 1;
+        $wizard.currentStep = currentStep;
     }
 
     function executeStepHooks() {

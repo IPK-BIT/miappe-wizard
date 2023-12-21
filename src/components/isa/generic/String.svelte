@@ -3,6 +3,7 @@
     export let attr;
     export let value;
     export let showLabel = true;
+    export let focus = false;
 
     if (!label) {
         label = attr;
@@ -19,7 +20,7 @@
     let explanationAction = explanationActionFactory(isaLevel);
 
     function setFocus(el){
-        if ($appstate==appstate.WIZARD){
+        if ($appstate==appstate.WIZARD && focus){
             el.focus();
         }
     }
