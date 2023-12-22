@@ -5,7 +5,7 @@
     import String from '@/components/isa/generic/String.svelte';
 
     import { setContext } from 'svelte';
-    setContext('isaLevel', 'Study');
+    setContext('isaLevel', 'study');
 </script>
 
 <!--<p>Contacts of your institute</p>-->

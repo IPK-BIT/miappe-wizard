@@ -26,14 +26,16 @@
     }*/
 
     let explanations = {
-        'Investigation': {
+        'investigation': {
             'identifier': miappe['DM-2'],
             'title': miappe['DM-3'],
             'description': miappe['DM-4'],
             'submissionDate': miappe['DM-5'],
             'publicReleaseDate': miappe['DM-6'],
+            'DM-16': miappe['DM-16'],
+            'DM-17': miappe['DM-17']
         },
-        'Study': {
+        'study': {
             'identifier': miappe['DM-11'],
             'title': miappe['DM-12'],
             'description': miappe['DM-13'],
@@ -47,8 +49,10 @@
             'dataFileLink': miappe['DM-37'],
             'dataFileDescription': miappe['DM-38'],
             'dataFileVersion': miappe['DM-39'],
+            'DM-16': miappe['DM-16'],
+            'DM-17': miappe['DM-17']
         },
-        'Protocol': {
+        'protocol': {
             'description': miappe['DM-67']
         }
     }

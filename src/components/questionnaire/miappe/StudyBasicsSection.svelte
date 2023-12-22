@@ -6,7 +6,7 @@
     import Date from '@/components//isa/generic/Date.svelte';
 
     import { setContext } from 'svelte';
-    setContext('isaLevel', 'Study');
+    setContext('isaLevel', 'study');
 </script>
 
 <!--<p>Basic information about your experiment</p>-->

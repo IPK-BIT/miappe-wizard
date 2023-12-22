@@ -3,6 +3,12 @@
     let materials: Array<Object>;
     // export { materials as value };
 
+    let study;
+    export { study as value };  
+    materials = study.materials;
+
+    import { appstate } from '@/stores/appstate';
+
     import readXlsxFile from 'read-excel-file';
     import Grid from 'gridjs-svelte';
 
@@ -11,12 +17,8 @@
     import { isaObj } from '@/stores/isa';
     import { growthProtocols } from '@/stores/growthProtocols.js';
 
-    let study;
+    
     let template = new Blob(["Material Name,Organism,Observation Unit Type,Variety Name,Variety Reference,Latitude,Longitude,Original Coding,Sample Name,Year,Location,Repetition,Block"], { type: 'text/csv;charset=utf-8,' });
-
-
-    export { study as value };  
-    materials = study.materials;
 
 
 
@@ -149,7 +151,10 @@
 <section>
 
     <div class="attr">
+
+        {#if $appstate !== appstate.WIZARD}
         <h3>Materials</h3>
+        {/if}
 
         <!-- <button on:click|preventDefault={() => loadXLSX()}>Load material sources from Excel file (*.xlsx)</button> -->
 
@@ -169,8 +174,10 @@
         <!-- MY CODE FROM HERE -->
         <div class="material-info">
             <TableLoader template={template} on:approve={handleApprove} />
-            Number of materials: {study.materials.sources.length}<br />
+            {#if study.materials.sources.length > 0}
+            <br />Number of materials: {study.materials.sources.length}<br />
             Number of samples: {study.materials.samples.length}
+            {/if}
         </div>
     </div>
 

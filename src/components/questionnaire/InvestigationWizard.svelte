@@ -2,7 +2,7 @@
     export let isa;
 
     import { setContext } from 'svelte';
-    setContext('isaLevel', 'Investigation');
+    setContext('isaLevel', 'investigation');
 
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();

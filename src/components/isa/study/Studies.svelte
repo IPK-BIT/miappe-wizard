@@ -4,7 +4,7 @@
     export let attr = '';
 
     import { setContext } from 'svelte';
-    setContext('isaLevel', 'Study');
+    setContext('isaLevel', 'study');
 
     import wording from '@/lib/wording';
 

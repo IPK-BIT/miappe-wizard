@@ -29,7 +29,7 @@
 
 <section>
 
-    <div class="attr"><label>{label}:</label> <input use:explanationAction use:setFocus data-attr={attr} class="datepicker" type="date" bind:value={date} /></div>
+    <div class="attr"><label>{label}:</label> <input use:explanationAction use:setFocus data-attr={attr} class="datepicker" type="date" bind:value={date} on:change /></div>
 
 </section>
 

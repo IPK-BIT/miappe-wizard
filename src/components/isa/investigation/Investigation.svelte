@@ -3,7 +3,7 @@
     export { isa as value };
 
     import { setContext } from 'svelte';
-    setContext('isaLevel', 'Investigation');
+    setContext('isaLevel', 'investigation');
 
     import wording from '@/lib/wording';
 

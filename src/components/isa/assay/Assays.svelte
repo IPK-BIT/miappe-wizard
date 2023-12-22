@@ -3,7 +3,7 @@
     export { assays as value };
 
     import { setContext } from 'svelte';
-    setContext('isaLevel', 'Assay');
+    setContext('isaLevel', 'assay');
 
     import Schemas from '@/lib/schemas.js';
     import Assay from '@/components/isa/assay/Assay.svelte';

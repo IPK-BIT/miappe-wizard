@@ -57,7 +57,13 @@
 
 <section>
     {#if !fileUploaded}
-    <button on:click={handleDownload}>Download Template</button>
+    <p style="margin: 0 0 20px 0;">
+    Please download the template file and fill it with your materials as rows according to the column names:
+    &nbsp; <button on:click={handleDownload} class="add">Download Template</button>
+
+    <p>
+        Please then upload the list of materials by clicking the upload area below or by dragging and dropping the file onto the upload area.
+    </p>
     <div class="drag-drop-area" role="button" tabindex="0" on:drop={handleFileDrop} on:dragover={(event) => event.preventDefault()}>
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
@@ -96,8 +102,7 @@
 
 <style>
     section {
-        margin-top: 1em;
-        margin-bottom: 1em;
+
     }
     .drag-drop-area {
         margin-top: .5em;

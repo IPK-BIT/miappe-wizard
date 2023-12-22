@@ -1,17 +1,19 @@
 <script>
+    let study;
+    export { study as value };
+
     import { config } from '@/stores/config';
 
     import { setContext } from 'svelte';
-    setContext('isaLevel', 'Protocol');
+    setContext('isaLevel', 'protocol');
+
+    import { appstate } from '@/stores/appstate';
 
     import Svelecte from "svelecte/src/Svelecte.svelte";
     import ParameterOption from "./questionnaire/ParameterOption.svelte";
     import Schemas from "@/lib/schemas";
     import String from "./isa/generic/String.svelte";
     import { growthProtocols } from '@/stores/growthProtocols.js';
-
-    let study;
-    export { study as value };
 
     let protocol = Schemas.getObjectFromSchema("protocol");
     protocol.name = "Growth";
@@ -50,7 +52,9 @@
 
 </script>
 
-<!--<h3>Growth Protocol</h3>-->
+{#if $appstate !== appstate.WIZARD}
+<h3>Growth Protocol</h3>
+{/if}
 
 <p>
     In this step, we will define the growth protocol for your plants.
@@ -71,6 +75,7 @@
     creatablePrefix=""
     allowEditing={true}
     dropdownItem={ParameterOption}
+    on:change={() => save()}
     />
 
 <p>
@@ -85,6 +90,7 @@
     creatablePrefix=""
     allowEditing={true}
     dropdownItem={ParameterOption}
+    on:change={() => save()}
     />
 
 {#each selected_options_fixed as option}
@@ -103,6 +109,7 @@
     creatablePrefix=""
     allowEditing={true}
     dropdownItem={ParameterOption}
+    on:change={() => save()}
     />
 
 <button class="add" on:click={() => save()} style="margin-top: 20px;">Save</button>
