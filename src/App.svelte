@@ -17,7 +17,10 @@ import TreeView from '@/components/treeview/TreeView.svelte';
 
 import Investigation from '@/components/isa/investigation/Investigation.svelte';
 import InvestigationWizard from '@/components/questionnaire/InvestigationWizard.svelte';
+import GenericQuestionnaire from '@/components/questionnaire/GenericQuestionnaire.svelte';
 import Forms from '@/components/Forms.svelte';
+
+import Gui from './components/gui/Gui.svelte';
 
 import { appstate } from '@/stores/appstate';
 import { partialview } from '@/stores/partialview';
@@ -31,6 +34,10 @@ partialview.subscribe($ => {
         $appstate = appstate.LEVEL;
     }
 });
+
+function showGui() {
+    $appstate = appstate.GUI;
+}
 
 </script>
 
@@ -53,6 +60,11 @@ partialview.subscribe($ => {
         <div class="leftcol">
 
             {#if $appstate !== appstate.WIZARD}
+            <div class="bbox" style="margin-bottom: 20px;">
+                <a href="#" on:click|preventDefault={showGui}>Investigation</a>
+            </div>
+
+            
             <TreeView />
             {/if}
 
@@ -61,6 +73,7 @@ partialview.subscribe($ => {
                 <p style="margin: 0 0 5px 0;">Your progress:</p>
                 <div id="progress-bar">
                     <div id="progress" style:width={(($wizard.currentStep / $wizard.steps)*100)+'%'}></div>
+                    <div id="progress-percent">{Math.floor(($wizard.currentStep / $wizard.steps)*100)}%</div>
                 </div>
             </div>
             {/if}
@@ -75,9 +88,12 @@ partialview.subscribe($ => {
             {#if $appstate === appstate.FORM}
             <Investigation bind:value={$isaObj} />
             {:else if $appstate === appstate.WIZARD}
-            <InvestigationWizard bind:isa={$isaObj} on:closeWizard={() => {$appstate = appstate.FORM;}} />
+            <!--<InvestigationWizard bind:isa={$isaObj} on:closeWizard={() => {$appstate = appstate.FORM;}} />-->
+            <GenericQuestionnaire on:closeWizard={() => {$appstate = appstate.FORM;}} />
             {:else if $appstate === appstate.LEVEL}
             <Forms />
+            {:else if $appstate === appstate.GUI}
+            <Gui />
             {/if}
 
             </div>
@@ -108,15 +124,27 @@ partialview.subscribe($ => {
 <style>
 
 #progress-bar {
-    /*border: 1px solid rgb(130,130,130);*/
+    border: 0px solid rgb(160,160,160);
     background: rgb(225,225,225);
     height: 25px;
+    position: relative;
 }
 
 #progress {
     background: rgb(30, 206, 7);
     height: 100%;
     width: 0%;
+}
+
+#progress-percent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 25px;
+    padding: 4px 0 0 0;
+    text-align: center;
+    font-size: 0.95em;
 }
 
     :global(*) {

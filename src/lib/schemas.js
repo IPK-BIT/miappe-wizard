@@ -105,9 +105,15 @@ export default class Schemas {
             } else if (v['type'] === 'object') {
                 let entries = Object.entries(v['properties']);
                 obj[k] = Object.fromEntries( entries.map(x => [x[0], getDatatypeByJsonType(x[1]['type']) ]) );
+            }  else if (v['anyOf'] !== undefined) {
+                if (v['anyOf'][0]['type'] === 'string') {
+                    obj[k] = '';
+                }
             } else {
                 obj[k] = {};
             }
+
+            // anyOf
         }
 
         return obj;
@@ -135,6 +141,26 @@ export default class Schemas {
         emptyCharacteristic.unit = null;
 
         return emptyCharacteristic;
+    }
+
+    static getSource(name, characteristics) {
+        let source = Schemas.getObjectFromSchema('source');
+        source.name = name;
+
+        let _characteristics = [];
+        for (let [key, value] of Object.entries(characteristics)) {
+            let material_attribute_value = Schemas.getObjectFromSchema('material_attribute_value');
+            material_attribute_value.category = Schemas.getObjectFromSchema('material_attribute');
+            material_attribute_value.unit = Schemas.getObjectFromSchema('ontology_annotation');
+            material_attribute_value.category.characteristicType = Schemas.getObjectFromSchema('ontology_annotation');
+            material_attribute_value.category.characteristicType.annotationValue = key;
+            material_attribute_value.value = value;
+    
+            _characteristics.push(material_attribute_value);
+        }
+
+        source.characteristics = _characteristics;
+        return source;
     }
 
     static validateIsaJson(dataToValidate) {
