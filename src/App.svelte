@@ -23,6 +23,7 @@ import { appstate } from '@/stores/appstate';
 import { partialview } from '@/stores/partialview';
 import { isaObj, isaStr } from '@/stores/isa.js';
 import ManualExplanation from '@/components/ManualExplanation.svelte';
+    import Transfer from './components/Transfer.svelte';
 
 let showJson = false;
 
@@ -78,6 +79,8 @@ partialview.subscribe($ => {
             <InvestigationWizard bind:isa={$isaObj} on:closeWizard={() => {$appstate = appstate.FORM;}} />
             {:else if $appstate === appstate.LEVEL}
             <Forms />
+            {:else if $appstate === appstate.TRANSFER}
+            <Transfer/>
             {/if}
 
             </div>

@@ -18,9 +18,6 @@
 
     import { downloadZip } from 'client-zip';
 
-    
-
-
     function startWizardMode() {
         if (Object.keys($isaObj).length == 0) {
             addInvestigation();
@@ -194,6 +191,10 @@
         getIsaTab($isaObj);
     }
 
+    function transferToGitlab() {        
+        $appstate = appstate.TRANSFER;
+    }
+
 </script>
 
 
@@ -218,6 +219,7 @@
         <!--<button on:click|preventDefault={() => sendToArc()}>Send JSON to ARC</button>-->
 
         <button on:click|preventDefault={() => convertToIsaTabArchive()}>Convert to ISA-TAB</button>
+        <button on:click|preventDefault={() => transferToGitlab()}>Transfer to Gitlab</button>
         
         {/if}
 
