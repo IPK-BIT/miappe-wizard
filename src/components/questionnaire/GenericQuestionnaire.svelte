@@ -13,6 +13,7 @@ const dispatch = createEventDispatcher();
 import { wizard } from '@/stores/wizard';
 import { config } from '@/stores/config';
 import { isaObj } from '@/stores/isa';
+import { hooksExecuted } from '@/stores/hooksExecuted';
 
 import Schemas from '@/lib/schemas.js';
 
@@ -34,7 +35,8 @@ import FactorsSelect from '../isa/study/FactorsSelect.svelte';
 const fieldTypes = {
     'text': String,
     'textarea': Textarea,
-    'date': Date
+    'date': Date,
+    'people': People,
 }
 
 const components = {
@@ -50,7 +52,7 @@ $wizard.steps = steps.length;
 
 let currentStep = 0;
 
-let hooksExecuted = [];
+//let hooksExecuted = [];
 
 const hooks = {
     'addStudy': addStudy,
@@ -106,9 +108,9 @@ async function next() {
 function executeStepHooks(step) {
     if (steps[step] && steps[step].hook !== undefined) {
         const hookId = steps[step].hook+'_'+step;
-        if (!hooksExecuted.includes(hookId)) {
+        if (!$hooksExecuted.includes(hookId)) {
             hooks[steps[step].hook]();
-            hooksExecuted.push(hookId);
+            $hooksExecuted = [...$hooksExecuted, hookId]
             console.log('execute hook: ', steps[step].hook);
         } else {
             console.info('hooks do not get executed twice!')
@@ -126,11 +128,11 @@ function executeStepHooks(step) {
 function populateFieldValues() {
     if (steps[currentStep] && steps[currentStep].fields) {
         for (let field of steps[currentStep].fields) {
-            if (field.isaMapping.attribute === 'comments') {
-                commentMapper(field);
-            } else if (field.isaMapping.entity === 'protocol') {
+            if (field.isaMapping.jsonPath) {
                 field.value = get($isaObj, field.isaMapping.jsonPath);
                 doRerender++;
+            } else if (field.isaMapping.attribute === 'comments') {
+                commentMapper(field);
             } else {
                 nativeAttributeMapper(field);
             }
@@ -187,10 +189,12 @@ function updateStore(value, i) {
         let step = steps[currentStep];
         let field = step.fields[i];
 
-        if (field.isaMapping.attribute === 'comments') {
+        if (field.isaMapping.jsonPath) {
+            set($isaObj, field.isaMapping.jsonPath, value);
+        } else if (field.isaMapping.attribute === 'comments') {
             updateComment(field, value);
-        } else if (field.isaMapping.entity === 'protocol') {
-            updateProtocol(field, value);
+        } else if (field.isaMapping.attribute === 'people') {
+            updatePeople(field, value);
         } else {
             updateNativeAttribute(field, value);
         }
@@ -207,12 +211,15 @@ function updateNativeAttribute(field, value) {
         const studyIndex = field.isaMapping.studyIndex ?? 0;
         $isaObj.studies[studyIndex][attr] = value;
     }
-
-    //target[field.isaMapping.attribute] = value;
 }
 
-function updateProtocol(field, value) {
-    set($isaObj, field.isaMapping.jsonPath, value);
+function updatePeople(field, value) {
+    if (field.isaMapping.entity === 'investigation') {
+        $isaObj.people = value;
+    } else if (field.isaMapping.entity === 'study') {
+        const studyIndex = field.isaMapping.studyIndex ?? 0;
+        $isaObj.studies[studyIndex].people = value;
+    }
 }
 
 function updateComment(field, value) {

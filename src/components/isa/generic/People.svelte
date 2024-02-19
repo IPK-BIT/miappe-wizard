@@ -21,7 +21,7 @@
         <button class="add" on:click|preventDefault={() => addPerson()}>add person</button>
 
         {#each people as person}
-        <Person bind:person />
+        <Person on:change bind:person />
         {/each}
     </div>
 
