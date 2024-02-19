@@ -60,7 +60,7 @@ const mapping = {
 for (let [schemaId, schema] of Object.entries(mapping)) {
     //console.log(schemaId);
     //console.log(schema);
-    ajv.addSchema(schema, schemaId + '_schema.json');
+    //ajv.addSchema(schema, schemaId + '_schema.json');
     //break;
 }
 
@@ -119,8 +119,23 @@ export default class Schemas {
         return obj;
     }
 
-    static getMiappeInvestigation() {
-        return new Proxy(Schemas.getObjectFromSchema("investigation"), miappeInvestigationHandler);
+    static getMiappeInvestigation(prefill) {
+        let emptyInvestigation = Schemas.getObjectFromSchema("investigation");
+        let investigationWithPrefill = Schemas.addPrefill(emptyInvestigation, prefill);
+
+        return new Proxy(investigationWithPrefill, miappeInvestigationHandler);
+    }
+
+    static addPrefill(investigation, prefill) {
+        if (prefill) {
+            for (let item of prefill) {
+                if (item.isaMapping.type === 'person') {
+                    let person = Schemas.getPerson(item.values);
+                    investigation.people = [...investigation.people, person]
+                }
+            }
+        }
+        return investigation;
     }
 
     static getMiappeStudy() {
@@ -161,6 +176,11 @@ export default class Schemas {
 
         source.characteristics = _characteristics;
         return source;
+    }
+
+    static getPerson(attrs) {
+        let person = Schemas.getObjectFromSchema('person');
+        return Object.assign(person, attrs);
     }
 
     static validateIsaJson(dataToValidate) {

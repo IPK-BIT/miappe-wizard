@@ -1,4 +1,25 @@
 window.config = {
+
+    prefill: [
+        {
+            isaMapping: {
+                entity: 'investigation',
+                type: 'person',
+                jsonPath: 'people'
+            },
+            values: {
+                lastName : 'Max',
+                firstName : 'Mustermann',
+                midInitials : '',
+                email : 'mustermann@ipk-gatersleben.de',
+                phone : '1234',
+                fax : '7890',
+                address : 'Corrensstraße 3, 06646 Seeland',
+                affiliation : 'IPK Gatersleben'
+            }
+        }
+    ],
+
     "checklist": {
         "checklistName": "MIAPPE",
         "checklistVersion": "1.1",

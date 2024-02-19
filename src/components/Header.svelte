@@ -2,6 +2,7 @@
     import { isaObj } from '@/stores/isa.js';
 
     import { appstate } from '@/stores/appstate';
+    import { config } from '@/stores/config';
     import Schemas from '@/lib/schemas.js';
     import { getIsaTab } from '@/lib/getIsaTab';
 
@@ -36,7 +37,8 @@
     }
 
     async function addInvestigation() {
-        let emptyInvestigation = Schemas.getMiappeInvestigation();
+        console.log(config);
+        let emptyInvestigation = Schemas.getMiappeInvestigation(config.prefill);
         $isaObj = emptyInvestigation;
     }
 
