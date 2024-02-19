@@ -82,6 +82,8 @@ onMount(() => {
     </div>
     {/if}
 
+
+    {#if parameters.length > 0}
     <div style="height: 400px; overflow-y: scroll;">
     <table id="parameters-predefined">
         <tr>
@@ -100,6 +102,7 @@ onMount(() => {
         {/each}
     </table>
     </div>
+    {/if}
 
 </section>
 

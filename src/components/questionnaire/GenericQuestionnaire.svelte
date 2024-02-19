@@ -79,6 +79,12 @@ function addProtocol() {
             let emptyParameter = Schemas.getObjectFromSchema('protocol_parameter');
             emptyParameter.parameterName = Schemas.getObjectFromSchema('ontology_annotation');
             emptyParameter.parameterName.annotationValue = parameterName;
+
+            let comment = Schemas.getObjectFromSchema('comment');
+            comment.name = 'value';
+            comment.value = '';
+            emptyParameter.comments = [comment];
+
             emptyProtocol.parameters = [...emptyProtocol.parameters, emptyParameter];
         }
     }

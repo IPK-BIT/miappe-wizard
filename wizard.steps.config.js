@@ -140,7 +140,7 @@ window.steps = [
             protocolName: 'Growth',
             protocolVersion: 'MIAPPE v1.1',
             protocolDescription: 'How the plants were grown up.',
-            //protocolParameters: ['Light intensity', 'Air temperature']
+            protocolParameters: ['Light intensity', 'Air temperature']
         }
     },
     {

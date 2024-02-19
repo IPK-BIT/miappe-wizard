@@ -100,7 +100,7 @@ window.config = {
                     { "label":"Watering regimen", "explanation":"The treatment involving an exposure to watering frequencies." },
                     { "label":"Composition of nutrient solutions used for irrigation", "explanation":"For all nutrients, including micronutrients, the ontology term with concentration." },
                     { "label":"Electrical conductivity", "explanation":"A conductivity quality inhering in a bearer by virtue of the bearer's ability to convey electricity." }
-                    ]
+                ]
             },
             {
                 "name": "Phenotyping"
