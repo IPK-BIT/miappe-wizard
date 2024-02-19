@@ -29,6 +29,7 @@ import Materials from '@/components/isa/generic/materials/Materials.svelte';
 import StudyTemplateGenerator from '@/components/StudyTemplateGenerator.svelte';
 import ProtocolParametersSelect from '../isa/study/ProtocolParametersSelect.svelte';
 import FactorsSelect from '../isa/study/FactorsSelect.svelte';
+    import Uploader from '../isa/generic/Uploader.svelte';
 
 
 const fieldTypes = {
@@ -41,7 +42,8 @@ const components = {
     'StudyTemplateGenerator': StudyTemplateGenerator,
     'Materials': Materials,
     'ProtocolParametersSelect': ProtocolParametersSelect,
-    'FactorsSelect': FactorsSelect
+    'FactorsSelect': FactorsSelect,
+    'Uploader': Uploader
 }
 
 let steps = config.steps;

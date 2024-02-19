@@ -165,4 +165,9 @@ window.steps = [
         level: 'Study',
         component: 'Materials'
     }*/
+    {
+        title: 'Upload template',
+        level: 'Study',
+        component: 'Uploader'
+    }
 ];

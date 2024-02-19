@@ -36,7 +36,7 @@
      */
     async function loadFile(file) {
         fileUploaded = true;
-        let df = await DataFrame.fromCSV(file, false).then(df => df);
+        let df = await DataFrame.fromCSV(file, true).then(df => df);
         //TODO: check for compliance with template
         columns = df.listColumns();
         rows = df.toCollection();
@@ -47,7 +47,7 @@
         const event = new CustomEvent('approve', {
             detail: {
                 rows: rows,
-                columns: columns
+                columns: columns,
             }
         });
         fileUploaded = false;
@@ -101,9 +101,6 @@
 </section>
 
 <style>
-    section {
-
-    }
     .drag-drop-area {
         margin-top: .5em;
         border: 2px dashed #ccc;
