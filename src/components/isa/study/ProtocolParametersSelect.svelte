@@ -40,7 +40,6 @@ function update() {
         parameters.push(getParameter(parameterName));
     }
     console.log(parameters);
-    //jsonPath
     set($isaObj, jsonPath, parameters);
 }
 
@@ -49,7 +48,10 @@ function init() {
     selectedParameterNames = parameters.map(o => o.parameterName.annotationValue);
 
     if (parameters.length > 0) {
-        let selectedParameterValues = parameters.map(o => [o.parameterName.annotationValue,   o.comments.find((c) => c.name == 'value')['value']    ]);
+        let selectedParameterValues = parameters.map(o => [
+            o.parameterName.annotationValue,
+            o.comments.find((c) => c.name == 'value')['value']
+        ]);
         parameterValues = Object.fromEntries(selectedParameterValues);
     }
 }
@@ -80,6 +82,9 @@ onMount(() => {
     </div>
     {/if}
 
+
+    {#if parameters.length > 0}
+    <div style="height: 400px; overflow-y: scroll;">
     <table id="parameters-predefined">
         <tr>
             <th></th>
@@ -96,6 +101,8 @@ onMount(() => {
         {/if}
         {/each}
     </table>
+    </div>
+    {/if}
 
 </section>
 

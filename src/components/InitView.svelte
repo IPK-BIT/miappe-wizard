@@ -2,13 +2,14 @@
     import { isaObj } from '@/stores/isa.js';
 
     import { appstate } from '@/stores/appstate';
+    import { config } from '@/stores/config';
 
     import Schemas from '@/lib/schemas.js';
 
 
     async function startWizardMode() {
         if (Object.keys($isaObj).length == 0) {
-            let emptyInvestigation = Schemas.getMiappeInvestigation();
+            let emptyInvestigation = Schemas.getMiappeInvestigation(config.prefill);
             $isaObj = emptyInvestigation;
         }
 
@@ -17,7 +18,7 @@
 
     async function addInvestigation() {
         if (Object.keys($isaObj).length === 0) {
-            let emptyInvestigation = Schemas.getMiappeInvestigation();
+            let emptyInvestigation = Schemas.getMiappeInvestigation(config.prefill);
             $isaObj = emptyInvestigation;
         }
 

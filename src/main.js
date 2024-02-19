@@ -8,6 +8,7 @@ function startApp(params) {
 
     const config = {
         checklist: params.config.checklist,
+        prefill: params.prefill,
         steps: params.steps,
         explanations: params.explanations
     }

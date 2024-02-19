@@ -12,14 +12,14 @@
 
     <div class="attr">
         <h4>Person</h4>
-        <input type="text" bind:value={person.firstName} placeholder="first name" style="margin-right: 20px;"> 
-        <input type="text" bind:value={person.lastName} placeholder="last name"> <br />
-        <input type="text" bind:value={person.address} placeholder="address" style="width: 100%;"> <br />
-        <input type="text" bind:value={person.affiliation} placeholder="affiliation" style="width: 100%;"> <br />
+        <input on:change type="text" bind:value={person.firstName} placeholder="first name" style="margin-right: 20px;"> 
+        <input on:change type="text" bind:value={person.lastName} placeholder="last name"> <br />
+        <input on:change type="text" bind:value={person.address} placeholder="address" style="width: 100%;"> <br />
+        <input on:change type="text" bind:value={person.affiliation} placeholder="affiliation" style="width: 100%;"> <br />
 
-        <OntologyAnnotations bind:ontologyAnnotations={person.roles} ontology={ontologyMapping['Person.role']} />
+        <OntologyAnnotations on:change bind:ontologyAnnotations={person.roles} ontology={ontologyMapping['Person.role']} />
 
-        <Comments bind:value={person.comments} />
+        <Comments on:change bind:value={person.comments} />
 
     </div>
 

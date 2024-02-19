@@ -35,6 +35,20 @@ window.steps = [
         ]
     },
     {
+        title: 'Please information about people how have worked on your plant phenotyping project.',
+        fields: [
+            {
+                label: 'Project title',
+                type: 'people',
+                isaMapping: {
+                    entity: 'investigation',
+                    attribute: 'people'
+                },
+                explanation: 'DM-16'
+            }
+        ]
+    },
+    {
         title: 'Please provide contact address of your institute.',
         fields: [
             {
@@ -126,7 +140,7 @@ window.steps = [
             protocolName: 'Growth',
             protocolVersion: 'MIAPPE v1.1',
             protocolDescription: 'How the plants were grown up.',
-            //protocolParameters: ['Light intensity', 'Air temperature']
+            protocolParameters: ['Light intensity', 'Air temperature']
         }
     },
     {
@@ -136,8 +150,8 @@ window.steps = [
                 label: 'Growth description',
                 type: 'textarea',
                 isaMapping: {
-                    entity: 'protocol',
-                    attribute: 'description',
+                    //entity: 'protocol',
+                    //attribute: 'description',
                     jsonPath: 'studies[0].protocols[0].description'
                 }
             }

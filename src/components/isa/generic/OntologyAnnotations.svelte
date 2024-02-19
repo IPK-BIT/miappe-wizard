@@ -2,6 +2,9 @@
     export let ontologyAnnotations: Array<Object>;
     export let ontology;
 
+    import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
+
     import Svelecte from 'svelecte';
 
     import ontologyLookup from '@/lib/ontologyLookup';
@@ -36,6 +39,7 @@
             ontologyAnnotations = [...ontologyAnnotations, _emptyOA];
         }
         roles = [];
+        dispatch('change');
     }
 
     function onDelete(index) {

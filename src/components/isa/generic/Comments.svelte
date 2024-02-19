@@ -3,6 +3,9 @@
     export { comments as value };
     export let attr = '';
 
+    import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
+
     if (!comments) {
         comments = [];
     }
@@ -13,11 +16,13 @@
     const addComment = () => {
         let emptyComment = Schemas.getObjectFromSchema('comment');
         comments = [...comments, emptyComment];
+        dispatch('change');
     }
 
     function handleRemoveComment(event) {
         comments.splice(event.detail.index, 1);
         comments = [...comments];
+        dispatch('change');
     }
 
 </script>
@@ -29,7 +34,7 @@
 
         {#if comments.length > 0}
         {#each comments as comment, index}
-        <Comment on:removeComment={handleRemoveComment} bind:comment {index} />
+        <Comment on:change on:removeComment={handleRemoveComment} bind:comment {index} />
         {/each}
         {:else}
         <p><i>No comments have yet been created.</i></p>

@@ -1,4 +1,25 @@
 window.config = {
+
+    prefill: [
+        {
+            isaMapping: {
+                entity: 'investigation',
+                type: 'person',
+                jsonPath: 'people'
+            },
+            values: {
+                lastName : 'Max',
+                firstName : 'Mustermann',
+                midInitials : '',
+                email : 'mustermann@ipk-gatersleben.de',
+                phone : '1234',
+                fax : '7890',
+                address : 'Corrensstraße 3, 06646 Seeland',
+                affiliation : 'IPK Gatersleben'
+            }
+        }
+    ],
+
     "checklist": {
         "checklistName": "MIAPPE",
         "checklistVersion": "1.1",
@@ -79,7 +100,7 @@ window.config = {
                     { "label":"Watering regimen", "explanation":"The treatment involving an exposure to watering frequencies." },
                     { "label":"Composition of nutrient solutions used for irrigation", "explanation":"For all nutrients, including micronutrients, the ontology term with concentration." },
                     { "label":"Electrical conductivity", "explanation":"A conductivity quality inhering in a bearer by virtue of the bearer's ability to convey electricity." }
-                    ]
+                ]
             },
             {
                 "name": "Phenotyping"
