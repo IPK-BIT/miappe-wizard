@@ -1,5 +1,6 @@
 <script>
     export let label = '';
+    export let isaLevel = null;
     export let attr;
     export let value;
     export let showLabel = true;
@@ -12,10 +13,10 @@
     import { explanationActionFactory } from '@/actions/explanation.js';
     import { appstate } from '@/stores/appstate';
     import { getContext } from 'svelte';
-    const isaLevel = getContext('isaLevel');
 
-    import { createEventDispatcher } from 'svelte';
-    const dispatch = createEventDispatcher();
+    if (!isaLevel) {
+        isaLevel = getContext('isaLevel');
+    }
 
     let explanationAction = explanationActionFactory(isaLevel);
 

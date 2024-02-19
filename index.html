@@ -7,6 +7,8 @@
 <title>MIAPPE-Wizard</title>
 
 <script type="module" src="/wizard.config.js"></script>
+<script type="module" src="/wizard.steps.config.js"></script>
+<script type="module" src="/wizard.explanations.config.js"></script>
 
 <script type="module" src="/src/main.js"></script>
 <script>
@@ -17,7 +19,9 @@
         //let config = await fetchConfig.json();
 
         miappeWizard.startApp({
-            config: config
+            config: config,
+            steps: steps,
+            explanations: explanations
         });
     });
 </script>

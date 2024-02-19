@@ -25,7 +25,6 @@
 
     import Materials from '@/components/isa/generic/materials/Materials.svelte';
 
-    import miappe from '@/lib/miappe/miappeChecklist';
     import wording from '@/lib/wording';
     import { isaObj } from '@/stores/isa';
     import StudyTemplateGenerator from '../StudyTemplateGenerator.svelte';
@@ -92,7 +91,7 @@
         //     questionId: 'growthFacilityType'
         // },
         {
-            question: 'What is the title of your plant phenotyping project?', // miappe['DM-3'].question, //
+            question: 'What is the title of your plant phenotyping project?',
             key: 'title',
             label: 'Title',
             component: String,

@@ -5,10 +5,17 @@ const target = document.querySelector('#app');
 //const shadowRoot = target.attachShadow({ mode: "open" });
 
 function startApp(params) {
+
+    const config = {
+        checklist: params.config.checklist,
+        steps: params.steps,
+        explanations: params.explanations
+    }
+
     const app = new App({
         target: target,
         props: {
-            config: params.config
+            config: config
         }
     });
     return app;

@@ -18,9 +18,6 @@
         isaLevel = getContext('isaLevel');
     }
 
-    import { createEventDispatcher } from 'svelte';
-    const dispatch = createEventDispatcher();
-
     let explanationAction = explanationActionFactory(isaLevel);
 
     function setFocus(el){

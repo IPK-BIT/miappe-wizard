@@ -16,7 +16,6 @@ import Explanation from '@/components/Explanation.svelte';
 import TreeView from '@/components/treeview/TreeView.svelte';
 
 import Investigation from '@/components/isa/investigation/Investigation.svelte';
-import InvestigationWizard from '@/components/questionnaire/InvestigationWizard.svelte';
 import GenericQuestionnaire from '@/components/questionnaire/GenericQuestionnaire.svelte';
 import Forms from '@/components/Forms.svelte';
 
@@ -88,7 +87,6 @@ function showGui() {
             {#if $appstate === appstate.FORM}
             <Investigation bind:value={$isaObj} />
             {:else if $appstate === appstate.WIZARD}
-            <!--<InvestigationWizard bind:isa={$isaObj} on:closeWizard={() => {$appstate = appstate.FORM;}} />-->
             <GenericQuestionnaire on:closeWizard={() => {$appstate = appstate.FORM;}} />
             {:else if $appstate === appstate.LEVEL}
             <Forms />
@@ -104,7 +102,7 @@ function showGui() {
             <ManualExplanation />
             <Explanation />
             
-            {#if $appstate !== appstate.WIZARD}
+            {#if $appstate !== appstate.WIZARD || true==true}
             <div class="bbox" id="json">
                 <strong>ISA-JSON (<a href="#" on:click={() => showJson = !showJson}>{showJson ? 'hide' : 'show'}</a>)</strong><br />
                 {#if showJson}
