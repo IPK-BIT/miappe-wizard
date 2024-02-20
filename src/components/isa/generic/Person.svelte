@@ -1,11 +1,12 @@
 <script>
-    export let person;
+export let person;
 
-    import Comments from '@/components/isa/generic/Comments.svelte';
+import Comments from '@/components/isa/generic/Comments.svelte';
 
-    import OntologyAnnotations from '@/components/isa/generic/OntologyAnnotations.svelte';
+import OntologyAnnotations from '@/components/isa/generic/OntologyAnnotations.svelte';
+import PersonOrcid from './PersonOrcid.svelte';
 
-    import ontologyMapping from '@/lib/ontologyMapping';
+import ontologyMapping from '@/lib/ontologyMapping';
 </script>
 
 <section>
@@ -18,6 +19,8 @@
         <input on:change type="text" bind:value={person.affiliation} placeholder="affiliation" style="width: 100%;"> <br />
 
         <OntologyAnnotations on:change bind:ontologyAnnotations={person.roles} ontology={ontologyMapping['Person.role']} />
+
+        <PersonOrcid on:change bind:comments={person.comments} />
 
         <Comments on:change bind:value={person.comments} />
 
