@@ -19,7 +19,7 @@
         result = result.map(item => {
             
             item.origName = item.Name;
-            item.Name = '<b>'+item.Name+'</b> ['+item.Accession+']';
+            item.Name = item.Name+' ['+item.Accession+']';
 
             return item;
         });
