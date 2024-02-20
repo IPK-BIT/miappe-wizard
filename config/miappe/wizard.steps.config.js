@@ -193,7 +193,7 @@ window.steps = [
         }
     },
     {
-        title: 'Please describe how the plants were grown up.',
+        title: 'Please provide a brief summary of the Growth Conditions.',
         fields: [
             {
                 label: 'Growth description',
@@ -202,18 +202,19 @@ window.steps = [
                     //entity: 'protocol',
                     //attribute: 'description',
                     jsonPath: 'studies[0].protocols[0].description'
-                }
+                },
+                explanation: 'DM-67'
             }
         ]
     },
     {
-        title: 'Select parameters that were kept constant for all samples during the experiment.',
+        title: 'Please select constant Parameters for all Samples of the Experiment.',
         level: 'Study',
         component: 'ProtocolParametersSelect',
         jsonPath: 'studies[0].protocols[0].parameters'
     },
     {
-        title: 'Select factors that were different between the samples.',
+        title: 'Select Factors that are different between the Samples.',
         level: 'Study',
         component: 'FactorsSelect',
         jsonPath: 'studies[0].factors'
