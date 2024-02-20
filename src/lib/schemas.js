@@ -129,7 +129,7 @@ export default class Schemas {
     static addPrefill(investigation, prefill) {
         if (prefill) {
             for (let item of prefill) {
-                if (item.isaMapping.type === 'person') {
+                if (item.type === 'person' && item.isaMapping.entity === 'investigation') {
                     let person = Schemas.getPerson(item.values);
                     investigation.people = [...investigation.people, person]
                 }
