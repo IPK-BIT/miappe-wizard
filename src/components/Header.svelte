@@ -37,7 +37,6 @@
     }
 
     async function addInvestigation() {
-        console.log(config);
         let emptyInvestigation = Schemas.getMiappeInvestigation(config.prefill);
         $isaObj = emptyInvestigation;
     }

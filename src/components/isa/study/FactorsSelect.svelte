@@ -2,8 +2,6 @@
 export let value;
 export let jsonPath;
 
-console.log(jsonPath);
-
 import { onMount } from 'svelte';
 
 import get from 'lodash.get';
@@ -30,7 +28,6 @@ function getFactor(factorName) {
     let factor = Schemas.getObjectFromSchema('factor');
     factor.factorType = Schemas.getObjectFromSchema('ontology_annotation');
     factor.factorName = factorName;
-    //parameter.comments = [{name: 'value', value: parameterValues[parameterName]}]
     return factor;
 }
 
@@ -40,21 +37,18 @@ function update() {
         factors.push(getFactor(factorName));
     }
     console.log(factors);
-    //jsonPath
+
     set($isaObj, jsonPath, factors);
+    $isaObj = $isaObj;
 }
 
 function init() {
-    let parameters = get($isaObj, jsonPath);
-    selectedFactorNames = parameters.map(o => o.parameterName.annotationValue);
-
-    let selectedParameterValues = parameters.map(o => [o.parameterName.annotationValue,   o.comments.find((c) => c.name == 'value')['value']    ]);
-    console.log(selectedParameterValues);
-    parameterValues = Object.fromEntries(selectedParameterValues);
+    let factors = get($isaObj, jsonPath);
+    selectedFactorNames = factors.map(o => o.factorName);
 }
 
 onMount(() => {
-    //init();
+    init();
 });
 
 </script>

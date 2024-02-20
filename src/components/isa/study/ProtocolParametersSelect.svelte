@@ -2,8 +2,6 @@
 export let value;
 export let jsonPath;
 
-console.log(jsonPath);
-
 import { onMount } from 'svelte';
 
 import get from 'lodash.get';
@@ -41,6 +39,7 @@ function update() {
     }
     console.log(parameters);
     set($isaObj, jsonPath, parameters);
+    $isaObj = $isaObj;
 }
 
 function init() {
