@@ -75,7 +75,7 @@
             <thead>
                 <tr>
                     {#each columns as column}
-                    <th>{rows[0][column]}</th>
+                    <th>{column}</th>
                     {/each}
                 </tr>
             </thead>

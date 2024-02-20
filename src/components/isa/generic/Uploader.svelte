@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { isaObj } from "@/stores/isa";
     import TableLoader from "./TableLoader.svelte";
     import { DataFrame } from "dataframe-js";
     import Schema from "@/lib/schemas.js";
@@ -8,19 +7,19 @@
     export { study as value };
     export let jsonPath;
     
-    let template = new Blob(["Material Name,Organism,Observation Unit Type,Variety Name,Variety Reference,Latitude,Longitude,Original Coding,Sample Name,Year,Location,Repetition,Block"], { type: 'text/csv;charset=utf-8,' });
-    
+        
     //TODO: Add to config
+    let template = new Blob(["Material Name,Organism,Observation Unit Type,Variety Name,Variety Reference,Latitude,Longitude,Original Coding,Sample Name,Year,Location,Repetition,Block"], { type: 'text/csv;charset=utf-8,' });
     let mode: 'long'|'wide' = 'long';
     let primary_key = 'Sorte,StufenNrFak1,StufenNrFak2,Wdh'
+    let previewSize = 5;
     
     function handleApprove(event) {
         study.materials.samples = [];
         
         let df = new DataFrame(event.detail.detail.rows, event.detail.detail.columns);
-        //TODO: make this configurable
         let materials = df.select(...primary_key.split(',')).toArray()
-        .filter((s, index, self) => self.findIndex(item => item.join('-') === s.join('-')) === index);
+            .filter((s, index, self) => self.findIndex(item => item.join('-') === s.join('-')) === index);
         //TODO: add configurable characterisitcs e.g. Anbaugebiete, Standort, Jahr, etc.
         study.materials.sources = [];
         materials.forEach(source => {
@@ -32,7 +31,6 @@
         study.materials.samples = materials.map((s) => { return { name: s.join('-') } });
     }
     
-    let previewSize = 5;
 </script>
 
 <section>
