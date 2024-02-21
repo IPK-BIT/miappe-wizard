@@ -63,10 +63,12 @@
         <strong>Explanation:</strong>
         <p>{explanations?.[$explanation.attr]?.definition}</p>
 
+        {#if explanations?.[$explanation.attr]?.example}
         <strong>Example:</strong>
         <p>{explanations?.[$explanation.attr]?.example}</p>
+        {/if}
 
-        <p>{$explanation.isaLevel} / {$explanation.attr}</p>
+        <!--<p>{$explanation.isaLevel} / {$explanation.attr}</p>-->
     </div>
     {/if}
 
