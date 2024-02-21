@@ -95,8 +95,9 @@
         Only the first {previewSize} rows are shown here.
     </p>
     {/if}
-    <button style="float: right" on:click={createEvent}>Approve and Load</button>
-    <button style="float: left" on:click={()=>{fileUploaded=false;}}>Go back</button>
+    <button class="add" style="float: right" on:click={createEvent}>Approve and Load</button>
+    <button class="add" style="float: left" on:click={()=>{fileUploaded=false;}}>Go back</button>
+    <br/>
     {/if}
 </section>
 
