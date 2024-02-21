@@ -289,6 +289,7 @@ onMount(() => {
                 label={field.label} 
                 isaLevel={field.isaMapping.entity}
                 attr={field.explanation ? field.explanation : field.isaMapping.attribute} 
+                componentConfig={field.componentConfig}
                 on:change={() => onChange(i)} 
             />
             {/each}

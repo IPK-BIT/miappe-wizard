@@ -73,7 +73,10 @@ window.steps = [
                     entity: 'investigation',
                     attribute: 'people'
                 },
-                explanation: 'DM-16'
+                explanation: 'DM-16',
+                componentConfig: {
+                    showComments: false
+                }
             }
         ]
     },

@@ -1,5 +1,6 @@
 <script>
     export let attr = '';
+    export let componentConfig = {};
     let people;
     export { people as value };
 
@@ -21,7 +22,7 @@
         <button class="add" on:click|preventDefault={() => addPerson()}>add person</button>
 
         {#each people as person}
-        <Person on:change bind:person />
+        <Person on:change bind:person {componentConfig} />
         {/each}
     </div>
 
