@@ -12,39 +12,70 @@ import Schemas from '@/lib/schemas';
 import { config } from '@/stores/config';
 import { isaObj } from '@/stores/isa';
 
-let parameters = config.checklist.defaultProtocols[0].parameters;
+let parameters = [];
+let parametersAvailable = config.checklist.defaultProtocols[0].parameters;
 let parameterValues = {};
+let parametersPredefined = [];
 
 let selectedParameterNames = [];
 
 function addParameter(parameterName) {
     if (!selectedParameterNames.includes(parameterName)) {
         selectedParameterNames = [...selectedParameterNames, parameterName];
+
+        let newParameter = _getParameter(parameterName);
+        parameters = [...parameters, newParameter];
+        set($isaObj, jsonPath, parameters);
+        $isaObj = $isaObj;
     }
-    update();
 }
 
-function getParameter(parameterName) {
+function removeParameter(parameterName) {
+    parameters = parameters.filter(parameter => {
+        return parameter.parameterName.annotationValue !== parameterName
+    });
+
+    set($isaObj, jsonPath, parameters);
+    $isaObj = $isaObj;
+}
+
+function _getParameter(parameterName) {
     let parameter = Schemas.getObjectFromSchema('protocol_parameter');
     parameter.parameterName = Schemas.getObjectFromSchema('ontology_annotation');
     parameter.parameterName.annotationValue = parameterName;
-    parameter.comments = [{name: 'value', value: parameterValues[parameterName]}]
+
+    let commentForValue = Schemas.getObjectFromSchema('comment');
+    commentForValue.name = 'value';
+    commentForValue.value = '';
+    parameter.comments = [commentForValue];
     return parameter;
 }
 
 function update() {
-    let parameters = [];
-    for (let parameterName of selectedParameterNames) {
-        parameters.push(getParameter(parameterName));
-    }
-    console.log(parameters);
+    parameters.forEach(parameter => {
+        parameter.comments.forEach(comment => {
+            if (comment.name === 'value') {
+                comment.value = parameterValues[parameter.parameterName.annotationValue] ?? '';
+            }
+        })
+    });
+
     set($isaObj, jsonPath, parameters);
     $isaObj = $isaObj;
 }
 
 function init() {
-    let parameters = get($isaObj, jsonPath);
+    parameters = get($isaObj, jsonPath);
     selectedParameterNames = parameters.map(o => o.parameterName.annotationValue);
+
+    parametersPredefined = parameters.map(o => {
+        let isPredefined = o.comments.find(comment => comment.name === 'deletable' && comment.value === 'false');
+        if (isPredefined) {
+            return o.parameterName.annotationValue;
+        } else {
+            return undefined;
+        }
+    });
 
     if (parameters.length > 0) {
         let selectedParameterValues = parameters.map(o => [
@@ -63,18 +94,26 @@ onMount(() => {
 
 <section>
 
-    {#if selectedParameterNames.length > 0}
+    {#if parameters.length > 0}
     <div id="selected-parameters">
         <span>You have selected the following parameters as constants during your experiment:<br /></span>
         <table id="parameters-selected">
             <tr>
-                <th>Parameter</th>
+                <th style="width: 400px;">Parameter</th>
                 <th>Value</th>
+                <th></th>
             </tr>
-        {#each selectedParameterNames as parameterName}
+        {#each parameters as parameter}
         <tr>
-            <td>{parameterName}</td>
-            <td><input type="text" style="width: 400px;" bind:value={parameterValues[parameterName]} on:change={() => update()} /></td>
+            <td>{parameter.parameterName.annotationValue}</td>
+            <td><input type="text" style="width: 200px; text-align: center;" bind:value={parameterValues[parameter.parameterName.annotationValue]} on:change={() => update()} /></td>
+            <td>
+                {#if parametersPredefined.includes(parameter.parameterName.annotationValue)}
+                <i>Predefined Parameter</i>
+                {:else}
+                <button on:click={() => removeParameter(parameter.parameterName.annotationValue)}>Remove</button>
+                {/if}
+            </td>
         </tr>
         {/each}
         </table>
@@ -82,7 +121,7 @@ onMount(() => {
     {/if}
 
 
-    {#if parameters.length > 0}
+    {#if parametersAvailable.length > 0}
     <div style="height: 400px; overflow-y: scroll;">
     <table id="parameters-predefined">
         <tr>
@@ -90,7 +129,7 @@ onMount(() => {
             <th>Parameter</th>
             <th>Description</th>
         </tr>
-        {#each parameters as parameter}
+        {#each parametersAvailable as parameter}
         {#if !selectedParameterNames.includes(parameter.label)}
         <tr>
             <td><button class="add" on:click={() => addParameter(parameter.label)}>add</button></td>
@@ -107,7 +146,7 @@ onMount(() => {
 
 <style>
 #selected-parameters {
-    border: 3px solid rgb(21, 209, 17);
+    border: 1px solid rgb(100, 100, 100);
     background: rgb(240,240,240);
     padding: 20px;
     margin-bottom: 40px;
@@ -142,6 +181,11 @@ table#parameters-selected tr td, table#parameters-selected tr th {
     border: 0px solid rgb(130,130,130);
     padding: 3px 6px 3px 6px;
     font-size: 0.9em;
+}
+
+table#parameters-selected tr td {
+    border-top: 1px solid rgb(150,150,150);
+    background: rgb(240,240,240);
 }
 
 table#parameters-selected tr th {

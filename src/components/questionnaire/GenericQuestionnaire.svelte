@@ -87,11 +87,17 @@ function addProtocol() {
             comment.value = '';
             emptyParameter.comments = [comment];
 
+            let commentDeleteable = Schemas.getObjectFromSchema('comment');
+            commentDeleteable.name = 'deletable';
+            commentDeleteable.value = 'false';
+            emptyParameter.comments = [...emptyParameter.comments, commentDeleteable];
+
             emptyProtocol.parameters = [...emptyProtocol.parameters, emptyParameter];
         }
     }
 
     $isaObj['studies'][0]['protocols'] = [ ...$isaObj['studies'][0]['protocols'], emptyProtocol];
+    $isaObj = $isaObj;
 }
 
 
