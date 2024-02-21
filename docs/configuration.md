@@ -71,6 +71,16 @@ Basic structure of a step object:
 }
 ```
 
+### Available field types
+
+The following types for a field are available:
+
+ * text
+ * textarea
+ * date
+ * people
+
+----
 
 Example for a step consisting of one text and one textarea input field, both mapped to native ISA attributes:
 
