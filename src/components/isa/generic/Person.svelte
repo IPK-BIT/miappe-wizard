@@ -21,9 +21,10 @@ import ontologyMapping from '@/lib/ontologyMapping';
         <input on:change type="text" bind:value={person.affiliation} placeholder="affiliation" style="width: 100%;"> <br />
 
         <!--<OntologyAnnotations on:change bind:ontologyAnnotations={person.roles} ontology={ontologyMapping['Person.role']} />-->
-        <PersonRoles on:change bind:roles={person.roles} ontology={ontologyMapping['Person.role']} />
 
         <PersonOrcid on:change bind:comments={person.comments} />
+
+        <PersonRoles on:change bind:roles={person.roles} ontology={ontologyMapping['Person.role']} />
 
         {#if componentConfig.showComments}
         <Comments on:change bind:value={person.comments} />

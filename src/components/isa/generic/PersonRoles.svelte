@@ -2,20 +2,14 @@
 export let roles: Array<Object>;
 export let ontology;
 
-import { createEventDispatcher } from 'svelte';
+import { onMount, createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
-import Svelecte from 'svelecte';
-
-import ontologyLookup from '@/lib/ontologyLookup';
+//import ontologyLookup from '@/lib/ontologyLookup';
 import Schemas from '@/lib/schemas.js';
 
-import Comment from '@/components/isa/generic/Comment.svelte';
-
 let rolesSelected;
-
 let rolesAvailable = [];
-
 let showRolesDescriptions = false;
 
 async function getCreditOntologyTerms() {
@@ -32,58 +26,49 @@ async function getCreditOntologyTerms() {
 
     let result = await response.json();
 
-    console.log(result);
-
     rolesAvailable = result['Nodes'].map(node => {
         return {
-            accession: node.Term.Accession,
+            accession: 'http://purl.obolibrary.org/obo/' + node.Term.Accession,
             name: node.Term.Name,
             description: node.Term.Description
         }
     });
 
-    console.log(rolesAvailable);
-
     rolesAvailable = rolesAvailable.filter(role => role.accession !== 'CREDIT:00000000');
-    
 }
 
 getCreditOntologyTerms();
 
 
-
-async function handleFetch(query) {
-    let result = await ontologyLookup(query, ontology);
-    result = result.map(item => {
-        
-        item.origName = item.Name;
-        item.Name = item.Name+' ['+item.Accession+']';
-
-        return item;
-    });
-
-    return result;
-}
-
-const addRoles = async () => {
+async function onChange() {
     let emptyOA = await Schemas.getObjectFromSchema('ontology_annotation');
 
-    for (let role of rolesSelected) {
+    roles = [];
+    for (let roleAccession of rolesSelected) {
+
+        let role = rolesAvailable.find(role => role.accession === roleAccession);
+
         let _emptyOA = Object.assign({}, emptyOA);
-        _emptyOA.termSource = role.FK_Ontology;
-        _emptyOA.termAccession = 'http://purl.obolibrary.org/obo/'+role.Accession;
-        _emptyOA.annotationValue = role.origName;
+
+        _emptyOA.termSource = 'CREDIT';
+        _emptyOA.termAccession = role.accession;
+        _emptyOA.annotationValue = role.name;
 
         roles = [...roles, _emptyOA];
     }
-    rolesSelected = [];
+
     dispatch('change');
 }
 
-function onDelete(index) {
-    roles.splice(index, 1);
-    roles = [...roles];
+function init() {
+    rolesSelected = roles.map(roleOA => roleOA.termAccession);
+    console.log(rolesSelected);
 }
+
+
+onMount(() => {
+    init();
+})
 
 </script>
 
@@ -94,7 +79,7 @@ function onDelete(index) {
     <div id="roles">
         {#each rolesAvailable as role}
         <div class="role">
-            <input type="checkbox"> 
+            <input type="checkbox" value={role.accession} bind:group={rolesSelected} on:change={onChange} /> 
             <div>
                 <label>{role.name}</label>
                 {#if showRolesDescriptions}
@@ -104,32 +89,9 @@ function onDelete(index) {
         
         </div>
         {/each}
+
     </div>
     
-
-    <!--
-
-    <ul>
-    {#each roles as oa, index}
-        <li><b>{@html oa.annotationValue}</b> [{oa.termAccession}] <button on:click={() => onDelete(index)}>X</button></li>
-    {/each}
-    </ul>
-
-    <Svelecte name="selection"
-        bind:value={rolesSelected}
-        valueAsObject={true}
-        multiple
-        required
-        placeholder="Search for OntologyTerm"
-        fetch={handleFetch}
-    />
-
-    <div class="mt-2">
-        <button on:click|preventDefault={() => addRoles()} class="btn btn-success">Add roles</button>
-    </div>
-
--->
-
 </section>
 
 
