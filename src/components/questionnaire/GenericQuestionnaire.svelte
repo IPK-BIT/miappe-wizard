@@ -291,6 +291,8 @@ onMount(() => {
 
     {#await forceUpdate(doRerender) then _}
 
+    <h2 style="margin:0; font-weight: 700; font-size: 1.3em;">Step {currentStep+1} of {steps.length}</h2>
+
     <p id="question">{steps[currentStep].title}</p>
 
     <div class="input-wrapper">
