@@ -96,17 +96,17 @@ onMount(() => {
 
     {#if parameters.length > 0}
     <div id="selected-parameters">
-        <span>You have selected the following parameters as constants during your experiment:<br /></span>
+        <span>You have selected the following constant parameters:<br /></span>
         <table id="parameters-selected">
             <tr>
-                <th style="width: 400px;">Parameter</th>
+                <th style="width: 350px;">Parameter</th>
                 <th>Value</th>
                 <th></th>
             </tr>
         {#each parameters as parameter}
         <tr>
             <td>{parameter.parameterName.annotationValue}</td>
-            <td><input type="text" style="width: 200px; text-align: center;" bind:value={parameterValues[parameter.parameterName.annotationValue]} on:change={() => update()} /></td>
+            <td><input type="text" style="width: 250px; text-align: center;" bind:value={parameterValues[parameter.parameterName.annotationValue]} on:change={() => update()} /></td>
             <td>
                 {#if parametersPredefined.includes(parameter.parameterName.annotationValue)}
                 <i>Predefined Parameter</i>

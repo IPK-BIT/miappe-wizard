@@ -191,7 +191,7 @@ window.steps = [
         hookParameters: {
             protocolName: 'Growth',
             protocolVersion: 'MIAPPE v1.1',
-            protocolDescription: 'How the plants were grown up.',
+           // protocolDescription: 'How the plants were grown up.',
             protocolParameters: ['Light intensity', 'Air temperature']
         }
     },
@@ -211,7 +211,7 @@ window.steps = [
         ]
     },
     {
-        title: 'Please select constant Parameters for all Samples of the Experiment.',
+        title: 'Please select all Parameters, which are constant for all Samples of your Experiment.',
         level: 'Study',
         component: 'ProtocolParametersSelect',
         jsonPath: 'studies[0].protocols[0].parameters'
