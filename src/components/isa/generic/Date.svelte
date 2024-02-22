@@ -60,7 +60,7 @@ function init() {
 }
 
 onMount(() => {
-    init();
+    //init();
 })
 
 </script>
@@ -75,21 +75,25 @@ onMount(() => {
             {/if}
         </div>
         <div class="pure-u-19-24">
-            <input type="number" min="2000" max="2050" bind:value={year} on:change={onChange} />
 
-            <select bind:value={month} on:change={onChange}>
+            <!--
+            <input style="width: 33%;" type="number" min="2000" max="2050" bind:value={year} on:change={onChange} />
+            
+            <select style="width: 33%;" bind:value={month} on:change={onChange}>
                 <option value=""></option>
                 {#each {length: 12} as _, i}
                 <option value="{zeroPad(i+1, 2)}">{zeroPad(i+1, 2)}</option>
                 {/each}
             </select>
-    
-            <select bind:value={day} on:change={onChange}>
+            <select style="width: 33%;" bind:value={day} on:change={onChange}>
                 <option value=""></option>
                 {#each {length: 31} as _, i}
                 <option value="{zeroPad(i+1, 2)}">{zeroPad(i+1, 2)}</option>
                 {/each}
             </select>
+            -->
+
+            <input bind:value={date} type="date" style="width: 100%;" on:change />
         </div>
     </div>
 

@@ -11,7 +11,7 @@
     align-items: center;
 }
 
-input[type="text"], input[type="number"] {
+input[type="text"], input[type="number"], input[type="date"] {
     border: 1px solid black;
     /*padding: 10px 10px;*/
     height: 40px;
