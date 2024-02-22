@@ -2,8 +2,6 @@
     import TableLoader from "./TableLoader.svelte";
     import { DataFrame } from "dataframe-js";
     import Schema from "@/lib/schemas.js";
-    import String from "./String.svelte";
-    import { split } from "@nfdi4plants/arctrl/fable_modules/fable-library.4.5.0/String";
     import { onMount } from "svelte";
     
     let study;
@@ -49,7 +47,7 @@
 
         groupedDF.forEach((source_group) => {
             let source = Schema.getSource(
-                Object.values(source_group.groupKey), 
+                Object.values(source_group.groupKey)[0], 
                 source_group.group.select(...characterisitcs.split(',')).toCollection()[0]
             );
             study.materials.sources = [...study.materials.sources, source];
@@ -57,7 +55,7 @@
             source_group.group.groupBy(...sample_key.split(',')).toCollection().forEach((sample_group) => {
                 let sample = Schema.getObjectFromSchema('sample');
                 sample.name = Object.values(sample_group.groupKey).join('-');
-                sample.derivesFrom = source;
+                sample.derivesFrom = [source];
                 study.materials.samples = [...study.materials.samples, sample];
             });    
         });
@@ -149,8 +147,8 @@
                 {#each study.processSequence as process}
                 {#each process.outputs.slice(0,previewSize) as output, j}
                 <tr>
-                    <td>{output.derivesFrom.name}</td>
-                    {#each output.derivesFrom.characteristics as characteristic}
+                    <td>{output.derivesFrom[0].name}</td>
+                    {#each output.derivesFrom[0].characteristics as characteristic}
                     <td>{characteristic.value}</td>
                     {/each}
                     <!-- Uncomment, if the growth protocol parameter values defined previously should be displayed-->
