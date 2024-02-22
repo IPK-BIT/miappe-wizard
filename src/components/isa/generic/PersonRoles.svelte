@@ -34,7 +34,7 @@ async function getCreditOntologyTerms() {
         }
     });
 
-    rolesAvailable = rolesAvailable.filter(role => role.accession !== 'CREDIT:00000000');
+    rolesAvailable = rolesAvailable.filter(role => !role.accession.includes('CREDIT:00000000'));
 }
 
 getCreditOntologyTerms();
@@ -105,7 +105,7 @@ h5 {
 section {
     margin-top: 10px;
     border: 1px solid rgb(200,200,200);
-    background: rgb(235,235,235);
+    /*background: rgb(235,235,235);*/
     padding: 10px;
 }
 button {
@@ -124,7 +124,7 @@ button {
     /*grid-template-rows: masonry;*/
     /*height: 150px;
     overflow-y: scroll;*/
-    border: 1px solid rgb(150,150,150);
+    /*border: 1px solid rgb(150,150,150);*/
     padding: 10px;
 }
 
