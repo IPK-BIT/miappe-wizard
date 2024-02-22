@@ -1,5 +1,9 @@
 window.config = {
 
+    general: {
+        showQuestionnaireProgressBar: true,
+    },
+
     prefill: [
         {
             type: 'person',
