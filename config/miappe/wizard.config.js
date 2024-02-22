@@ -16,6 +16,46 @@ window.config = {
                 address : 'Corrensstraße 3, 06646 Seeland',
                 affiliation : 'IPK Gatersleben'
             }
+        },
+        {
+            type: 'comment',
+            isaMapping: {
+                entity: 'investigation',
+                attribute: 'comments'
+            },
+            values: {
+                name: 'Study Country',
+                value: 'Germany'
+            }
+        },
+        {
+            type: 'comment',
+            isaMapping: {
+                entity: 'study',
+                attribute: 'comments',
+                studyIndex: 0
+            },
+            values: {
+                name: 'Study Country',
+                value: 'Germany'
+            }
+        },
+        {
+            type: 'value',
+            isaMapping: {
+                entity: 'investigation',
+                attribute: 'title'
+            },
+            value: 'Prefilled investigation title ...'
+        },
+        {
+            type: 'value',
+            isaMapping: {
+                entity: 'study',
+                attribute: 'description',
+                studyIndex: 0
+            },
+            value: 'Prefilled study description ...'
         }
     ],
 

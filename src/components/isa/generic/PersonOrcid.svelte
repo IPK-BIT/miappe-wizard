@@ -117,11 +117,12 @@ onMount(() => {
         padding: 0;
         margin: 0;
         font-size: 100%;
-        color: darkslateblue;
+        color: black;
+        font-weight: 500;
     }
     section {
         margin-top: 10px;
-        border: 1px solid rgb(200,200,200);
+        border: 1px solid rgb(0,0,0);
         /*background: rgb(235,235,235);*/
         padding: 10px;
     }

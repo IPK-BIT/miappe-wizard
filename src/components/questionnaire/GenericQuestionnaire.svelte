@@ -23,6 +23,7 @@ import People from '@/components/isa/generic/People.svelte';
 import Studies from '@/components/isa/study/Studies.svelte';
 import String from '@/components/isa/generic/String.svelte';
 import Textarea from '@/components/isa/generic/Textarea.svelte';
+import ResearchOrganizationRegistryPicker from '../isa/generic/ResearchOrganizationRegistryPicker.svelte';
 
 //import MultipleChoice from '@/components/questionnaire/MultipleChoice.svelte';
 
@@ -38,6 +39,7 @@ const fieldTypes = {
     'textarea': Textarea,
     'date': Date,
     'people': People,
+    'ror': ResearchOrganizationRegistryPicker,
 }
 
 const components = {
@@ -179,6 +181,7 @@ async function commentMapper(field) {
     }
 
     let comment = target.comments.find((c) => c.name == field.isaMapping.commentName);
+    console.log(comment);
     if(comment) {
         field.value = comment.value;
         doRerender++;
@@ -260,6 +263,7 @@ function updateComment(field, value) {
 
 function onChange(i) {
     let value = steps[currentStep].fields[i].value;
+    console.log(value);
     updateStore(value, i);
 }
 

@@ -123,15 +123,42 @@ export default class Schemas {
         let emptyInvestigation = Schemas.getObjectFromSchema("investigation");
         let investigationWithPrefill = Schemas.addPrefill(emptyInvestigation, prefill);
 
-        return new Proxy(investigationWithPrefill, miappeInvestigationHandler);
+        //return new Proxy(investigationWithPrefill, miappeInvestigationHandler);
+        return investigationWithPrefill;
     }
+
 
     static addPrefill(investigation, prefill) {
         if (prefill) {
             for (let item of prefill) {
                 if (item.type === 'person' && item.isaMapping.entity === 'investigation') {
                     let person = Schemas.getPerson(item.values);
-                    investigation.people = [...investigation.people, person]
+                    investigation.people = [...investigation.people, person];
+                }
+
+                if (item.type === 'comment') {
+                    let comment = Schemas.getComment(item.values.name, item.values.value);
+                    if (item.isaMapping.entity === 'investigation') {
+                        investigation.comments = [...investigation.comments, comment];
+                    } else if (item.isaMapping.entity === 'study') {
+                        if (investigation.studies.length == 0) {
+                            let study = Schemas.getMiappeStudy();
+                            investigation.studies = [study];
+                        }
+                        investigation.studies[item.isaMapping.studyIndex].comments = [...investigation.studies[item.isaMapping.studyIndex].comments, comment];
+                    }
+                }
+
+                if (item.type === 'value') {
+                    if (item.isaMapping.entity === 'investigation') {
+                        investigation[item.isaMapping.attribute] = item.value;
+                    } else if (item.isaMapping.entity === 'study') {
+                        if (investigation.studies.length == 0) {
+                            let study = Schemas.getMiappeStudy();
+                            investigation.studies = [study];
+                        }
+                        investigation.studies[item.isaMapping.studyIndex][item.isaMapping.attribute] = item.value;
+                    }
                 }
             }
         }
@@ -139,7 +166,8 @@ export default class Schemas {
     }
 
     static getMiappeStudy() {
-        return new Proxy(Schemas.getObjectFromSchema("study"), miappeStudyHandler);
+        //return new Proxy(Schemas.getObjectFromSchema("study"), miappeStudyHandler);
+        return Schemas.getObjectFromSchema("study");
     }
 
     static createCharacteristicObject(key, value) {
@@ -181,6 +209,11 @@ export default class Schemas {
     static getPerson(attrs) {
         let person = Schemas.getObjectFromSchema('person');
         return Object.assign(person, attrs);
+    }
+
+    static getComment(name, value) {
+        let comment = Schemas.getObjectFromSchema('comment');
+        return Object.assign(comment, {name, value});
     }
 
     static validateIsaJson(dataToValidate) {

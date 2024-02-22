@@ -16,6 +16,17 @@ window.config = {
                 address : 'Corrensstraße 3, 06646 Seeland',
                 affiliation : 'IPK Gatersleben'
             }
+        },
+        {
+            type: 'comment',
+            isaMapping: {
+                entity: 'investigation',
+                attribute: 'comments'
+            },
+            values: {
+                name: 'Study Country',
+                value: 'Germany'
+            }
         }
     ],
 
@@ -62,8 +73,8 @@ window.config = {
                     { "label":"Light intensity", "explanation":"Intensity of total light" },
                     { "label":"Range in peak light intensity", "explanation":"Range in peak light intensity for the whole experiment." },
                     { "label":"Fraction of outside light intercepted by growth facility components and surrounding structures", "explanation":"Fraction of outside light intercepted by growth facility components and surrounding structures." },
-                    { "label":"Type of lamps used", "explanation":"Nature of the light source for controlled environments. XEO: 00137" },
-                    { "label":"R/FR ratio", "explanation":"Red light to far red light ratio. XEO:00036" },
+                    { "label":"Type of lamps used", "explanation":"Nature of the light source for controlled environments. XEO: 00137" }
+/*                    { "label":"R/FR ratio", "explanation":"Red light to far red light ratio. XEO:00036" },
                     { "label":"Daily UV-A radiation", "explanation":"Intensity of UVA radiation (320-400 nm); XEO:00037" },
                     { "label":"Daily UV-B radiation", "explanation":"Intensity of UVB radiation (290-320 nm); XEO:00038" },
                     { "label":"Total daily irradiance", "explanation":"Intensity of total light (XEO:00034) averaged over the experiment." },
@@ -98,7 +109,7 @@ window.config = {
                     { "label":"Matrix potential", "explanation":"Range in water potential for soil." },
                     { "label":"Watering regimen", "explanation":"The treatment involving an exposure to watering frequencies." },
                     { "label":"Composition of nutrient solutions used for irrigation", "explanation":"For all nutrients, including micronutrients, the ontology term with concentration." },
-                    { "label":"Electrical conductivity", "explanation":"A conductivity quality inhering in a bearer by virtue of the bearer's ability to convey electricity." }
+                    { "label":"Electrical conductivity", "explanation":"A conductivity quality inhering in a bearer by virtue of the bearer's ability to convey electricity." } */
                 ]
             },
             {
