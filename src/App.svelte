@@ -227,6 +227,8 @@ main {
     white-space: pre;
     border: 1px solid rgb(180,180,180);
     margin-top: 3px;
+    font-size: 0.9em;
+    font-family: monospace;
 }
 textarea:focus-visible {
     outline: none;

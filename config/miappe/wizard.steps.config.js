@@ -1,5 +1,12 @@
 window.steps = [
     {
+        title: 'Welcome to the MIAPPE Wizard.',
+        text: [
+            'With this Wizard it is super easy to annotate measurements of your phenotyping experiment with MIAPPE-compliant metadata according to FAIR principles.',
+            'Click on the Next button to start the metadata annotation of the results data of your experiments.'
+        ]
+    },
+    {
         title: 'Please provide the Title and Description of your Plant Phenotyping Project and when you submitted and published the Dataset.',
         fields: [
             {

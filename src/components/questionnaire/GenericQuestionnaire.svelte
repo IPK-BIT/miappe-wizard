@@ -300,6 +300,13 @@ onMount(() => {
     <div on:keypress={handleKeypress} role="button" tabindex="0" aria-pressed="false">
 
         {#key currentStep}
+
+        {#if steps[currentStep].text}
+        {#each steps[currentStep].text as paragraph}
+        <p>{paragraph}</p>
+        {/each}
+        {/if}
+
         {#if steps[currentStep].fields}
 
             {#each steps[currentStep].fields as field, i}
