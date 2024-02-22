@@ -60,24 +60,26 @@ onMount(() => {
         <span>You have selected the following factors as varying between samples:<br /></span>
         <ul>
         {#each selectedFactorNames as factorName}
-            <li>{factorName} <button>Remove</button></li>
+            <li style="margin-bottom: 10px;">{factorName} <button class="btn btn-warning" style="margin-left: 20px;">Remove</button></li>
         {/each}
         </ul>
     </div>
     {/if}
 
+
+    <p>List of available Factors</p>
     <table id="parameters-predefined">
         <tr>
-            <th></th>
             <th>Factor</th>
             <th>Description</th>
+            <th></th>
         </tr>
         {#each factors as factor}
         {#if !selectedFactorNames.includes(factor.label)}
         <tr>
-            <td><button class="btn btn-secondary" on:click={() => addFactor(factor.label)}>add</button></td>
             <td>{factor.label}</td>
             <td>{factor.explanation}</td>
+            <td><button class="btn btn-secondary" on:click={() => addFactor(factor.label)}>Add</button></td>
         </tr>
         {/if}
         {/each}

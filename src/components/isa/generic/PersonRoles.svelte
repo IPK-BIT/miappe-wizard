@@ -74,7 +74,8 @@ onMount(() => {
 
 <section style="position: relative;">
 
-    <h5>Contributions of this person</h5> <button style="position: absolute; top: 8px; left: 250px; margin:0;" on:click={() => showRolesDescriptions = !showRolesDescriptions}>{showRolesDescriptions == true ? 'Hide' : 'Show'} role descriptions</button>
+    <h5>Contributions of this person</h5> 
+    <button class="btn btn-secondary" style="position: absolute; top: 8px; left: 250px; margin:0;" on:click={() => showRolesDescriptions = !showRolesDescriptions}>{showRolesDescriptions == true ? 'Hide' : 'Show'} role descriptions</button>
 
     <div id="roles">
         {#each rolesAvailable as role}

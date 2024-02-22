@@ -25,7 +25,7 @@
     <div class="attr">
         <h3>{label}</h3>
 
-        <button class="btn" on:click|preventDefault={() => addPerson()}>add {__person__}</button>
+        <button class="btn" on:click|preventDefault={() => addPerson()}>Add {__person__}</button>
 
         {#each people as person}
         <Person on:change bind:person wording={__person__} countPeople={people.length} {componentConfig} />

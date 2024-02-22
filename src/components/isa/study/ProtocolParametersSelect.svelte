@@ -111,7 +111,7 @@ onMount(() => {
                 {#if parametersPredefined.includes(parameter.parameterName.annotationValue)}
                 <i>Predefined Parameter</i>
                 {:else}
-                <button on:click={() => removeParameter(parameter.parameterName.annotationValue)}>Remove</button>
+                <button class="btn btn-warning" on:click={() => removeParameter(parameter.parameterName.annotationValue)}>Remove</button>
                 {/if}
             </td>
         </tr>
@@ -123,18 +123,21 @@ onMount(() => {
 
     {#if parametersAvailable.length > 0}
     <div style="height: 400px; overflow-y: scroll;">
+    <p>List of available Parameters</p>
     <table id="parameters-predefined">
         <tr>
-            <th></th>
+            
             <th style="width: 250px;">Parameter</th>
             <th>Description</th>
+            <th></th>
         </tr>
         {#each parametersAvailable as parameter}
         {#if !selectedParameterNames.includes(parameter.label)}
         <tr>
-            <td><button class="btn btn-secondary" on:click={() => addParameter(parameter.label)}>add</button></td>
+            
             <td>{parameter.label}</td>
             <td>{parameter.explanation}</td>
+            <td><button class="btn btn-secondary" on:click={() => addParameter(parameter.label)}>Add</button></td>
         </tr>
         {/if}
         {/each}

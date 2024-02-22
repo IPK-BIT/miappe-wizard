@@ -31,12 +31,25 @@
 
 <section>
 
+    <div class="attr pure-g">
+        <div class="pure-u-5-24">
+            {#if showLabel}
+            <label>{label}</label>
+            {/if}
+        </div>
+        <div class="pure-u-19-24">
+            <textarea style="width: 100%;" class:wide={!showLabel} use:explanationAction use:setFocus data-attr={attr} bind:value={value} on:change></textarea>
+        </div>
+    </div>
+
+    <!--
     <div class="attr">
         {#if showLabel}
         <label>{label}:</label>
         {/if}
         <textarea class:wide={!showLabel} use:explanationAction use:setFocus data-attr={attr} bind:value={value} on:change></textarea>
     </div>
+    -->
 
 </section>
 
@@ -46,13 +59,8 @@
         vertical-align: top;
     }
     textarea {
-        /*padding: 4px;*/
-        font-family: sans-serif;
-        font-size: 120%;
         width: 500px;
         height: 8em;
-        padding: 10px;
-        font-size: 1.1em;
     }
 
     .wide {

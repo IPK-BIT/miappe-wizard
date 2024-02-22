@@ -7,6 +7,40 @@
 
 <style>
 
+.v-center {
+    align-items: center;
+}
+
+input[type="text"], input[type="number"] {
+    border: 1px solid black;
+    /*padding: 10px 10px;*/
+    height: 40px;
+    padding: 10px;
+    font-size: 100%;
+    border-radius: 2px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+select {
+    border: 1px solid black;
+    /*padding: 8px 10px 9px 10px;*/
+    padding: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 40px;
+    font-size: 100%;
+    border-radius: 2px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+textarea {
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 100%;
+    outline: none;
+}
 
 button.btn {
     background: linear-gradient(0deg, hsl(145, 83%, 28%) 0%, hsl(145, 83%, 38%) 100%);
@@ -15,7 +49,7 @@ button.btn {
     border-radius: 5px;
     padding: 3px 6px;
     cursor: pointer;
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
 
 button.btn.large {
@@ -115,6 +149,7 @@ import { appstate } from '@/stores/appstate';
 import { partialview } from '@/stores/partialview';
 import { isaObj, isaStr } from '@/stores/isa.js';
 import ManualExplanation from '@/components/ManualExplanation.svelte';
+
 
 let showJson = false;
 
@@ -337,11 +372,10 @@ textarea:focus-visible {
     outline: none;
 }
 :global(div.attr) {
-    padding: 10px;
+    padding: 10px 40px;
     margin-bottom: 0px;
     /*border: 1px solid rgb(215,215,215);*/
     box-sizing: border-box;
-    
 }
 :global(div.attr > h4) {
     margin: 0 0 5px 0;
@@ -351,14 +385,7 @@ textarea:focus-visible {
     display: inline-block;
     width: 250px;
 }
-:global(input) {
-    padding: 10px 10px;
-    font-size: 100%;
-    border: 1px solid rgb(160,160,160);
-    border-radius: 2px;
-    box-sizing: border-box;
-    outline: none;
-}
+
 
 
 
