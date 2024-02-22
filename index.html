@@ -14,7 +14,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", async () => {
 
-        miappeWizard.startApp({
+        miappeWizard.startApp('app', {
             config: config,
             prefill: config.prefill,
             steps: steps,
@@ -23,6 +23,28 @@
 
     });
 </script>
+
+<style>
+html {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    background: rgb(190,190,190);
+}
+
+#app {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+}
+</style>
 
 </head>
 <body>

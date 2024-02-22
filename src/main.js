@@ -1,10 +1,18 @@
-//import './app.css'
 import App from './App.svelte'
 
-const target = document.querySelector('#app');
-//const shadowRoot = target.attachShadow({ mode: "open" });
+const useShadowDOM = true;
 
-function startApp(params) {
+function startApp(containerId, params) {
+
+    const _containerId = '#' + containerId;
+    const container = document.querySelector(_containerId);
+    let target;
+
+    if (useShadowDOM) {
+        target = container.attachShadow({ mode: "open" });
+    } else {
+        target = container;
+    }
 
     const config = {
         general: params.config?.general,

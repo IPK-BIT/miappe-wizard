@@ -1,135 +1,4 @@
-<svelte:head>
-<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">-->
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/base-min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
-
-<style>
-
-.v-center {
-    align-items: center;
-}
-
-input[type="text"], input[type="number"], input[type="date"] {
-    border: 1px solid black;
-    /*padding: 10px 10px;*/
-    height: 40px;
-    padding: 10px;
-    font-size: 100%;
-    border-radius: 2px;
-    box-sizing: border-box;
-    outline: none;
-}
-
-
-/*input[type="text"]:focus, input[type="number"]:focus, input[type="date"]:focus, textarea:focus {
-    border: 2px solid darkslateblue;
-    padding: 9px;
-}*/
-
-select {
-    border: 1px solid black;
-    /*padding: 8px 10px 9px 10px;*/
-    padding: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-    height: 40px;
-    font-size: 100%;
-    border-radius: 2px;
-    box-sizing: border-box;
-    outline: none;
-}
-
-textarea {
-    border: 1px solid black;
-    padding: 10px;
-    font-size: 100%;
-    outline: none;
-}
-
-button.btn {
-    background: linear-gradient(0deg, hsl(145, 83%, 28%) 0%, hsl(145, 83%, 38%) 100%);
-    color: white;
-    border: 0;
-    border-radius: 5px;
-    padding: 3px 6px;
-    cursor: pointer;
-    font-size: 0.9em;
-}
-
-button.btn.large {
-    padding: 6px 15px;
-    font-size: 100%;
-    border-right: 1px solid rgba(0,0,0,0.5);
-    border-bottom: 1px solid rgba(0,0,0,0.5);
-}
-
-button.btn:hover {
-    background: linear-gradient(0deg, hsl(145, 83%, 33%) 0%, hsl(145, 83%, 43%) 100%);
-}
-
-.btn-warning {
-    background: linear-gradient(0deg, hsl(29, 83%, 40%) 0%, hsl(29, 83%, 50%) 100%) !important;
-}
-.btn-warning:hover {
-    background: linear-gradient(0deg, hsl(29, 83%, 45%) 0%, hsl(29, 83%, 55%) 100%) !important;
-}
-
-.btn-secondary {
-    background: linear-gradient(0deg, hsl(194, 70%, 48%) 0%, hsl(194, 70%, 60%) 100%) !important;
-}
-.btn-secondary:hover {
-    background: linear-gradient(0deg, hsl(194, 70%, 54%) 0%, hsl(194, 70%, 66%) 100%) !important;
-}
-
-.button-success,
-.button-error,
-.button-warning,
-.button-secondary {
-    color: white;
-    border-radius: 4px;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-}
-
-.button-success {
-    background: rgb(28, 184, 65);
-    /* this is a green */
-}
-
-.button-error {
-    background: rgb(202, 60, 60);
-    /* this is a maroon */
-}
-
-.button-warning {
-    background: rgb(223, 117, 20);
-}
-
-.button-secondary {
-    background: rgb(66, 184, 221);
-    /* this is a light blue */
-}
-
-.button-xsmall {
-    font-size: 70%;
-}
-
-.button-small {
-    font-size: 85%;
-}
-
-.button-large {
-    font-size: 110%;
-}
-
-.button-xlarge {
-    font-size: 125%;
-}
-</style>
-</svelte:head>
 <script>
-
 export let config;
 
 import { setConfig } from './stores/config';
@@ -140,6 +9,7 @@ import { wizard } from '@/stores/wizard';
 import '@fontsource/roboto';
 import '@fontsource/roboto/500.css';
 
+import AppCss from './AppCss.svelte';
 import Header from '@/components/Header.svelte';
 import InitView from '@/components/InitView.svelte';
 import Explanation from '@/components/Explanation.svelte';
@@ -172,7 +42,7 @@ function showGui() {
 </script>
 
 <main>
-    
+    <AppCss />
     
 
     {#if $appstate == appstate.INIT}
@@ -279,23 +149,7 @@ function showGui() {
 :global(*) {
     box-sizing: border-box;
 }
-:global(html) {
-    padding: 0;
-    margin: 0;
-    height: 100vh;
-}
-:global(body) {
-    padding: 0;
-    margin: 0;
-    height: 100vh;
-    font-family: 'Roboto', sans-serif;
-    background: rgb(190,190,190);
-}
-:global(#app) {
-    padding: 0;
-    margin: 0;
-    height: 100vh;
-}
+
 :global(strong) {
     font-weight: 500;
 }
@@ -391,6 +245,8 @@ textarea:focus-visible {
     display: inline-block;
     width: 250px;
 }
+
+
 
 
 
