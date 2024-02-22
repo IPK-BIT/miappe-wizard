@@ -137,6 +137,15 @@ window.steps = [
                     commentName: 'Study Country'
                 },
                 explanation: 'DM-17'
+            },
+            {
+                label: 'ROR ID of your institute',
+                type: 'ror',
+                isaMapping: {
+                    entity: 'study',
+                    attribute: 'comments',
+                    commentName: 'Study Contact Institution ROR'
+                }
             }
         ]
     },
