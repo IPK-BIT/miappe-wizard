@@ -1,5 +1,15 @@
 <script>
 import { isaObj } from '@/stores/isa.js';
+
+function personORCID(person) {
+    let orcid = person.comments.find(comment => comment.value.includes('orcid.org'));
+    if (orcid) {
+        return orcid.value;
+    } else {
+        return false;
+    }
+}
+
 </script>
 
 <section>
@@ -32,7 +42,13 @@ import { isaObj } from '@/stores/isa.js';
                 {#if $isaObj.people.length > 0}
                 <ul>
                 {#each $isaObj.people as person}
-                <li>{person.firstName} {person.lastName}, {person.affiliation}, {person.address}</li>
+                {@const orcid = personORCID(person)}
+                <li>
+                    {person.firstName} {person.lastName}, {person.affiliation}, {person.address}
+                    {#if orcid}
+                    <br />ORCID: {orcid}
+                    {/if}
+                </li>
                 {/each}
                 </ul>
                 {:else}

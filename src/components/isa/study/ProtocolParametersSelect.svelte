@@ -132,7 +132,7 @@ onMount(() => {
         {#each parametersAvailable as parameter}
         {#if !selectedParameterNames.includes(parameter.label)}
         <tr>
-            <td><button class="add" on:click={() => addParameter(parameter.label)}>add</button></td>
+            <td><button class="btn btn-secondary" on:click={() => addParameter(parameter.label)}>add</button></td>
             <td>{parameter.label}</td>
             <td>{parameter.explanation}</td>
         </tr>

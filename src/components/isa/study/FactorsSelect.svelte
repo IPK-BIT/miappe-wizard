@@ -60,7 +60,7 @@ onMount(() => {
         <span>You have selected the following factors as varying between samples:<br /></span>
         <ul>
         {#each selectedFactorNames as factorName}
-            <li>{factorName}</li>
+            <li>{factorName} <button>Remove</button></li>
         {/each}
         </ul>
     </div>
@@ -75,7 +75,7 @@ onMount(() => {
         {#each factors as factor}
         {#if !selectedFactorNames.includes(factor.label)}
         <tr>
-            <td><button class="add" on:click={() => addFactor(factor.label)}>add</button></td>
+            <td><button class="btn btn-secondary" on:click={() => addFactor(factor.label)}>add</button></td>
             <td>{factor.label}</td>
             <td>{factor.explanation}</td>
         </tr>
@@ -87,7 +87,7 @@ onMount(() => {
 
 <style>
 #selected-parameters {
-    border: 3px solid rgb(21, 209, 17);
+    border: 1px solid rgb(100, 100, 100);
     background: rgb(240,240,240);
     padding: 20px;
     margin-bottom: 40px;

@@ -3,6 +3,7 @@
     export let componentConfig = {};
     let people;
     export { people as value };
+    export let label = 'People';
 
     import Schemas from '@/lib/schemas.js';
     import Person from '@/components/isa/generic/Person.svelte';
@@ -12,17 +13,22 @@
         people = [...people, emptyPerson];
     }
 
+    let __person__ = 'person';
+    if (label === 'Authors') {
+        __person__ = 'author';
+    }
+
 </script>
 
 <section>
 
     <div class="attr">
-        <h3>People</h3>
+        <h3>{label}</h3>
 
-        <button class="add" on:click|preventDefault={() => addPerson()}>add person</button>
+        <button class="btn" on:click|preventDefault={() => addPerson()}>add {__person__}</button>
 
         {#each people as person}
-        <Person on:change bind:person {componentConfig} />
+        <Person on:change bind:person wording={__person__} countPeople={people.length} {componentConfig} />
         {/each}
     </div>
 
@@ -31,7 +37,7 @@
 
 <style>
     section {
-        background: rgba(0,0,0,0.05);
+        /*background: rgba(0,0,0,0.05);*/
         margin-bottom: 10px;
     }
     h3 {

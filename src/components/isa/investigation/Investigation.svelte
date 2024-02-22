@@ -46,7 +46,7 @@
 
         <Comments bind:value={isa.comments} />
         <Publications bind:value={isa.publications} attr="publications" />
-        <!-- <People bind:value={isa.people} attr="people" /> -->
+        <People bind:value={isa.people} attr="people" />
 
         <Studies bind:value={isa.studies} />
     {/if}

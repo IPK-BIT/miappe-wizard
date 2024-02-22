@@ -67,7 +67,7 @@ window.steps = [
         title: 'Please provide the Authors of your Dataset and define their Contribution.',
         fields: [
             {
-               // label: 'Project title',
+                label: 'Authors',
                 type: 'people',
                 isaMapping: {
                     entity: 'investigation',

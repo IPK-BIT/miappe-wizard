@@ -1,5 +1,7 @@
 <script>
 export let person;
+export let wording = 'person';
+export let countPeople = 1;
 export let componentConfig = {};
 
 import Comments from '@/components/isa/generic/Comments.svelte';
@@ -14,7 +16,13 @@ import ontologyMapping from '@/lib/ontologyMapping';
 <section>
 
     <div class="attr">
-        <h4>Person</h4>
+        <div style="display: flow-root;">
+            <h4 style="float: left; border: 0px solid red; margin: 0;">{wording}</h4>
+            {#if countPeople > 1}
+            <button class="btn btn-warning" style="float: left; margin-left: 20px;">Remove</button>
+            {/if}
+        </div>
+
         <input on:change type="text" bind:value={person.firstName} placeholder="first name" style="margin-right: 20px;"> 
         <input on:change type="text" bind:value={person.lastName} placeholder="last name"> <br />
         <input on:change type="text" bind:value={person.address} placeholder="address" style="width: 100%;"> <br />
@@ -36,10 +44,15 @@ import ontologyMapping from '@/lib/ontologyMapping';
 
 
 <style>
-    section {
-        background: rgba(0,0,0,0.05);
-    }
-    input {
-        margin-bottom: 10px;
-    }
+h4 {
+    margin-bottom: 20px !important;
+}
+section {
+    /*background: rgba(0,0,0,0.05);*/
+    border: 1px solid rgb(150,150,150);
+    padding: 10px;
+}
+input {
+    margin-bottom: 10px;
+}
 </style>

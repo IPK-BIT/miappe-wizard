@@ -122,7 +122,7 @@ onMount(() => {
     section {
         margin-top: 10px;
         border: 1px solid rgb(200,200,200);
-        background: rgb(235,235,235);
+        /*background: rgb(235,235,235);*/
         padding: 10px;
     }
     button {
