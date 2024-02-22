@@ -59,7 +59,7 @@
     {#if !fileUploaded}
     <p style="margin: 0 0 20px 0;">
     Please download the template file and fill it with your materials as rows according to the column names:
-    &nbsp; <button on:click={handleDownload} class="add">Download Template</button>
+    &nbsp; <button on:click={handleDownload} class="btn btn-secondary">Download Template</button>
 
     <p>
         Please then upload the list of materials by clicking the upload area below or by dragging and dropping the file onto the upload area.
@@ -95,8 +95,8 @@
         Only the first {previewSize} rows are shown here.
     </p>
     {/if}
-    <button class="add" style="float: right" on:click={createEvent}>Approve and Load</button>
-    <button class="add" style="float: left" on:click={()=>{fileUploaded=false;}}>Go back</button>
+    <button class="btn btn-secondary" style="float: right" on:click={createEvent}>Approve and Load</button>
+    <button class="btn btn-secondary" style="float: left" on:click={()=>{fileUploaded=false;}}>Go back</button>
     <br/>
     {/if}
 </section>

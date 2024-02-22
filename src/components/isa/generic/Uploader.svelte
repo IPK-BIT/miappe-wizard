@@ -4,11 +4,30 @@
     import Schema from "@/lib/schemas.js";
     import String from "./String.svelte";
     import { split } from "@nfdi4plants/arctrl/fable_modules/fable-library.4.5.0/String";
+    import { onMount } from "svelte";
     
     let study;
     export { study as value };
     export let jsonPath;
     
+    //FIXME: In Expert mode this is not working as it only checks on component creation, but not if the parameter value is changed later
+    //FIXME: Value is not updated directly in the isa-json when the component loads
+    onMount(()=>{
+        let growth_protocol = study.protocols.find(protocol => protocol.name === 'Growth');
+        if (study.processSequence.length > 0) {
+            let growth_process = study.processSequence.find(process => {
+                return process.executesProtocol.name === 'Growth'
+            })
+            if (growth_process) {
+                for (let parameterValue of growth_process.parameterValues) {
+                    let protocol_parameter = growth_protocol.parameters.find(parameter => parameter.parameterName.annotationValue === parameterValue.category.parameterName.annotationValue)
+                    if (protocol_parameter) {
+                        parameterValue.value = protocol_parameter.comments[0].value;
+                    }
+                }
+            }
+        }
+    })
     
     //TODO: Add to config
     let template = new Blob(["Art_calc,Jahr_calc,Sortiment_calc,BKR_Nr,BKR_Bezeichnung,Anbaugebiet_Nr,Anbaugebiete,Standort_calc,Bundeslandkuerzel,DATUM,BBCH_VON,BBCH,BBCH_BIS,Termin,Merkmal,MerkmalsBez,StufenNrFak1,StufenNrFak2,Wdh,Sorte,Status,KennNr,Wert"], { type: 'text/csv;charset=utf-8,' });
@@ -19,107 +38,92 @@
     let characterisitcs = 'Anbaugebiete,Standort_calc,Jahr_calc,Art_calc';
     let previewSize = 5;
     
-    function writeStudy(groupedDF){
+    function writeStudy(df){
+        let groupedDF = df 
+            .groupBy(...source_key.split(','))
+            .toCollection();
+
         study.materials.sources = [];
         study.materials.samples = [];
         study.processSequence = [];
-        groupedDF.forEach((group) => {
+
+        groupedDF.forEach((source_group) => {
             let source = Schema.getSource(
-            group.group.select(source_key).toArray()[0][0],
-            group.group.select(...characterisitcs.split(',')).toCollection()[0]
+                Object.values(source_group.groupKey), 
+                source_group.group.select(...characterisitcs.split(',')).toCollection()[0]
             );
-            if (!study.materials.sources.find(s => s.name === source.name)) {
-                study.materials.sources = [...study.materials.sources, source];
-            }
-            
-            let sample = Schema.getObjectFromSchema('sample');
-            sample.name = Object.values(group.groupKey).join('-');
-            study.materials.samples = [...study.materials.samples, sample];
-            //FIXME: if the comment is removed the double binding is not working for the parameter declaration. 
-            //TODO: Switch to @id use for less repetition?
-            let growth_protocol = study.protocols.find(protocol => protocol.name === 'Growth');
-            let process = Schema.getObjectFromSchema('process')
-            process.inputs = [source];
-            process.executesProtocol = growth_protocol;
-            process.parameterValues = growth_protocol.parameters.map(parameter => {
-                let value = parameter.comments[0].value;
-                let process_parameter_value = Schema.getObjectFromSchema('process_parameter_value');
-                process_parameter_value.category = parameter;
-                process_parameter_value.value = value
-                return process_parameter_value;
-            });
-            process.outputs = [sample];
-            study.processSequence = [...study.processSequence, process];
+            study.materials.sources = [...study.materials.sources, source];
+
+            source_group.group.groupBy(...sample_key.split(',')).toCollection().forEach((sample_group) => {
+                let sample = Schema.getObjectFromSchema('sample');
+                sample.name = Object.values(sample_group.groupKey).join('-');
+                sample.derivesFrom = source;
+                study.materials.samples = [...study.materials.samples, sample];
+            });    
         });
+
+        let growth_protocol = study.protocols.find(protocol => protocol.name === 'Growth');
+
+        let process = Schema.getObjectFromSchema('process');
+        process.inputs = study.materials.sources;
+        process.executesProtocol = growth_protocol;
+        process.parameterValues = growth_protocol.parameters.map(parameter => {
+            let value = parameter.comments[0].value;
+            let process_parameter_value = Schema.getObjectFromSchema('process_parameter_value');
+            process_parameter_value.category = parameter;
+            process_parameter_value.value = value
+            return process_parameter_value;
+        });
+        process.outputs = study.materials.samples;
+
+        study.processSequence = [...study.processSequence, process];
     }
     
-    function writeAssay(groupedDF) {
-        study.protocols = [study.protocols[0]];
-        groupedDF[0].group.unique('Merkmal').toCollection().map(obj=>obj['Merkmal']).forEach(
-        variable => {
-            let protocol = Schema.getObjectFromSchema('protocol');
-            protocol.name = variable;
-            study.protocols = [...study.protocols, protocol];
-        }
-        );
+    function writeAssay(df) {
+        let phenotyping_protocol = Schema.getObjectFromSchema('protocol');
+        phenotyping_protocol.name = 'Phenotyping';
+        study.protocols = [study.protocols[0], phenotyping_protocol];
         
-        //TODO: Streamline
-        let tmp = [];
-        groupedDF.forEach(group => {
-            tmp = [...tmp, group.group.select(...sample_key.split(','),...dataframe_keys.split(',')).toCollection()];
-        });
-        let df = new DataFrame(tmp.flat(),[...sample_key.split(','),...dataframe_keys.split(',')]).toCollection();
-        const addSampleNameKey = (objects, keysString) => {
-            const keysArray = keysString.split(',');
-            return objects.map(obj => {
-                let sampleNameValue = '';
-                keysArray.forEach((key, index) => {
-                    if (obj.hasOwnProperty(key)) {
-                        sampleNameValue += obj[key];
-                        if (index < keysArray.length -  1) {
-                            sampleNameValue += '-';
-                        }
-                    }
-                });
-                obj['Sample Name'] = sampleNameValue;
-                return obj;
-            });
-        };        
-        df = addSampleNameKey(df, sample_key);
-        df = new DataFrame(df).select('Sample Name', ...dataframe_keys.split(',')).toCollection();
-
         study.assays = [];
-        
         let assay = Schema.getObjectFromSchema('assay');
         assay.materials.samples = study.materials.samples;
+        assay.dataFiles = [];
+
+        
+        let datafileContent = Schema.getObjectFromSchema('comment');
+        datafileContent.name = 'Content';
+        datafileContent.value = JSON.stringify(
+            df.select(...sample_key.split(','), ...dataframe_keys.split(','))
+            .withColumn(
+                'Sample Name', 
+                row => sample_key.split(',').map(key => row.get(key)).join('-')
+            )
+            .select('Sample Name', ...dataframe_keys.split(','))
+            .toCollection()
+        );
+    
         let dataFile = Schema.getObjectFromSchema('data');
+        dataFile.name = 'phenotyping-results.csv';
         dataFile.type = 'Raw Data File';
-        dataFile.name = 'datasets/phenotyping-results.csv';
-        dataFile.comments = [{
-            name: 'Content',
-            value: JSON.stringify(df)
-        }];
-        assay.dataFiles = [dataFile];
+        dataFile.comments = [datafileContent];
+        assay.dataFiles = [...assay.dataFiles, dataFile];
+
         assay.processSequence = [];
-        for (let i=1; i<study.protocols.length; i++) {
-            study.materials.samples.forEach( sample => {
-                let process = Schema.getObjectFromSchema('process');
-                process.executesProtocol = study.protocols[i];
-                process.inputs = sample;
-                process.outputs = [dataFile];
-                assay.processSequence = [...assay.processSequence, process];
-            });
-        }
+        let process = Schema.getObjectFromSchema('process');
+        process.inputs = study.materials.samples;
+        process.executesProtocol = phenotyping_protocol;
+        process.outputs = [dataFile];
+        assay.processSequence = [...assay.processSequence, process];
+
         study.assays = [...study.assays, assay];
     }
     
     function handleApprove(event) {
-        let groupedDF = new DataFrame(event.detail.detail.rows, event.detail.detail.columns).groupBy(...sample_key.split(',')).toCollection();
+        let df = new DataFrame(event.detail.detail.rows, event.detail.detail.columns)
         
-        writeStudy(groupedDF);
-        writeAssay(groupedDF);
+        writeStudy(df);
+        writeAssay(df);
     }
-
 </script>
 
 <section>
@@ -133,31 +137,40 @@
                 {#each study.materials.sources[0].characteristics as characteristic}
                 <th>{characteristic.category.characteristicType.annotationValue}</th>
                 {/each}
-                {#each study.protocols[0].parameters as parameter}
-                <th>{parameter.parameterName.annotationValue}</th>
-                {/each}
+                <!-- Uncomment, if the growth protocol parameter values defined previously should be displayed-->
+                <!-- 
+                    {#each study.protocols[0].parameters as parameter}
+                    <th>{parameter.parameterName.annotationValue}</th>
+                    {/each} 
+                -->
                 <th>Sample Name</th>
             </thead>
             <tbody>
-                {#each study.processSequence.slice(0,previewSize) as process}
+                {#each study.processSequence as process}
+                {#each process.outputs.slice(0,previewSize) as output, j}
                 <tr>
-                    <td>{process.inputs[0].name}</td>
-                    {#each process.inputs[0].characteristics as characteristic}
+                    <td>{output.derivesFrom.name}</td>
+                    {#each output.derivesFrom.characteristics as characteristic}
                     <td>{characteristic.value}</td>
                     {/each}
-                    {#each process.parameterValues as process_parameter_value}
-                    <td>{process_parameter_value.value}</td>
-                    {/each}
-                    <td>{process.outputs[0].name}</td>
+                    <!-- Uncomment, if the growth protocol parameter values defined previously should be displayed-->
+                    <!-- 
+                        {#each process.parameterValues as process_parameter_value}
+                        <td>{process_parameter_value.value}</td>
+                        {/each} 
+                    -->
+                    <td>{output.name}</td>
                 </tr>
+                {/each}
                 {/each}
             </tbody>
         </table> 
-        {#if study.processSequence.length > previewSize}
+        {#if study.processSequence[0].outputs.length > previewSize}
         <p class="info-box">
-            Only the first {previewSize} of {study.processSequence.length} rows are shown here.
+            Only the first {previewSize} of {study.processSequence[0].outputs.length} rows are shown here.
         </p>
         {/if}
+        {#if study.assays[0].processSequence.length > 0}
         <h3>Samples</h3>
         <table>
             <thead>
@@ -166,19 +179,22 @@
                 <th>Data File</th>
             </thead>
             <tbody>
-                {#each study.assays[0].materials.samples.slice(0,previewSize) as _,idx}
+                {#each study.assays[0].processSequence as process}
+                {#each process.inputs.slice(0,previewSize) as input}
                 <tr>
-                    <td>{study.assays[0].materials.samples[idx].name}</td>
-                    <td>D_GREI1</td>
-                    <td>datasets/phenotyping-results.csv</td>
+                    <td>{input.name}</td>
+                    <td>{process.executesProtocol.name}</td>
+                    <td>{process.outputs[0].name}</td>
                 </tr>
+                {/each}
                 {/each}
             </tbody>
         </table> 
-        {#if study.assays[0].processSequence.length > previewSize}
+        {#if study.assays[0].processSequence[0].inputs.length > previewSize}
         <p class="info-box">
-            Only the first {previewSize} of {study.assays[0].processSequence.length} rows are shown here.
+            Only the first {previewSize} of {study.assays[0].processSequence[0].inputs.length} rows are shown here.
         </p>
+        {/if} 
         {/if}
         {/if}
     </div>
