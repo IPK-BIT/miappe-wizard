@@ -39,6 +39,23 @@ window.config = {
                 name: 'Study Country',
                 value: 'Germany'
             }
+        },
+        {
+            type: 'value',
+            isaMapping: {
+                entity: 'investigation',
+                attribute: 'title'
+            },
+            value: 'Prefilled investigation title ...'
+        },
+        {
+            type: 'value',
+            isaMapping: {
+                entity: 'study',
+                attribute: 'description',
+                studyIndex: 0
+            },
+            value: 'Prefilled study description ...'
         }
     ],
 

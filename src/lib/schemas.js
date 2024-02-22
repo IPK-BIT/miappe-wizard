@@ -127,6 +127,7 @@ export default class Schemas {
         return investigationWithPrefill;
     }
 
+
     static addPrefill(investigation, prefill) {
         if (prefill) {
             for (let item of prefill) {
@@ -140,9 +141,23 @@ export default class Schemas {
                     if (item.isaMapping.entity === 'investigation') {
                         investigation.comments = [...investigation.comments, comment];
                     } else if (item.isaMapping.entity === 'study') {
-                        let study = Schemas.getMiappeStudy();
-                        investigation.studies = [study];
+                        if (investigation.studies.length == 0) {
+                            let study = Schemas.getMiappeStudy();
+                            investigation.studies = [study];
+                        }
                         investigation.studies[item.isaMapping.studyIndex].comments = [...investigation.studies[item.isaMapping.studyIndex].comments, comment];
+                    }
+                }
+
+                if (item.type === 'value') {
+                    if (item.isaMapping.entity === 'investigation') {
+                        investigation[item.isaMapping.attribute] = item.value;
+                    } else if (item.isaMapping.entity === 'study') {
+                        if (investigation.studies.length == 0) {
+                            let study = Schemas.getMiappeStudy();
+                            investigation.studies = [study];
+                        }
+                        investigation.studies[item.isaMapping.studyIndex][item.isaMapping.attribute] = item.value;
                     }
                 }
             }
