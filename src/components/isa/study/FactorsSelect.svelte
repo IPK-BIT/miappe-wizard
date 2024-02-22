@@ -11,6 +11,7 @@ import Schemas from '@/lib/schemas';
 
 import { config } from '@/stores/config';
 import { isaObj } from '@/stores/isa';
+  import { remove } from '@nfdi4plants/arctrl/fable_modules/fable-library.4.5.0/String';
 
 let factors = config.checklist.studyFactors;
 
@@ -31,12 +32,16 @@ function getFactor(factorName) {
     return factor;
 }
 
+function removeFactor(factorName) {
+    selectedFactorNames = selectedFactorNames.filter(f => f !== factorName);
+    update();
+}
+
 function update() {
     let factors = [];
     for (let factorName of selectedFactorNames) {
         factors.push(getFactor(factorName));
     }
-    console.log(factors);
 
     set($isaObj, jsonPath, factors);
     $isaObj = $isaObj;
@@ -60,7 +65,7 @@ onMount(() => {
         <span>You have selected the following factors as varying between samples:<br /></span>
         <ul>
         {#each selectedFactorNames as factorName}
-            <li style="margin-bottom: 10px;">{factorName} <button class="btn btn-warning" style="margin-left: 20px;">Remove</button></li>
+            <li style="margin-bottom: 10px;">{factorName} <button on:click={() => removeFactor(factorName)} class="btn btn-warning" style="margin-left: 20px;">Remove</button></li>
         {/each}
         </ul>
     </div>
