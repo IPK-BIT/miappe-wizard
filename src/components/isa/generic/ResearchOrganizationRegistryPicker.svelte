@@ -89,10 +89,6 @@ function remove() {
 }
 
 function init() {
-    /*let roridComment = comments.find(comment => comment.value.includes('ror.org/'));
-    if (roridComment) {
-        rorid = roridComment.value;
-    }*/
     rorid = value;
 }
 
