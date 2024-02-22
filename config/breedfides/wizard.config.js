@@ -53,7 +53,7 @@ window.config = {
             {
                 "name": "Growth",
                 "parameters": [
-                    { "label":"Growth facility", "explanation":"" },
+                    { "label":"Growth facility", "explanation":"Type of growth facility in which the study was carried out" },
                     { "label":"Air temperature", "explanation":"List of hourly air temperature throughout the experiment." },
                     { "label":"Organ temperature", "explanation":"List of hourly organ temperatures throughout the experiment" },
                     { "label":"Change over the course of experiment", "explanation":"Difference between the maximum air temperature recorded and the minimum." },

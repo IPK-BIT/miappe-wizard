@@ -126,7 +126,7 @@ onMount(() => {
     <table id="parameters-predefined">
         <tr>
             <th></th>
-            <th>Parameter</th>
+            <th style="width: 250px;">Parameter</th>
             <th>Description</th>
         </tr>
         {#each parametersAvailable as parameter}
