@@ -93,11 +93,11 @@ onMount(() => {
 
 <section>
 
-    <h5 style="margin-bottom: 10px;">ORCID of this person</h5>
+    <h5 style="margin-bottom: 10px; padding: 0;">ORCID of this person</h5>
 
     {#if orcid}
     <div>
-        <a target="_blank" href="{orcid}">{orcid}</a> <button on:click|preventDefault={() => remove()} class="btn btn-success">Remove ORCID</button>
+        <a target="_blank" href="{orcid}">{orcid}</a> <button on:click|preventDefault={() => remove()} class="btn btn-warning" style="margin-left: 20px;">Remove ORCID</button>
     </div>
     {:else}
 
@@ -113,20 +113,20 @@ onMount(() => {
 
 
 <style>
-    h5 {
-        padding: 0;
-        margin: 0;
-        font-size: 100%;
-        color: black;
-        font-weight: 500;
-    }
-    section {
-        margin-top: 10px;
-        border: 1px solid rgb(0,0,0);
-        /*background: rgb(235,235,235);*/
-        padding: 10px;
-    }
-    button {
-        margin-top: 15px;
-    }
+h5 {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    color: black;
+    font-weight: 500;
+}
+section {
+    margin-top: 10px;
+    border: 1px solid rgb(0,0,0);
+    /*background: rgb(235,235,235);*/
+    padding: 10px;
+}
+button {
+    /*margin-top: 15px;*/
+}
 </style>

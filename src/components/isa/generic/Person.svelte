@@ -1,8 +1,12 @@
 <script>
 export let person;
+export let index;
 export let wording = 'person';
 export let countPeople = 1;
 export let componentConfig = {};
+
+import { createEventDispatcher } from 'svelte';
+const dispatch = createEventDispatcher();
 
 import Comments from '@/components/isa/generic/Comments.svelte';
 
@@ -11,31 +15,102 @@ import PersonRoles from './PersonRoles.svelte';
 import PersonOrcid from './PersonOrcid.svelte';
 
 import ontologyMapping from '@/lib/ontologyMapping';
+
+let mode = 'view'; // view | edit;
+
+
+
+function getRoles(person) {
+    return person.roles.map(roleOA => roleOA.termAccession);
+}
+
+function getOrcid(person) {
+    let orcid = person.comments.find(c => c.value.includes('orcid.org'));
+    if (orcid) {
+        return orcid.value;
+    } else {
+        return false;
+    }
+}
+
+function removePerson() {
+    person = {};
+    dispatch('removePerson', {index} );
+}
+
+let orcid;
+
+$: orcid = getOrcid(person);
+
 </script>
 
 <section>
 
     <div class="attr">
-        <div style="display: flow-root;">
-            <h4 style="float: left; border: 0px solid red; margin: 0;">{wording}</h4>
-            {#if countPeople > 1}
-            <button class="btn btn-warning" style="float: left; margin-left: 20px;">Remove</button>
+
+        {#if mode === 'view'}
+
+            <div class="pure-g">
+                <div class="pure-u-21-24">
+                    {#if person.firstName === '' && person.lastName === ''}
+                    <i>Unnamed person</i>
+                    {:else}
+                    {person.firstName} {person.midInitials} {person.lastName},
+                    {/if}
+                    {#if person.affiliation === ''}
+                    
+                    {:else}
+                    {person.affiliation},
+                    {/if}
+                    {person.address}<br />
+
+                    {#if orcid}
+                    ORCID: <a target="_blank" href="{orcid}">{orcid}</a>
+                    {/if}
+
+                    <PersonRoles on:change bind:roles={person.roles} ontology={ontologyMapping['Person.role']} mode="view" />
+                </div>
+                <div class="pure-u-3-24" style="text-align: right;">
+                    <button class="btn btn-secondary" on:click={() => mode = 'edit'}>Edit</button>
+                </div>
+            </div>
+
+        {:else}
+
+            <div class="pure-g">
+                <div class="pure-u-1-3">
+                    <input on:change type="text" bind:value={person.firstName} placeholder="First name" style="width: 100%;"> 
+                </div>
+                <div class="pure-u-1-3" style="padding: 0 10px 0 10px;">
+                    <input on:change type="text" bind:value={person.midInitials} placeholder="Mid initials" style="width: 100%;">
+                </div>
+                <div class="pure-u-1-3">
+                    <input on:change type="text" bind:value={person.lastName} placeholder="Last name" style="width: 100%;">
+                </div>
+            </div>
+
+            <input on:change type="text" bind:value={person.address} placeholder="Address" style="width: 100%;"> <br />
+            <input on:change type="text" bind:value={person.affiliation} placeholder="Affiliation" style="width: 100%;"> <br />
+
+            <!--<OntologyAnnotations on:change bind:ontologyAnnotations={person.roles} ontology={ontologyMapping['Person.role']} />-->
+
+            <PersonOrcid on:change bind:comments={person.comments} />
+
+            <PersonRoles on:change bind:roles={person.roles} ontology={ontologyMapping['Person.role']} mode="edit" />
+
+            {#if componentConfig.showComments}
+            <Comments on:change bind:value={person.comments} />
             {/if}
-        </div>
 
-        <input on:change type="text" bind:value={person.firstName} placeholder="first name" style="margin-right: 20px;"> 
-        <input on:change type="text" bind:value={person.lastName} placeholder="last name"> <br />
-        <input on:change type="text" bind:value={person.address} placeholder="address" style="width: 100%;"> <br />
-        <input on:change type="text" bind:value={person.affiliation} placeholder="affiliation" style="width: 100%;"> <br />
+            <div style="display: flow-root; height: 40px; padding-top: 20px;">
+                
+                {#if countPeople > 1}
+                <button class="btn btn-warning" style="float: right; margin-left: 30px;" on:click={removePerson}>Remove {person.firstName}</button>
+                {/if}
 
-        <!--<OntologyAnnotations on:change bind:ontologyAnnotations={person.roles} ontology={ontologyMapping['Person.role']} />-->
+                <button class="btn btn-secondary" style="float: right;" on:click={() => mode = 'view'}>Stop editing</button>
+            </div>
 
-        <PersonOrcid on:change bind:comments={person.comments} />
-
-        <PersonRoles on:change bind:roles={person.roles} ontology={ontologyMapping['Person.role']} />
-
-        {#if componentConfig.showComments}
-        <Comments on:change bind:value={person.comments} />
         {/if}
 
     </div>
@@ -44,15 +119,30 @@ import ontologyMapping from '@/lib/ontologyMapping';
 
 
 <style>
+
+section {
+    margin-bottom: 30px;
+}
+
 h4 {
     margin-bottom: 20px !important;
 }
+
+div.attr {
+    padding: 20px;
+}
+
 section {
     /*background: rgba(0,0,0,0.05);*/
     border: 1px solid rgb(150,150,150);
-    padding: 10px;
+    padding: 0px;
 }
 input {
     margin-bottom: 10px;
 }
+
+div.person-name > div {
+    padding: 0 6px 0 6px;
+}
+
 </style>

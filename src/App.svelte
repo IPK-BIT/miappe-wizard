@@ -234,7 +234,7 @@ textarea:focus-visible {
     outline: none;
 }
 :global(div.attr) {
-    padding: 10px 40px;
+    padding: 10px 10px;
     margin-bottom: 0px;
     /*border: 1px solid rgb(215,215,215);*/
     box-sizing: border-box;

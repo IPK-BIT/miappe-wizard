@@ -11,8 +11,8 @@ window.config = {
                 entity: 'investigation'
             },
             values: {
-                lastName : 'Max',
-                firstName : 'Mustermann',
+                lastName : 'Mustermann',
+                firstName : 'Max',
                 midInitials : '',
                 email : 'mustermann@ipk-gatersleben.de',
                 phone : '1234',

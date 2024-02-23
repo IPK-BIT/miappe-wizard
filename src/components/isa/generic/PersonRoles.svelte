@@ -1,16 +1,7 @@
-<script lang="ts">
-export let roles: Array<Object>;
-export let ontology;
+<script context="module">
 
-import { onMount, createEventDispatcher } from 'svelte';
-const dispatch = createEventDispatcher();
-
-//import ontologyLookup from '@/lib/ontologyLookup';
-import Schemas from '@/lib/schemas.js';
-
-let rolesSelected;
 let rolesAvailable = [];
-let showRolesDescriptions = false;
+const mapAccessionToLabel = new Map();
 
 async function getCreditOntologyTerms() {
     let apiurl = 'https://swate.nfdi4plants.org/api/IOntologyAPIv2/getTreeByAccession';
@@ -27,17 +18,38 @@ async function getCreditOntologyTerms() {
     let result = await response.json();
 
     rolesAvailable = result['Nodes'].map(node => {
+        let accUrl = 'http://purl.obolibrary.org/obo/' + node.Term.Accession;
+        mapAccessionToLabel.set(accUrl, node.Term.Name);
         return {
-            accession: 'http://purl.obolibrary.org/obo/' + node.Term.Accession,
+            accession: accUrl,
             name: node.Term.Name,
             description: node.Term.Description
         }
     });
 
+    console.log(mapAccessionToLabel);
+
     rolesAvailable = rolesAvailable.filter(role => !role.accession.includes('CREDIT:00000000'));
 }
 
 getCreditOntologyTerms();
+
+</script>
+
+<script lang="ts">
+export let roles: Array<Object>;
+export let ontology;
+export let mode = 'edit';
+
+import { onMount, createEventDispatcher } from 'svelte';
+const dispatch = createEventDispatcher();
+
+//import ontologyLookup from '@/lib/ontologyLookup';
+import Schemas from '@/lib/schemas.js';
+
+let rolesSelected = [];
+let showRolesDescriptions = false;
+let rolesReadable = [];
 
 
 async function onChange() {
@@ -57,12 +69,14 @@ async function onChange() {
         roles = [...roles, _emptyOA];
     }
 
+    rolesReadable = rolesSelected.map(r => mapAccessionToLabel.get(r));
+
     dispatch('change');
 }
 
 function init() {
     rolesSelected = roles.map(roleOA => roleOA.termAccession);
-    console.log(rolesSelected);
+    rolesReadable = rolesSelected.map(r => mapAccessionToLabel.get(r));
 }
 
 
@@ -72,9 +86,18 @@ onMount(() => {
 
 </script>
 
-<section style="position: relative;">
+<section style="position: relative;" class:section-bordered={mode === 'edit'}>
 
     <h5>Contributions of this person</h5> 
+
+    {#if mode === 'view'}
+    {#if rolesReadable.length > 0}
+    <p style="margin: 5px 0 0 0;">{rolesReadable.join(', ')}</p>
+    {:else}
+    <p style="margin-bottom: 0;">No contributions</p>
+    {/if}
+    {:else}
+
     <button class="btn btn-secondary" style="position: absolute; top: 8px; left: 250px; margin:0;" on:click={() => showRolesDescriptions = !showRolesDescriptions}>{showRolesDescriptions == true ? 'Hide' : 'Show'} role descriptions</button>
 
     <div id="roles">
@@ -90,8 +113,9 @@ onMount(() => {
         
         </div>
         {/each}
-
     </div>
+
+    {/if}
     
 </section>
 
@@ -106,10 +130,15 @@ h5 {
 }
 section {
     margin-top: 10px;
-    border: 1px solid rgb(0,0,0);
     /*background: rgb(235,235,235);*/
+    
+}
+
+.section-bordered {
+    border: 1px solid rgb(0,0,0);
     padding: 10px;
 }
+
 button {
     margin-top: 15px;
 }

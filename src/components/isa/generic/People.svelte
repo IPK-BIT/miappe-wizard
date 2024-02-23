@@ -1,22 +1,28 @@
 <script>
-    export let attr = '';
-    export let componentConfig = {};
-    let people;
-    export { people as value };
-    export let label = 'People';
+export let attr = '';
+export let componentConfig = {};
+let people;
+export { people as value };
+export let label = 'People';
 
-    import Schemas from '@/lib/schemas.js';
-    import Person from '@/components/isa/generic/Person.svelte';
+import Schemas from '@/lib/schemas.js';
+import Person from '@/components/isa/generic/Person.svelte';
 
-    const addPerson = async () => {
-        let emptyPerson = await Schemas.getObjectFromSchema('person');
-        people = [...people, emptyPerson];
-    }
+const addPerson = async () => {
+    let emptyPerson = await Schemas.getObjectFromSchema('person');
+    people = [...people, emptyPerson];
+}
 
-    let __person__ = 'person';
-    if (label === 'Authors') {
-        __person__ = 'author';
-    }
+let __person__ = 'person';
+if (label === 'Authors') {
+    __person__ = 'author';
+}
+
+function onRemovePerson(event) {
+    people.splice(event.detail.index, 1);
+    people = [...people];
+    //dispatch('change');
+}
 
 </script>
 
@@ -27,8 +33,8 @@
 
         <button class="btn" on:click|preventDefault={() => addPerson()}>Add {__person__}</button>
 
-        {#each people as person}
-        <Person on:change bind:person wording={__person__} countPeople={people.length} {componentConfig} />
+        {#each people as person, index}
+        <Person on:change on:removePerson={onRemovePerson} bind:person wording={__person__} countPeople={people.length} {componentConfig} {index} />
         {/each}
     </div>
 
