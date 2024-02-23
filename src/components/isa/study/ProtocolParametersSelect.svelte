@@ -122,26 +122,25 @@ onMount(() => {
 
 
     {#if parametersAvailable.length > 0}
-    <div style="height: 400px; overflow-y: scroll;">
-    <p>List of available Parameters</p>
-    <table id="parameters-predefined">
-        <tr>
-            
-            <th style="width: 250px;">Parameter</th>
-            <th>Description</th>
-            <th></th>
-        </tr>
-        {#each parametersAvailable as parameter}
-        {#if !selectedParameterNames.includes(parameter.label)}
-        <tr>
-            
-            <td>{parameter.label}</td>
-            <td>{parameter.explanation}</td>
-            <td><button class="btn btn-secondary" on:click={() => addParameter(parameter.label)}>Add</button></td>
-        </tr>
-        {/if}
-        {/each}
-    </table>
+    <div style="height: 400px; padding-right: 10px; overflow-y: scroll;">
+        <table id="parameters-predefined">
+            <tr>
+                
+                <th style="width: 250px;">Parameter</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+            {#each parametersAvailable as parameter}
+            {#if !selectedParameterNames.includes(parameter.label)}
+            <tr>
+                
+                <td>{parameter.label}</td>
+                <td>{parameter.explanation}</td>
+                <td><button class="btn btn-secondary" on:click={() => addParameter(parameter.label)}>Add</button></td>
+            </tr>
+            {/if}
+            {/each}
+        </table>
     </div>
     {/if}
 
@@ -186,10 +185,7 @@ table#parameters-selected tr td, table#parameters-selected tr th {
     font-size: 0.9em;
 }
 
-table#parameters-selected tr td {
-    border-top: 1px solid rgb(150,150,150);
-    background: rgb(240,240,240);
-}
+
 
 table#parameters-selected tr th {
     font-weight: 500;

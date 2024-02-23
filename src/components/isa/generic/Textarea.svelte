@@ -60,7 +60,7 @@
     }
     textarea {
         width: 500px;
-        height: 8em;
+        height: 5em;
     }
 
     .wide {

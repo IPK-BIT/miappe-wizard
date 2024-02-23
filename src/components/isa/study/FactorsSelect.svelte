@@ -71,24 +71,24 @@ onMount(() => {
     </div>
     {/if}
 
-
-    <p>List of available Factors</p>
-    <table id="parameters-predefined">
-        <tr>
-            <th>Factor</th>
-            <th>Description</th>
-            <th></th>
-        </tr>
-        {#each factors as factor}
-        {#if !selectedFactorNames.includes(factor.label)}
-        <tr>
-            <td>{factor.label}</td>
-            <td>{factor.explanation}</td>
-            <td><button class="btn btn-secondary" on:click={() => addFactor(factor.label)}>Add</button></td>
-        </tr>
-        {/if}
-        {/each}
-    </table>
+    <div style="height: 400px; padding-right: 10px; overflow-y: scroll;">
+        <table id="parameters-predefined">
+            <tr>
+                <th>Factor</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+            {#each factors as factor}
+            {#if !selectedFactorNames.includes(factor.label)}
+            <tr>
+                <td>{factor.label}</td>
+                <td>{factor.explanation}</td>
+                <td><button class="btn btn-secondary" on:click={() => addFactor(factor.label)}>Add</button></td>
+            </tr>
+            {/if}
+            {/each}
+        </table>
+    </div>
 
 </section>
 
