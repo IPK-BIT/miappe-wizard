@@ -68,7 +68,7 @@ window.steps = [
                 }
             }
         ],
-        hook: 'addStudy'
+        //hook: 'addStudy' // not needed in BreedFides step config, as the study object is created due to prefilling in wizard.config.js
     },
     {
         title: 'Please provide the Title and Location of your Study',

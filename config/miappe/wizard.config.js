@@ -34,7 +34,7 @@ window.config = {
                 value: '1.1'
             }
         },
-        {
+        /*{
             type: 'value',
             isaMapping: {
                 entity: 'investigation',
@@ -50,7 +50,7 @@ window.config = {
                 studyIndex: 0
             },
             value: 'Prefilled investigation id'
-        }
+        }*/
     ],
 
     "checklist": {

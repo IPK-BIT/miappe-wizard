@@ -77,11 +77,12 @@ onMount(() => {
         </div>
         <div class="pure-u-19-24">
             {#if rorid}
-            <div style="border: 1px solid black; height: 40px; padding: 9px;">
-                <a target="_blank" href="{rorid}">{rorid}</a> <button on:click|preventDefault={() => remove()} class="btn btn-warning" style="margin-left: 20px;">Remove</button>
+            <div style="border: 1px solid black; height: 40px; padding: 9px; display: flow-root;">
+                <a target="_blank" href="{rorid}">{rorid}</a> <button on:click|preventDefault={() => remove()} class="btn btn-warning" style="float:right;">Remove</button>
             </div>
             {:else}
             <Svelecte name="selection"
+                style="border: 1px solid black; height: 40px;"
                 bind:value={rorid}
                 valueAsObject={false}
                 placeholder="Search for your institute by its name..."
@@ -97,5 +98,8 @@ onMount(() => {
 
 
 <style>
-
+:global(.svelecte-control) {
+    --sv-active-border: 0px solid white !important;
+    --sv-border-color: white !important;
+}	
 </style>

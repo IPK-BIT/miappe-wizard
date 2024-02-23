@@ -80,7 +80,8 @@ window.steps = [
                     showComments: false
                 }
             }
-        ]
+        ],
+        hook: 'addStudy'
     },
     {
         title: 'Please provide the Title and Location of your Study',
@@ -135,8 +136,31 @@ window.steps = [
                 },
                 explanation: 'DM-17'
             }
-        ],
-        hook: 'addStudy'
+        ]
+    },
+    {
+        title: 'Please provide the responsible Institution of your Study',
+        fields: [
+            {
+                label: 'Institution Contact Address',
+                type: 'text',
+                isaMapping: {
+                    entity: 'study',
+                    attribute: 'comments',
+                    commentName: 'Study Contact Institution'
+                },
+                explanation: 'DM-16'
+            },
+            {
+                label: 'ROR ID of your Institution',
+                type: 'ror',
+                isaMapping: {
+                    entity: 'study',
+                    attribute: 'comments',
+                    commentName: 'Study Contact Institution ROR'
+                }
+            }
+        ]
     },
     {
         title: 'Here you can provide publications related to your experiment.',
