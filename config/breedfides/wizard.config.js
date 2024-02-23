@@ -1,5 +1,11 @@
 window.config = {
 
+    general: {
+        layoutMode: 'plugin', // standalone | plugin
+        initialView: 'questionnaire', // questionnaire
+        showQuestionnaireProgressBar: true,
+    },
+
     prefill: [
         {
             type: 'person',

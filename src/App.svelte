@@ -80,6 +80,17 @@ import { CLIENT_ID, CLIENT_SECRET, base_url, gitlab_repsonse } from '@/stores/gi
 
 let showJson = false;
 
+// FIXME: there is same duplicate code in InitView.svelte => needs centralization e.g. via EventBus
+import Schemas from './lib/schemas';
+if (config.general?.initialView === 'questionnaire') {
+    if (Object.keys($isaObj).length == 0) {
+        let emptyInvestigation = Schemas.getMiappeInvestigation(config.prefill);
+        $isaObj = emptyInvestigation;
+    }
+
+    $appstate = appstate.WIZARD;
+}
+
 partialview.subscribe($ => {
     if (typeof($.component) === 'function') {
         $appstate = appstate.LEVEL;
@@ -102,11 +113,13 @@ function showGui() {
     
     {:else}
     
-    <div class="content">
+    <div class="content" class:grid={config.general.layoutMode === 'standalone'}>
 
+        {#if config.general.layoutMode === 'standalone'}
         <div class="header">
             <Header />
         </div>
+       
         
         <div class="leftcol">
 
@@ -131,25 +144,30 @@ function showGui() {
             
 
         </div>
-        
+        {/if}
+
         <div class="middlecol">
+
+        
 
             <div class="bbox">
             
-            {#if $appstate === appstate.FORM}
-            <Investigation bind:value={$isaObj} />
-            {:else if $appstate === appstate.WIZARD}
-            <GenericQuestionnaire on:closeWizard={() => {$appstate = appstate.FORM;}} />
-            {:else if $appstate === appstate.LEVEL}
-            <Forms />
-            {:else if $appstate === appstate.GUI}
-            <Gui />
-            {/if}
+                {#if $appstate === appstate.FORM}
+                <Investigation bind:value={$isaObj} />
+                {:else if $appstate === appstate.WIZARD}
+                <GenericQuestionnaire on:closeWizard={() => {$appstate = appstate.FORM;}} />
+                {:else if $appstate === appstate.LEVEL}
+                <Forms />
+                {:else if $appstate === appstate.GUI}
+                <Gui />
+                {/if}
 
             </div>
-                
+        
+        
         </div>
             
+        {#if config.general.layoutMode === 'standalone'}
         <div class="rightcol">
             <ManualExplanation />
             <Explanation />
@@ -164,6 +182,8 @@ function showGui() {
             </div>
             {/if}
         </div>
+
+        {/if}
 
     </div>
     {/if}
@@ -208,17 +228,24 @@ main {
     font-family: 'Roboto', sans-serif;
     height: 100vh;
 }
-.content {
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    grid-template-rows: 60px auto;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+
+div.content {
+
     padding: 0px 0px;
     border: 0px solid blue;
     min-height: 90vh;
     height: 100vh;
 }
+
+div.content.grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 60px auto;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+
 .header {
     grid-area: 1 / 1 / 1 / 4;
     /* background: rgb(80, 80, 100); */
