@@ -91,14 +91,12 @@ onMount(() => {
 
 </script>
 
-<section>
+<section style="position: relative;">
 
     <h5 style="margin-bottom: 10px; padding: 0;">ORCID of this person</h5>
 
     {#if orcid}
-    <div>
-        <a target="_blank" href="{orcid}">{orcid}</a> <button on:click|preventDefault={() => remove()} class="btn btn-warning" style="margin-left: 20px;">Remove ORCID</button>
-    </div>
+    <a target="_blank" href="{orcid}">{orcid}</a> <button on:click|preventDefault={() => remove()} class="btn btn-warning" style="position: absolute; top: 8px; right: 10px; margin:0;">Remove ORCID</button>
     {:else}
 
     <Svelecte name="selection"

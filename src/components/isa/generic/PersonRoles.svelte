@@ -96,9 +96,10 @@ onMount(() => {
     {:else}
     <p style="margin-bottom: 0;">No contributions</p>
     {/if}
+
     {:else}
 
-    <button class="btn btn-secondary" style="position: absolute; top: 8px; left: 250px; margin:0;" on:click={() => showRolesDescriptions = !showRolesDescriptions}>{showRolesDescriptions == true ? 'Hide' : 'Show'} role descriptions</button>
+    <button class="btn btn-secondary" style="position: absolute; top: 8px; right: 10px; margin:0;" on:click={() => showRolesDescriptions = !showRolesDescriptions}>{showRolesDescriptions == true ? 'Hide' : 'Show'} role descriptions</button>
 
     <div id="roles">
         {#each rolesAvailable as role}
