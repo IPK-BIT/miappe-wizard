@@ -18,6 +18,7 @@
 
 
     import { downloadZip } from 'client-zip';
+    import Login from './gitlab/Login.svelte';
 
     
 
@@ -219,7 +220,7 @@
         <!--<button on:click|preventDefault={() => sendToArc()}>Send JSON to ARC</button>-->
 
         <button on:click|preventDefault={() => convertToIsaTabArchive()}>Convert to ISA-TAB</button>
-        
+        <Login/>
         {/if}
 
     </div>

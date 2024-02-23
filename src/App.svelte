@@ -25,7 +25,58 @@ import { appstate } from '@/stores/appstate';
 import { partialview } from '@/stores/partialview';
 import { isaObj, isaStr } from '@/stores/isa.js';
 import ManualExplanation from '@/components/ManualExplanation.svelte';
-
+import { CLIENT_ID, CLIENT_SECRET, base_url, gitlab_repsonse } from '@/stores/gitlab-api.js';
+    import { onMount } from 'svelte';
+    
+    onMount(async () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        if (code) {
+            $isaObj = JSON.parse(localStorage.getItem('isaobj'));
+            localStorage.removeItem('isaobj');
+            
+            fetch("/data/gitlab.json")
+            .then((res) => res.json())
+            .then((data) => {
+                CLIENT_ID.set(data['client-id'])
+                CLIENT_SECRET.set(data['client-secret'])
+                
+                let queryObj = {
+                    client_id: $CLIENT_ID,
+                    client_secret: $CLIENT_SECRET,
+                    code: code,
+                    grant_type: 'authorization_code',
+                    redirect_uri: window.origin
+                }
+                
+                let queryString = Object.keys(queryObj).map(key => key + '=' + queryObj[key]).join('&');
+                
+                fetch(`${base_url}/oauth/token?${queryString}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(
+                response => response.json()
+                )
+                .then(
+                data => {
+                    $gitlab_repsonse=data;
+                }
+                )
+                .catch(
+                error => console.error('Error:', error)
+                );
+                $appstate=appstate.GUI;
+            })
+            .catch((_) => {
+                console.error("gitlab client configuration not available");
+                CLIENT_ID.set("")
+                CLIENT_SECRET.set("")
+            })
+        }
+    });
 
 let showJson = false;
 
