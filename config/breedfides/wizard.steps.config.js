@@ -201,6 +201,7 @@ window.steps = [
     {
         title: 'Upload template',
         level: 'Study',
-        component: 'Uploader'
+        component: 'Uploader',
+        jsonPath: 'studies[0]'
     }
 ];

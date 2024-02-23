@@ -1,8 +1,15 @@
 <script lang="ts">
+
+import get from 'lodash.get';
+import set from 'lodash.set';
+
+
     import TableLoader from "./TableLoader.svelte";
     import { DataFrame } from "dataframe-js";
     import Schema from "@/lib/schemas.js";
     import { onMount } from "svelte";
+
+    import { isaObj } from '@/stores/isa';
     
     let study;
     export { study as value };
@@ -121,6 +128,9 @@
         
         writeStudy(df);
         writeAssay(df);
+
+        set($isaObj, jsonPath, study);
+        $isaObj = $isaObj;
     }
 </script>
 
