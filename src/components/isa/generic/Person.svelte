@@ -44,7 +44,7 @@ $: orcid = getOrcid(person);
 
 </script>
 
-<section>
+<section class:edit-mode={mode === 'edit'}>
 
     <div class="attr">
 
@@ -57,12 +57,17 @@ $: orcid = getOrcid(person);
                     {:else}
                     {person.firstName} {person.midInitials} {person.lastName},
                     {/if}
-                    {#if person.affiliation === ''}
-                    
-                    {:else}
+                    {#if person.affiliation !== ''}
                     {person.affiliation},
                     {/if}
                     {person.address}<br />
+
+                    {#if person.email}
+                    <br />E-Mail: {person.email}<br />
+                    {/if}
+                    {#if person.phone}
+                    Phone: {person.phone}<br />
+                    {/if}
 
                     {#if orcid}
                     ORCID: <a target="_blank" href="{orcid}">{orcid}</a>
@@ -71,7 +76,10 @@ $: orcid = getOrcid(person);
                     <PersonRoles on:change bind:roles={person.roles} ontology={ontologyMapping['Person.role']} mode="view" />
                 </div>
                 <div class="pure-u-3-24" style="text-align: right;">
-                    <button class="btn btn-secondary" on:click={() => mode = 'edit'}>Edit</button>
+                    <button class="btn btn-secondary" style="width: 60px;" on:click={() => mode = 'edit'}>Edit</button> <br />
+                    {#if countPeople > 1}
+                    <button class="btn btn-warning" style="margin-top: 10px; width: 60px;" on:click={removePerson}>Delete</button>
+                    {/if}
                 </div>
             </div>
 
@@ -91,6 +99,9 @@ $: orcid = getOrcid(person);
 
             <input on:change type="text" bind:value={person.address} placeholder="Address" style="width: 100%;"> <br />
             <input on:change type="text" bind:value={person.affiliation} placeholder="Affiliation" style="width: 100%;"> <br />
+
+            <input on:change type="text" bind:value={person.email} placeholder="Email address" style="width: 100%;"> <br />
+            <input on:change type="text" bind:value={person.phone} placeholder="Phone number" style="width: 100%;"> <br />
 
             <!--<OntologyAnnotations on:change bind:ontologyAnnotations={person.roles} ontology={ontologyMapping['Person.role']} />-->
 
@@ -122,6 +133,10 @@ $: orcid = getOrcid(person);
 
 section {
     margin-bottom: 30px;
+}
+
+.edit-mode {
+    background: rgb(240,240,240);
 }
 
 h4 {

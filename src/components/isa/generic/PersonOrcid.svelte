@@ -120,8 +120,9 @@ h5 {
 }
 section {
     margin-top: 10px;
+    margin-bottom: 20px;
     border: 1px solid rgb(0,0,0);
-    /*background: rgb(235,235,235);*/
+    background: white;
     padding: 10px;
 }
 button {

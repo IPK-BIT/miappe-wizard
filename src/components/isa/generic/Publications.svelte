@@ -1,20 +1,56 @@
 <script lang="ts">
-    let publications: Array<Object>;
-    export { publications as value };
-    export let attr = '';
+let publications: Array<Object>;
+export { publications as value };
+export let attr = '';
+export let jsonPath = null;
 
-    import { setContext } from 'svelte';
-    setContext('isaLevel', 'publication');
+import get from 'lodash.get';
+import set from 'lodash.set';
 
-    import wording from '@/lib/wording';
+import { onMount } from 'svelte';
 
-    import Schemas from '@/lib/schemas.js';
-    import Publication from '@/components/isa/generic/Publication.svelte';
+import { isaObj } from '@/stores/isa';
 
-    const addPublication = async () => {
-        let emptyPublication = await Schemas.getObjectFromSchema('publication');
-        publications = [...publications, emptyPublication];
-    }
+
+
+import { setContext } from 'svelte';
+setContext('isaLevel', 'publication');
+
+import wording from '@/lib/wording';
+
+import Schemas from '@/lib/schemas.js';
+import Publication from '@/components/isa/generic/Publication.svelte';
+
+const addPublication = async () => {
+    let emptyPublication = await Schemas.getObjectFromSchema('publication');
+    publications = [...publications, emptyPublication];
+
+    set($isaObj, jsonPath, publications);
+    $isaObj = $isaObj;
+}
+
+function onChange() {
+    set($isaObj, jsonPath, publications);
+    $isaObj = $isaObj;
+}
+
+function onRemovePublication(event) {
+    publications.splice(event.detail.index, 1);
+    publications = [...publications];
+    set($isaObj, jsonPath, publications);
+    $isaObj = $isaObj;
+    //dispatch('change');
+
+}
+
+onMount(() => {
+    /*if (jsonPath) {
+        console.log(jsonPath);
+        console.log($isaObj);
+        publications = get($isaObj, jsonPath);
+        console.log(publications);
+    }*/
+});
 
 </script>
 
@@ -24,30 +60,29 @@
         <h3>Publications</h3>
 
         {#if publications.length > 0}
-        {#each publications as publication}
-        <Publication bind:publication />
+        {#each publications as publication, index}
+        <Publication on:removePublication={onRemovePublication} on:change={onChange} bind:publication {index} />
         {/each}
         {:else}
         <p><i>No publications have yet been created.</i></p>
         {/if}
 
-        <button class="add" on:click|preventDefault={() => addPublication()}>add publication</button>
+        <button class="btn" on:click|preventDefault={() => addPublication()}>Add Publication</button>
     </div>
 
 </section>
 
 
 <style>
-    section {
-        background: rgba(0,0,0,0.05);
-        margin-bottom: 10px;
-    }
-    button {
-        margin: 0 0 10px 0;
-    }
-    h3 {
-        display: inline;
-        margin: 0 0 10px 0;
-        font-weight: 500;
-    }
+section {
+    /*background: rgba(0,0,0,0.05);*/
+    margin-bottom: 10px;
+}
+button {
+    margin: 0 0 10px 0;
+}
+h3 {
+    margin: 0 0 10px 0;
+    font-weight: 500;
+}
 </style>

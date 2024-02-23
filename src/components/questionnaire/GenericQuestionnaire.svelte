@@ -24,6 +24,7 @@ import Studies from '@/components/isa/study/Studies.svelte';
 import String from '@/components/isa/generic/String.svelte';
 import Textarea from '@/components/isa/generic/Textarea.svelte';
 import ResearchOrganizationRegistryPicker from '../isa/generic/ResearchOrganizationRegistryPicker.svelte';
+import Publications from '../isa/generic/Publications.svelte';
 
 //import MultipleChoice from '@/components/questionnaire/MultipleChoice.svelte';
 
@@ -43,6 +44,7 @@ const fieldTypes = {
 }
 
 const components = {
+    'Publications': Publications,
     'StudyTemplateGenerator': StudyTemplateGenerator,
     'Materials': Materials,
     'ProtocolParametersSelect': ProtocolParametersSelect,
@@ -119,6 +121,7 @@ async function next() {
     currentStep = currentStep + 1;
     $wizard.currentStep = currentStep;
     populateFieldValues();
+    populateIsaObj();
 }
 
 function executeStepHooks(step) {
@@ -135,8 +138,13 @@ function executeStepHooks(step) {
 }
 
 
+let _isaObj;
 
-
+function populateIsaObj() {
+    if (steps[currentStep] && steps[currentStep].component !== undefined && steps[currentStep].jsonPath !== undefined) {
+        _isaObj = get($isaObj, steps[currentStep].jsonPath);
+    }
+}
 
 
 
@@ -327,7 +335,7 @@ onMount(() => {
         {#if steps[currentStep].component}
         <svelte:component 
             this={components[steps[currentStep].component]} 
-            bind:value={$isaObj['studies'][0]}
+            bind:value={_isaObj}
             jsonPath={steps[currentStep].jsonPath}
         />
         {/if}

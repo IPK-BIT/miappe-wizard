@@ -156,6 +156,12 @@ window.steps = [
             }
         ]
     },
+    {
+        title: 'Here you can provide publications related to your experiment.',
+        level: 'Study',
+        component: 'Publications',
+        jsonPath: 'studies[0].publications'
+    },
   /*  {
         title: 'Please provide contact address of your institute.',
         fields: [

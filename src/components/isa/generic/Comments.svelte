@@ -1,30 +1,30 @@
 <script lang="ts">
-    let comments: Array<Object>;
-    export { comments as value };
-    export let attr = '';
 
-    import { createEventDispatcher } from 'svelte';
-    const dispatch = createEventDispatcher();
+let comments: Array<Object>;
+export { comments as value };
+export let attr = '';
 
-    if (!comments) {
-        comments = [];
-    }
+import { createEventDispatcher } from 'svelte';
+const dispatch = createEventDispatcher();
 
-    import Schemas from '@/lib/schemas.js';
-    import Comment from '@/components/isa/generic/Comment.svelte';
+if (!comments) {
+    comments = [];
+}
 
-    const addComment = () => {
-        let emptyComment = Schemas.getObjectFromSchema('comment');
-        comments = [...comments, emptyComment];
-        dispatch('change');
-    }
+import Schemas from '@/lib/schemas.js';
+import Comment from '@/components/isa/generic/Comment.svelte';
 
-    function handleRemoveComment(event) {
-        comments.splice(event.detail.index, 1);
-        comments = [...comments];
-        dispatch('change');
-    }
+const addComment = () => {
+    let emptyComment = Schemas.getObjectFromSchema('comment');
+    comments = [...comments, emptyComment];
+    dispatch('change');
+}
 
+function onRemoveComment(event) {
+    comments.splice(event.detail.index, 1);
+    comments = [...comments];
+    dispatch('change');
+}
 </script>
 
 <section>
@@ -34,7 +34,7 @@
 
         {#if comments.length > 0}
         {#each comments as comment, index}
-        <Comment on:change on:removeComment={handleRemoveComment} bind:comment {index} />
+        <Comment on:change on:removeComment={onRemoveComment} bind:comment {index} />
         {/each}
         {:else}
         <p><i>No comments have yet been created.</i></p>

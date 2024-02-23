@@ -15,7 +15,7 @@ const addPerson = async () => {
 
 let __person__ = 'person';
 if (label === 'Authors') {
-    __person__ = 'author';
+    __person__ = 'Author';
 }
 
 function onRemovePerson(event) {
@@ -31,28 +31,23 @@ function onRemovePerson(event) {
     <div class="attr">
         <h3>{label}</h3>
 
-        <button class="btn" on:click|preventDefault={() => addPerson()}>Add {__person__}</button>
-
         {#each people as person, index}
         <Person on:change on:removePerson={onRemovePerson} bind:person wording={__person__} countPeople={people.length} {componentConfig} {index} />
         {/each}
+
+        <button class="btn" on:click|preventDefault={() => addPerson()}>Add {__person__}</button>
     </div>
 
 </section>
 
 
 <style>
-    section {
-        /*background: rgba(0,0,0,0.05);*/
-        margin-bottom: 10px;
-    }
-    h3 {
-        display: inline;
-        margin: 0 0 10px 0;
-        font-weight: 500;
-    }
-    button {
-        margin-left: 8px;
-        margin-bottom: 10px;
-    }
+section {
+    /*background: rgba(0,0,0,0.05);*/
+    margin-bottom: 10px;
+}
+h3 {
+    margin: 0 0 10px 0;
+    font-weight: 500;
+}
 </style>

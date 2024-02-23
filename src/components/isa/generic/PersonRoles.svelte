@@ -138,6 +138,7 @@ section {
 .section-bordered {
     border: 1px solid rgb(0,0,0);
     padding: 10px;
+    background: white;
 }
 
 button {
