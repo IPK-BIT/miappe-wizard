@@ -28,20 +28,8 @@ window.config = {
                 attribute: 'comments'
             },
             values: {
-                name: 'Study Country',
-                value: 'Germany'
-            }
-        },
-        {
-            type: 'comment',
-            isaMapping: {
-                entity: 'study',
-                attribute: 'comments',
-                studyIndex: 0
-            },
-            values: {
-                name: 'Study Country',
-                value: 'Germany'
+                name: 'MIAPPE version',
+                value: '1.1'
             }
         },
         {
@@ -50,16 +38,16 @@ window.config = {
                 entity: 'investigation',
                 attribute: 'title'
             },
-            value: 'Prefilled investigation title ...'
+            value: 'Prefilled investigation title'
         },
-        {
+        { //remove later
             type: 'value',
             isaMapping: {
-                entity: 'study',
-                attribute: 'description',
+                entity: 'investigation',
+                attribute: 'identifier',
                 studyIndex: 0
             },
-            value: 'Prefilled study description ...'
+            value: 'Prefilled investigation id'
         }
     ],
 

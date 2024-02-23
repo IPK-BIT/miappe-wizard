@@ -7,8 +7,17 @@ window.steps = [
         ]
     },
     {
-        title: 'Please provide the Title and Description of your Plant Phenotyping Project and when you submitted and published the Dataset.',
+        title: 'Please provide the basic information of your Plant Phenotyping Project and when you submitted and published the Dataset.',
         fields: [
+            {
+                label: 'Project ID',
+                type: 'text',
+                isaMapping: {
+                    entity: 'investigation',
+                    attribute: 'identifier'
+                },
+                explanation: 'DM-2'
+            },
             {
                 label: 'Project Title',
                 type: 'text',
@@ -28,6 +37,15 @@ window.steps = [
                 explanation: 'DM-4'
             },
             {
+                label: 'License',
+                type: 'text',
+                isaMapping: {
+                    entity: 'investigation',
+                    attribute: 'license'
+                },
+                explanation: 'DM-7'
+            },
+            {
                 label: 'Submission Date',
                 type: 'date',
                 isaMapping: {
@@ -47,29 +65,6 @@ window.steps = [
             }
         ]
     },
-   /* {
-        title: 'What is the submission date of your plant phenotyping project?',
-        fields: [
-            {
-                label: 'Submission Date',
-                type: 'date',
-                isaMapping: {
-                    entity: 'investigation',
-                    attribute: 'submissionDate'
-                },
-                explanation: 'DM-5'
-            },
-            {
-                label: 'Public Release Date',
-                type: 'date',
-                isaMapping: {
-                    entity: 'investigation',
-                    attribute: 'publicReleaseDate'
-                },
-                explanation: 'DM-6'
-            }
-        ]
-    },*/
     {
         title: 'Please provide the Authors of your Dataset and define their Contribution.',
         fields: [
@@ -88,23 +83,53 @@ window.steps = [
         ]
     },
     {
-        title: 'Please provide the responsible Institute for the whole Plant Phenotyping Project.',
+        title: 'Please provide the Title and Location of your Study',
         fields: [
             {
-                label: 'Contact address',
+                label: 'Study title',
                 type: 'text',
                 isaMapping: {
-                    entity: 'investigation',
-                    attribute: 'comments',
-                    commentName: 'Study Contact Institution'
+                    entity: 'study',
+                    attribute: 'title',
+                    studyIndex: 0 // can also be omitted, in this case it is set to 0 by default
                 },
-                explanation: 'DM-16'
+                explanation: 'DM-12'
+            },
+            {
+                label: 'Location',
+                type: 'text',
+                isaMapping: {
+                    entity: 'study',
+                    attribute: 'comments',
+                    commentName: 'Study Experimental Site'
+                },
+                explanation: 'DM-18'
+            },
+            {
+                label: 'Location Latitude',
+                type: 'text',
+                isaMapping: {
+                    entity: 'study',
+                    attribute: 'comments',
+                    commentName: 'Study Latitude'
+                },
+                explanation: 'DM-19'
+            },
+            {
+                label: 'Location Longitude',
+                type: 'text',
+                isaMapping: {
+                    entity: 'study',
+                    attribute: 'comments',
+                    commentName: 'Study Longitude'
+                },
+                explanation: 'DM-20'
             },
             {
                 label: 'Country',
                 type: 'text',
                 isaMapping: {
-                    entity: 'investigation',
+                    entity: 'study',
                     attribute: 'comments',
                     commentName: 'Study Country'
                 },
@@ -114,79 +139,11 @@ window.steps = [
         hook: 'addStudy'
     },
     {
-        title: 'Please provide is the Title of your Experiment and the responsible Institution',
-        fields: [
-            {
-                label: 'Study title',
-                type: 'text',
-                isaMapping: {
-                    entity: 'study',
-                    attribute: 'title',
-                    studyIndex: 0 // can also be omitted, in this case it is set to 0 by default
-                }
-            },
-            {
-                label: 'Contact address',
-                type: 'text',
-                isaMapping: {
-                    entity: 'study',
-                    attribute: 'comments',
-                    commentName: 'Study Contact Institution'
-                },
-                explanation: 'DM-16'
-            },
-            {
-                label: 'Country',
-                type: 'text',
-                isaMapping: {
-                    entity: 'study',
-                    attribute: 'comments',
-                    commentName: 'Study Country'
-                },
-                explanation: 'DM-17'
-            },
-            {
-                label: 'ROR ID of your institute',
-                type: 'ror',
-                isaMapping: {
-                    entity: 'study',
-                    attribute: 'comments',
-                    commentName: 'Study Contact Institution ROR'
-                }
-            }
-        ]
-    },
-    {
         title: 'Here you can provide publications related to your experiment.',
         level: 'Study',
         component: 'Publications',
         jsonPath: 'studies[0].publications'
     },
-  /*  {
-        title: 'Please provide contact address of your institute.',
-        fields: [
-            {
-                label: 'Contact address',
-                type: 'text',
-                explanation: 'DM-16',
-                isaMapping: {
-                    entity: 'study',
-                    attribute: 'comments',
-                    commentName: 'Study Contact Institution'
-                }
-            },
-            {
-                label: 'Country',
-                type: 'text',
-                explanation: 'DM-17',
-                isaMapping: {
-                    entity: 'study',
-                    attribute: 'comments',
-                    commentName: 'Study Country'
-                }
-            }
-        ]
-    },*/
     {
         title: 'Please provide a link to the data file of the study.',
         fields: [
