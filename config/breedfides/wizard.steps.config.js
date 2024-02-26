@@ -39,16 +39,6 @@ window.steps = [
                     commentName: 'Study Contact Institution'
                 },
                 explanation: 'DM-16'
-            },
-            {
-                label: 'Country (PREFILL)',
-                type: 'text',
-                isaMapping: {
-                    entity: 'investigation',
-                    attribute: 'comments',
-                    commentName: 'Study Country'
-                },
-                explanation: 'DM-17'
             }
         ]
     },
