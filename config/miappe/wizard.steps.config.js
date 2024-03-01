@@ -41,7 +41,8 @@ window.steps = [
                 type: 'license',
                 isaMapping: {
                     entity: 'investigation',
-                    attribute: 'license'
+                    attribute: 'comments',
+                    commentName: 'License'
                 },
                 explanation: 'DM-7'
             },
