@@ -1,7 +1,7 @@
 window.config = {
 
     general: {
-        layoutMode: 'plugin', // standalone | plugin
+        layoutMode: 'standalone', // standalone | plugin
         initialView: 'questionnaire', // questionnaire
         showQuestionnaireProgressBar: true,
     },

@@ -38,7 +38,7 @@ window.steps = [
             },
             {
                 label: 'License',
-                type: 'text',
+                type: 'license',
                 isaMapping: {
                     entity: 'investigation',
                     attribute: 'license'
