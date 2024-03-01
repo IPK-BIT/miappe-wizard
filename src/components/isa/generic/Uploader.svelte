@@ -16,7 +16,6 @@ export { study as value };
 export let jsonPath;
 
 //FIXME: In Expert mode this is not working as it only checks on component creation, but not if the parameter value is changed later
-//FIXME: Value is not updated directly in the isa-json when the component loads
 onMount(()=>{
     let growth_protocol = study.protocols.find(protocol => protocol.name === 'Growth');
     if (study.processSequence.length > 0) {
@@ -30,6 +29,7 @@ onMount(()=>{
                     parameterValue.value = protocol_parameter.comments[0].value;
                 }
             }
+            growth_process= growth_process;
         }
     }
 })
@@ -52,6 +52,7 @@ function writeStudy(df){
     study.materials.samples = [];
     study.processSequence = [];
 
+    let process = Schema.getObjectFromSchema('process');
     groupedDF.forEach((source_group) => {
         let source = Schema.getSource(
             Object.values(source_group.groupKey)[0], 
@@ -60,17 +61,19 @@ function writeStudy(df){
         study.materials.sources = [...study.materials.sources, source];
 
         source_group.group.groupBy(...sample_key.split(',')).toCollection().forEach((sample_group) => {
+            process.inputs = [...process.inputs, source];
             let sample = Schema.getObjectFromSchema('sample');
             sample.name = Object.values(sample_group.groupKey).join('-');
-            sample.derivesFrom = [source];
+            // sample.derivesFrom = [source];
             study.materials.samples = [...study.materials.samples, sample];
+            process.outputs = [...process.outputs, sample];
         });    
     });
 
     let growth_protocol = study.protocols.find(protocol => protocol.name === 'Growth');
 
-    let process = Schema.getObjectFromSchema('process');
-    process.inputs = study.materials.sources;
+    
+    // process.inputs = study.materials.sources;
     process.executesProtocol = growth_protocol;
     process.parameterValues = growth_protocol.parameters.map(parameter => {
         let value = parameter.comments[0].value;
@@ -79,7 +82,7 @@ function writeStudy(df){
         process_parameter_value.value = value
         return process_parameter_value;
     });
-    process.outputs = study.materials.samples;
+    // process.outputs = study.materials.samples;
 
     study.processSequence = [...study.processSequence, process];
 }
@@ -117,7 +120,8 @@ function writeAssay(df) {
     let process = Schema.getObjectFromSchema('process');
     process.inputs = study.materials.samples;
     process.executesProtocol = phenotyping_protocol;
-    process.outputs = [dataFile];
+    //create an array of length process.inputs.length with the value dataFile
+    process.outputs = Array(process.inputs.length).fill(dataFile);
     assay.processSequence = [...assay.processSequence, process];
 
     study.assays = [...study.assays, assay];
@@ -157,8 +161,8 @@ function handleApprove(event) {
                 {#each study.processSequence as process}
                 {#each process.outputs.slice(0,previewSize) as output, j}
                 <tr>
-                    <td>{output.derivesFrom[0].name}</td>
-                    {#each output.derivesFrom[0].characteristics as characteristic}
+                    <td>{process.inputs[j].name}</td>
+                    {#each process.inputs[j].characteristics as characteristic}
                     <td>{characteristic.value}</td>
                     {/each}
                     <!-- Uncomment, if the growth protocol parameter values defined previously should be displayed-->
@@ -188,11 +192,11 @@ function handleApprove(event) {
             </thead>
             <tbody>
                 {#each study.assays[0].processSequence as process}
-                {#each process.inputs.slice(0,previewSize) as input}
+                {#each process.inputs.slice(0,previewSize) as input,i}
                 <tr>
                     <td>{input.name}</td>
                     <td>{process.executesProtocol.name}</td>
-                    <td>{process.outputs[0].name}</td>
+                    <td>{process.outputs[i].name}</td>
                 </tr>
                 {/each}
                 {/each}
