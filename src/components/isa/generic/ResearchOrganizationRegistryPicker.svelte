@@ -1,22 +1,18 @@
-<script lang="ts">
-//export let comments: Array<Object>;
+<script>
 export let label = '';
-export let value;
+let rorid = '';
+export { rorid as value };
 export let showLabel = true;
-
-import { onMount, createEventDispatcher } from 'svelte';
-const dispatch = createEventDispatcher();
 
 import Svelecte from 'svelecte';
 
-let rorid;
 
 async function handleFetch(query) {
     const url = 'https://api.ror.org/organizations?query='+query;
 
     let postOptions = {
         method: 'GET',
-        mode: "cors",
+        mode: 'cors',
         headers: {
             'Content-Type': 'application/vnd.orcid+json'
         },
@@ -46,24 +42,9 @@ async function handleFetch(query) {
     return result;
 }
 
-function onChange() {
-    value = rorid;
-    dispatch('change');
-}
-
 function remove() {
     rorid = '';
-    value = '';
-    dispatch('change');
 }
-
-function init() {
-    rorid = value;
-}
-
-onMount(() => {
-    init();
-});
 
 </script>
 
@@ -87,7 +68,6 @@ onMount(() => {
                 valueAsObject={false}
                 placeholder="Search for your institute by its name..."
                 fetch={handleFetch}
-                on:change={onChange}
             />
             {/if}
         </div>

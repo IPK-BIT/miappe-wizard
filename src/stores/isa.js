@@ -65,6 +65,9 @@ function createIsaStoresSynced() {
         });
 
         const update = (value) => {
+            if (!value) {
+                value = '';
+            }
             keyedComments.update($comments => {
                 let comment = $comments.find((c) => c.name == commentName);
                 if(comment) {
