@@ -43,7 +43,6 @@ const fieldTypes = {
     'text': String,
     'textarea': Textarea,
     'date': Date,
-    'people': People,
     'ror': ResearchOrganizationRegistryPicker,
     'license': LicensePicker,
 }
@@ -54,7 +53,8 @@ const components = {
     'Materials': Materials,
     'ProtocolParametersSelect': ProtocolParametersSelect,
     'FactorsSelect': FactorsSelect,
-    'Uploader': Uploader
+    'Uploader': Uploader,
+    'People': People
 }
 
 let steps = config.steps;
@@ -200,6 +200,7 @@ onMount(() => {
                 <ComponentWrapperJsonPath
                     component={components[steps[currentStep].component]}
                     jsonPath={steps[currentStep].jsonPath}
+                    componentConfig={steps[currentStep].componentConfig}
                 />
                 {/if}
             

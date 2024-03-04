@@ -1,7 +1,6 @@
 <script>
 export let person;
 export let index;
-export let wording = 'person';
 export let countPeople = 1;
 export let componentConfig = {};
 

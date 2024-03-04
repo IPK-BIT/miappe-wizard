@@ -1,6 +1,7 @@
 <script>
 export let component;
 export let jsonPath = undefined;
+export let componentConfig = {};
 
 import { isaObj } from '@/stores/isa';
 
@@ -16,6 +17,7 @@ if (jsonPath) {
     this={component} 
     bind:value={$value}
     jsonPath={jsonPath}
+    {componentConfig}
 />
 
 <style>

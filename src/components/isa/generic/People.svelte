@@ -13,6 +13,10 @@ const addPerson = async () => {
     people = [...people, emptyPerson];
 }
 
+if (componentConfig.label) {
+    label = componentConfig.label;
+}
+
 let __person__ = 'person';
 if (label === 'Authors') {
     __person__ = 'Author';
@@ -32,7 +36,7 @@ function onRemovePerson(event) {
         <h3>{label}</h3>
 
         {#each people as person, index}
-        <Person on:change on:removePerson={onRemovePerson} bind:person wording={__person__} countPeople={people.length} {componentConfig} {index} />
+        <Person on:change on:removePerson={onRemovePerson} bind:person countPeople={people.length} {componentConfig} {index} />
         {/each}
 
         <button class="btn" on:click|preventDefault={() => addPerson()}>Add {__person__}</button>

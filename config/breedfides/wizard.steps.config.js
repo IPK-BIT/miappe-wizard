@@ -39,20 +39,13 @@ window.steps = [
         ]
     },
     {
-        title: 'Please provide all Authors of your Dataset and define their Contribution.',
-        fields: [
-            {
-                label: 'Authors',
-                type: 'people',
-                isaMapping: {
-                    jsonPath: 'people'
-                },
-                explanation: 'DM-16',
-                componentConfig: {
-                    showComments: false
-                }
-            }
-        ],
+        title: 'Please provide the Authors of your Dataset and define their Contribution.',
+        component: 'People',
+        jsonPath: 'people',
+        componentConfig: {
+            showComments: false,
+            label: 'Authors'
+        }
     },
     {
         hooks: [
