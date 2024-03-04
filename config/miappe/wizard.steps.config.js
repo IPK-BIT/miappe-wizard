@@ -13,8 +13,7 @@ window.steps = [
                 label: 'Project ID',
                 type: 'text',
                 isaMapping: {
-                    entity: 'investigation',
-                    attribute: 'identifier'
+                    jsonPath: 'identifier'
                 },
                 explanation: 'DM-2'
             },
@@ -22,8 +21,7 @@ window.steps = [
                 label: 'Project Title',
                 type: 'text',
                 isaMapping: {
-                    entity: 'investigation',
-                    attribute: 'title'
+                    jsonPath: 'title'
                 },
                 explanation: 'DM-3'
             },
@@ -31,8 +29,7 @@ window.steps = [
                 label: 'Project Description',
                 type: 'textarea',
                 isaMapping: {
-                    entity: 'investigation',
-                    attribute: 'description'
+                    jsonPath: 'description'
                 },
                 explanation: 'DM-4'
             },
@@ -40,8 +37,7 @@ window.steps = [
                 label: 'License',
                 type: 'license',
                 isaMapping: {
-                    entity: 'investigation',
-                    attribute: 'comments',
+                    jsonPath: 'comments',
                     commentName: 'License'
                 },
                 explanation: 'DM-7'
@@ -50,8 +46,7 @@ window.steps = [
                 label: 'Submission Date',
                 type: 'date',
                 isaMapping: {
-                    entity: 'investigation',
-                    attribute: 'submissionDate'
+                    jsonPath: 'submissionDate'
                 },
                 explanation: 'DM-5'
             },
@@ -59,8 +54,7 @@ window.steps = [
                 label: 'Public Release Date',
                 type: 'date',
                 isaMapping: {
-                    entity: 'investigation',
-                    attribute: 'publicReleaseDate'
+                    jsonPath: 'publicReleaseDate'
                 },
                 explanation: 'DM-6'
             }
@@ -73,27 +67,28 @@ window.steps = [
                 label: 'Authors',
                 type: 'people',
                 isaMapping: {
-                    entity: 'investigation',
-                    attribute: 'people'
+                    jsonPath: 'people'
                 },
                 explanation: 'DM-16',
                 componentConfig: {
                     showComments: false
                 }
             }
-        ],
-        hook: 'addStudy'
+        ]
     },
     {
+        hooks: [
+            {
+                type: 'addStudy'
+            }
+        ],
         title: 'Please provide the Title and Location of your Study',
         fields: [
             {
                 label: 'Study title',
                 type: 'text',
                 isaMapping: {
-                    entity: 'study',
-                    attribute: 'title',
-                    studyIndex: 0 // can also be omitted, in this case it is set to 0 by default
+                    jsonPath: 'studies[0].title'
                 },
                 explanation: 'DM-12'
             },
@@ -101,8 +96,7 @@ window.steps = [
                 label: 'Location',
                 type: 'text',
                 isaMapping: {
-                    entity: 'study',
-                    attribute: 'comments',
+                    jsonPath: 'studies[0].comments',
                     commentName: 'Study Experimental Site'
                 },
                 explanation: 'DM-18'
@@ -111,8 +105,7 @@ window.steps = [
                 label: 'Location Latitude',
                 type: 'text',
                 isaMapping: {
-                    entity: 'study',
-                    attribute: 'comments',
+                    jsonPath: 'studies[0].comments',
                     commentName: 'Study Latitude'
                 },
                 explanation: 'DM-19'
@@ -121,8 +114,7 @@ window.steps = [
                 label: 'Location Longitude',
                 type: 'text',
                 isaMapping: {
-                    entity: 'study',
-                    attribute: 'comments',
+                    jsonPath: 'studies[0].comments',
                     commentName: 'Study Longitude'
                 },
                 explanation: 'DM-20'
@@ -131,8 +123,7 @@ window.steps = [
                 label: 'Country',
                 type: 'text',
                 isaMapping: {
-                    entity: 'study',
-                    attribute: 'comments',
+                    jsonPath: 'studies[0].comments',
                     commentName: 'Study Country'
                 },
                 explanation: 'DM-17'
@@ -146,8 +137,7 @@ window.steps = [
                 label: 'Institution Contact Address',
                 type: 'text',
                 isaMapping: {
-                    entity: 'study',
-                    attribute: 'comments',
+                    jsonPath: 'studies[0].comments',
                     commentName: 'Study Contact Institution'
                 },
                 explanation: 'DM-16'
@@ -156,8 +146,7 @@ window.steps = [
                 label: 'ROR ID of your Institution',
                 type: 'ror',
                 isaMapping: {
-                    entity: 'study',
-                    attribute: 'comments',
+                    jsonPath: 'studies[0].comments',
                     commentName: 'Study Contact Institution ROR'
                 }
             }
@@ -176,8 +165,7 @@ window.steps = [
                 label: 'Study Data File Link',
                 type: 'text',
                 isaMapping: {
-                    entity: 'study',
-                    attribute: 'comments',
+                    jsonPath: 'studies[0].comments',
                     commentName: 'Study Data File Link'
                 }
             },
@@ -185,29 +173,30 @@ window.steps = [
                 label: 'Study Data File Description',
                 type: 'textarea',
                 isaMapping: {
-                    entity: 'study',
-                    attribute: 'comments',
+                    jsonPath: 'studies[0].comments',
                     commentName: 'Study Data File Description'
                 }
             }
-        ],
-        hook: 'addProtocol',
-        hookParameters: {
-            protocolName: 'Growth',
-            protocolVersion: 'MIAPPE v1.1',
-           // protocolDescription: 'How the plants were grown up.',
-            protocolParameters: ['Light intensity', 'Air temperature']
-        }
+        ]
     },
     {
+        hooks: [
+            {
+                type: 'addProtocol',
+                parameters: {
+                    protocolName: 'Growth',
+                    protocolVersion: 'MIAPPE v1.1',
+                   // protocolDescription: 'How the plants were grown up.',
+                    protocolParameters: ['Light intensity', 'Air temperature']
+                }
+            }
+        ],
         title: 'Please provide a brief summary of the Growth Conditions.',
         fields: [
             {
                 label: 'Growth description',
                 type: 'textarea',
                 isaMapping: {
-                    //entity: 'protocol',
-                    //attribute: 'description',
                     jsonPath: 'studies[0].protocols[0].description'
                 },
                 explanation: 'DM-67'
@@ -216,29 +205,16 @@ window.steps = [
     },
     {
         title: 'Please select all Parameters, which are constant for all Samples of your Experiment.',
-        level: 'Study',
         component: 'ProtocolParametersSelect',
         jsonPath: 'studies[0].protocols[0].parameters'
     },
     {
         title: 'Select Factors that are different between the Samples.',
-        level: 'Study',
         component: 'FactorsSelect',
         jsonPath: 'studies[0].factors'
     },
-    /*{
-        title: 'Growth Protocol',
-        level: 'Study',
-        component: 'StudyTemplateGenerator'
-    },
-    {
-        title: 'Materials',
-        level: 'Study',
-        component: 'Materials'
-    }*/
     {
         title: 'Upload template',
-        level: 'Study',
         component: 'Uploader',
         jsonPath: 'studies[0]'
     }

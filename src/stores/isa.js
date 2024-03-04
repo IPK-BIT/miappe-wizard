@@ -1,7 +1,9 @@
-import { writable, get } from 'svelte/store';
+import { writable, get, derived } from 'svelte/store';
 import { keyed } from 'svelte-keyed';
 
 import { miappeInvestigationHandler, miappeStudyHandler } from '@/lib/miappeMappers';
+
+import Schemas from '@/lib/schemas';
 
 function createIsaStoresSynced() {
 
@@ -48,6 +50,46 @@ function createIsaStoresSynced() {
     };
 
     storesSynced.isaObj.keyed = (level) => keyed(storesSynced.isaObj, level);
+
+
+    storesSynced.isaObj.keyedComments = (jsonPath, commentName) => {
+        const keyedComments = keyed(storesSynced.isaObj, jsonPath);
+
+        const derivedComments = derived(keyedComments, $comments => {
+            let comment = $comments.find((c) => c.name == commentName);
+            let value = '';
+            if(comment) {
+                value = comment.value;
+            }
+            return value;
+        });
+
+        const update = (value) => {
+            keyedComments.update($comments => {
+                let comment = $comments.find((c) => c.name == commentName);
+                if(comment) {
+                    comment.value = value;
+                    $comments = $comments;
+                } else {
+                    comment = Schemas.getComment(commentName, value);
+                    $comments = [...$comments, comment];
+                }
+                return $comments;
+            });
+
+        }
+        const set = (value) => {
+            update(value);
+        }
+
+        const store = {
+            subscribe: derivedComments.subscribe,
+            update: update,
+            set: set
+        }
+
+        return store;
+    }
 
     return storesSynced;
 

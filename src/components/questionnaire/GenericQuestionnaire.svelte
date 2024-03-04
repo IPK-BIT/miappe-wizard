@@ -35,6 +35,9 @@ import FactorsSelect from '../isa/study/FactorsSelect.svelte';
 import Uploader from '../isa/generic/Uploader.svelte';
 import LicensePicker from '../isa/generic/LicensePicker.svelte';
 
+import FieldWrapperJsonPathNative from './wrappers/FieldWrapperJsonPathNative.svelte';
+import FieldWrapperJsonPathComment from './wrappers/FieldWrapperJsonPathComment.svelte';
+import ComponentWrapperJsonPath from './wrappers/ComponentWrapperJsonPath.svelte';
 
 const fieldTypes = {
     'text': String,
@@ -60,7 +63,7 @@ $wizard.steps = steps.length;
 
 let currentStep = 0;
 
-//let hooksExecuted = [];
+
 
 const hooks = {
     'addStudy': addStudy,
@@ -72,15 +75,17 @@ function addStudy() {
     $isaObj['studies'] = [ ...$isaObj['studies'], emptyStudy];
 }
 
-function addProtocol() {
+function addProtocol(params) {
+    if (!params) {
+        alert('Error: Using the addProtocol hook without parameters is not allowed. Please correct the steps configuration!');
+        return false;
+    }
     let emptyProtocol = Schemas.getObjectFromSchema('protocol');
     emptyProtocol.protocolType = Schemas.getObjectFromSchema('ontology_annotation');
     
-    let params = steps[currentStep].hookParameters;
-    
-    emptyProtocol.name = params.protocolName;
-    emptyProtocol.description = params.protocolDescription;
-    emptyProtocol.version = params.protocolVersion;
+    emptyProtocol.name = params?.protocolName;
+    emptyProtocol.description = params?.protocolDescription;
+    emptyProtocol.version = params?.protocolVersion;
     
     if (params.protocolParameters !== undefined) {
         for (let parameterName of params.protocolParameters) {
@@ -109,168 +114,37 @@ function addProtocol() {
 
 async function initFirstStep() {
     executeStepHooks(0);
-    populateFieldValues();
 }
 
 async function prev() {
     currentStep = currentStep - 1;
     $wizard.currentStep = currentStep;
-    populateFieldValues();
 }
 
 async function next() {
-    executeStepHooks(currentStep);
     currentStep = currentStep + 1;
     $wizard.currentStep = currentStep;
-    populateFieldValues();
-    populateIsaObj();
+    executeStepHooks(currentStep);
 }
 
 function executeStepHooks(step) {
-    if (steps[step] && steps[step].hook !== undefined) {
-        const hookId = steps[step].hook+'_'+step;
-        if (!$hooksExecuted.includes(hookId)) {
-            hooks[steps[step].hook]();
-            $hooksExecuted = [...$hooksExecuted, hookId]
-            console.log('execute hook: ', steps[step].hook);
-        } else {
-            console.info('hooks do not get executed twice!')
-        }
-    }
-}
-
-
-let _isaObj;
-
-function populateIsaObj() {
-    if (steps[currentStep] && steps[currentStep].component !== undefined && steps[currentStep].jsonPath !== undefined) {
-        _isaObj = get($isaObj, steps[currentStep].jsonPath);
-    }
-}
-
-
-
-
-function populateFieldValues() {
-    if (steps[currentStep] && steps[currentStep].fields) {
-        for (let field of steps[currentStep].fields) {
-            if (field.isaMapping.jsonPath) {
-                field.value = get($isaObj, field.isaMapping.jsonPath);
-                doRerender++;
-            } else if (field.isaMapping.attribute === 'comments') {
-                commentMapper(field);
-            } else {
-                nativeAttributeMapper(field);
+    if (steps[step] && steps[step].hooks !== undefined && Array.isArray(steps[step].hooks)) {
+        for (let hook of steps[step].hooks) {
+            const hookId = hook.type+'_'+step;
+            if (!$hooksExecuted.includes(hookId)) {
+                hooks[hook.type](hook?.parameters);
+                $hooksExecuted = [...$hooksExecuted, hookId];
+                console.log('execute hook: ', steps[step].hook);
             }
         }
     }
 }
-
-async function nativeAttributeMapper(field) {
-    let target;
-    if (field.isaMapping.entity === 'investigation') {
-        target = $isaObj;
-    } else if (field.isaMapping.entity === 'study') {
-        const studyIndex = field.isaMapping.studyIndex ?? 0;
-        target = $isaObj.studies[studyIndex];
-    }
-    
-    if(target[field.isaMapping.attribute] !== undefined) {
-        field.value = target[field.isaMapping.attribute];
-        doRerender++;
-    }
-}
-
-async function commentMapper(field) {
-    let target;
-    if (field.isaMapping.entity === 'investigation') {
-        target = $isaObj;
-    } else if (field.isaMapping.entity === 'study') {
-        const studyIndex = field.isaMapping.studyIndex ?? 0;
-        target = $isaObj.studies[studyIndex];
-    }
-    
-    let comment = target.comments.find((c) => c.name == field.isaMapping.commentName);
-    console.log(comment);
-    if(comment) {
-        field.value = comment.value;
-        doRerender++;
-    }
-}
-
-
-
-
-
-
 
 
 function handleKeypress() {
     
 }
 
-
-
-function updateStore(value, i) {
-    let step = steps[currentStep];
-    let field = step.fields[i];
-    if (field.isaMapping.jsonPath) {
-        set($isaObj, field.isaMapping.jsonPath, value);
-    } else if (field.isaMapping.attribute === 'comments') {
-        updateComment(field, value);
-    } else if (field.isaMapping.attribute === 'people') {
-        updatePeople(field, value);
-    } else {
-        updateNativeAttribute(field, value);
-    }
-}
-
-function updateNativeAttribute(field, value) {
-    let attr = field.isaMapping.attribute;
-    if (field.isaMapping.entity === 'investigation') {
-        $isaObj[attr] = value;
-    } else if (field.isaMapping.entity === 'study') {
-        const studyIndex = field.isaMapping.studyIndex ?? 0;
-        $isaObj.studies[studyIndex][attr] = value;
-    }
-}
-
-function updatePeople(field, value) {
-    if (field.isaMapping.entity === 'investigation') {
-        $isaObj.people = value;
-    } else if (field.isaMapping.entity === 'study') {
-        const studyIndex = field.isaMapping.studyIndex ?? 0;
-        $isaObj.studies[studyIndex].people = value;
-    }
-}
-
-function updateComment(field, value) {
-    let target;
-    if (field.isaMapping.entity === 'investigation') {
-        target = $isaObj;
-    } else if (field.isaMapping.entity === 'study') {
-        const studyIndex = field.isaMapping.studyIndex ?? 0;
-        target = $isaObj.studies[studyIndex];
-    }
-    
-    let comment = target.comments.find((c) => c.name == field.isaMapping.commentName);
-    if(comment) {
-        comment.value = value;
-    } else {
-        comment = Schemas.getObjectFromSchema('comment');
-        comment.name = field.isaMapping.commentName;
-        comment.value = value;
-        target.comments = [...target.comments, comment];
-    }
-    $isaObj = $isaObj;
-}
-
-
-function onChange(i) {
-    let value = steps[currentStep].fields[i].value;
-    console.log(value);
-    updateStore(value, i);
-}
 
 const forceUpdate = async (_) => {};
 let doRerender = 0;
@@ -283,15 +157,7 @@ onMount(() => {
 </script>
 
 <section>
-    
-    <!--
-        <div class="pure-g">
-            <div class="pure-u-1-3"><p>Thirds</p></div>
-            <div class="pure-u-1-3"><p>Thirds</p></div>
-            <div class="pure-u-1-3"><p>Thirds</p></div>
-        </div>
-    -->
-    
+
     {#if Object.keys($isaObj).length > 0}
     
     {#await forceUpdate(doRerender) then _}
@@ -306,36 +172,36 @@ onMount(() => {
             
             {#key currentStep}
             
-            {#if steps[currentStep].text}
-            {#each steps[currentStep].text as paragraph}
-            <p>{paragraph}</p>
-            {/each}
-            {/if}
-            
-            {#if steps[currentStep].fields}
-            
-            {#each steps[currentStep].fields as field, i}
-            <svelte:component 
-            this={fieldTypes[field.type]} 
-            bind:value={field.value} 
-            showLabel={true} 
-            label={field.label} 
-            isaLevel={field.isaMapping.entity}
-            attr={field.explanation ? field.explanation : field.isaMapping.attribute} 
-            componentConfig={field.componentConfig}
-            on:change={() => onChange(i)} 
-            />
-            {/each}
-            
-            {/if}
-            
-            {#if steps[currentStep].component}
-            <svelte:component 
-            this={components[steps[currentStep].component]} 
-            bind:value={_isaObj}
-            jsonPath={steps[currentStep].jsonPath}
-            />
-            {/if}
+                {#if steps[currentStep].text}
+                    {#each steps[currentStep].text as paragraph}
+                        <p>{paragraph}</p>
+                    {/each}
+                {/if}
+                
+                {#if steps[currentStep].fields}
+                    {#each steps[currentStep].fields as field, i}
+                        {#if field.isaMapping.jsonPath && !field.isaMapping.commentName}
+                            <FieldWrapperJsonPathNative
+                                component={fieldTypes[field.type]} 
+                                jsonPath={field.isaMapping.jsonPath} 
+                                field={field}
+                            />
+                        {:else if field.isaMapping.jsonPath && field.isaMapping.commentName}
+                            <FieldWrapperJsonPathComment 
+                                component={fieldTypes[field.type]} 
+                                jsonPath={field.isaMapping.jsonPath} 
+                                field={field}
+                            />
+                        {/if}
+                    {/each}
+                {/if}
+                
+                {#if steps[currentStep].component}
+                <ComponentWrapperJsonPath
+                    component={components[steps[currentStep].component]}
+                    jsonPath={steps[currentStep].jsonPath}
+                />
+                {/if}
             
             {/key}
             
