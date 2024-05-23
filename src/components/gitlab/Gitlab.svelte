@@ -1,5 +1,5 @@
 <script>
-import { base_url, gitlab_repsonse } from "@/stores/gitlab-api";
+import { base_url, gitlab_response } from "@/stores/gitlab-api";
 import { isaObj } from "@/stores/isa";    
 import { ArcInvestigation_fromJsonString } from "@nfdi4plants/arctrl/ISA/ISA.Json/Investigation";
 import { ARC } from "@nfdi4plants/arctrl";
@@ -38,7 +38,7 @@ async function fulfillWriteContracts(contracts) {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
-            'Authorization': `Bearer ${$gitlab_repsonse.access_token}`,
+            'Authorization': `Bearer ${gitlab_response.access_token}`,
             'Content-Type': 'application/json'}
         }).then((resp) => {
             return resp.json();
@@ -47,7 +47,7 @@ async function fulfillWriteContracts(contracts) {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
-                    'Authorization': `Bearer ${$gitlab_repsonse.access_token}`,
+                    'Authorization': `Bearer ${gitlab_response.access_token}`,
                     'Content-Type': 'application/json'
                 }
             }).then(async (resp) => {
@@ -59,7 +59,7 @@ async function fulfillWriteContracts(contracts) {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-            'Authorization': `Bearer ${$gitlab_repsonse.access_token}`,
+            'Authorization': `Bearer ${gitlab_response.access_token}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -126,7 +126,7 @@ async function fulfillWriteContracts(contracts) {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-            'Authorization': `Bearer ${$gitlab_repsonse.access_token}`,
+            'Authorization': `Bearer ${$gitlab_response.access_token}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload)
