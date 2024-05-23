@@ -40,7 +40,7 @@ function login() {
         code_challenge_method: 'S256'
     }
     const urlParams = new URLSearchParams(params);
-    const authUrl = `${base_url}/authorize?${urlParams.toString()}`;
+    const authUrl = `${base_url}/oauth/authorize?${urlParams.toString()}`;
     window.location.href = authUrl;
 }
 </script>

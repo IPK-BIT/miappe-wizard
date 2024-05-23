@@ -3,7 +3,7 @@ import { isaObj } from "./isa";
 import { appstate } from "./appstate";
 
 export const CLIENT_ID = readable('200490ccbc9bd9e9f65eb50dfc8aa68ca3ea2c6c5eee7f51874ea0f07d4b4ced')
-export const base_url = "https://git.nfdi4plants.org/oauth"
+export const base_url = "https://git.nfdi4plants.org"
 
 export const gitlab_response= writable({access_token: ""})
 
@@ -21,7 +21,7 @@ export async function init() {
             redirect_uri: window.location.href,
             code_verifier: code_verifier,
         }
-        const response = await fetch(`${base_url}/token`, {
+        const response = await fetch(`${base_url}/oauth/token`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

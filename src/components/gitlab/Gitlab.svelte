@@ -38,7 +38,7 @@ async function fulfillWriteContracts(contracts) {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
-            'Authorization': `Bearer ${gitlab_response.access_token}`,
+            'Authorization': `Bearer ${$gitlab_response.access_token}`,
             'Content-Type': 'application/json'}
         }).then((resp) => {
             return resp.json();
@@ -47,7 +47,7 @@ async function fulfillWriteContracts(contracts) {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
-                    'Authorization': `Bearer ${gitlab_response.access_token}`,
+                    'Authorization': `Bearer ${$gitlab_response.access_token}`,
                     'Content-Type': 'application/json'
                 }
             }).then(async (resp) => {
@@ -59,7 +59,7 @@ async function fulfillWriteContracts(contracts) {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-            'Authorization': `Bearer ${gitlab_response.access_token}`,
+            'Authorization': `Bearer ${$gitlab_response.access_token}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
