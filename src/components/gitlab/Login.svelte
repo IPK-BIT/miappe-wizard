@@ -33,7 +33,7 @@ function login() {
     const params = {
         response_type: 'code',
         client_id: $CLIENT_ID,
-        redirect_uri: window.location.origin,
+        redirect_uri: window.location.origin+window.location.pathname,
         state: '123456',
         scope: 'api',
         code_challenge: codeChallenge,

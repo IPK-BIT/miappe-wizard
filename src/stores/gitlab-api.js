@@ -18,7 +18,7 @@ export async function init() {
             grant_type: 'authorization_code',
             client_id: get(CLIENT_ID),
             code: code,
-            redirect_uri: window.location.origin,
+            redirect_uri: window.location.origin + window.location.pathname,
             code_verifier: code_verifier,
         }
         const response = await fetch(`${base_url}/token`, {
