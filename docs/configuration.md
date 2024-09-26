@@ -166,7 +166,10 @@ fields: [
 ```
 
 ### Hooks
-#### Note: When a Study is defined via 'prefill' then it will be also automatically added to the Investigation. The 'addStudy' hock is then only needed when you want to add an additional/second Study.
+!!! note
+
+    When a Study is defined via 'prefill' then it will be also automatically added to the Investigation. The 'addStudy' hock is then only needed when you want to add an additional/second Study.
+    
 
 Available hook functions:
  * addStudy => creates a study <b>add the end</b> of a step

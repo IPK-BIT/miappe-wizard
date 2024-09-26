@@ -1,13 +1,13 @@
-site_name: BrAPI2ARC
-repo_url: https://github.com/IPK-BIT/brapi2arc.git
-repo_name: brapi2arc
+site_name: MIAPPE Wizard
+repo_url: https://github.com/IPK-BIT/miappe-wizard.git
+repo_name: miappe-wizard
 nav:
   - Home: index.md
   - Configuration: configuration.md
 theme:
   name: material
-  logo: assets/brapi2arc.png
-  favicon: assets/brapi2arc.png
+  logo: assets/logo.png
+  favicon: assets/logo.png
   palette:
     primary: green
     accent: lime
@@ -22,3 +22,5 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.superfences
   - tables
+  - admonition
+  - pymdownx.details
