@@ -18,10 +18,29 @@
 		<title>ISA Wizard</title>
 	</head>
 	<body class="bg-base-200">
-		<div id="app"></div>
-		<hr />
-		<h2>&lt;isa-wizard&gt; custom element demo</h2>
-		<isa-wizard config-url="/nested-config.json"></isa-wizard>
-		<script type="module" src="/src/main.ts"></script>
+
+		<div class="tabs tabs-lift p-4">
+		<label class="tab">
+			<input type="radio" name="my_tabs_4" />
+			<img src="/svelte-icon-svgrepo-com.svg" alt="Svelte Logo" class="w-4 h-4 inline-block mr-1" />			
+			Svelte Component
+		</label>
+		<div class="tab-content bg-base-100 border-base-300 p-6">
+			
+			<div id="app"></div>
+			
+		</div>
+
+		<label class="tab">
+			<input type="radio" name="my_tabs_4" checked="checked" />
+			<img src="/webcomponents-svgrepo-com.svg" alt="Web Component Logo" class="w-4 h-4 inline-block mr-1" />
+			Web Component
+		</label>
+		<div class="tab-content bg-base-100 border-base-300 p-6">
+			
+			<isa-wizard config-url="/nested-config.json"></isa-wizard>
+			<script type="module" src="/src/main.ts"></script>
+
+		</div>		
 	</body>
 </html>

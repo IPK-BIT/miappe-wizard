@@ -2,4 +2,8 @@
 	import ISAWizard from './ISAWizard.svelte';
 </script>
 
-<ISAWizard configUrl="/nested-config.json" />
+<div class="bg-base-200">
+
+	<ISAWizard configUrl="/nested-config.json" />
+
+</div>
