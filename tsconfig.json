@@ -3,7 +3,10 @@
 	"references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
 	"compilerOptions": {
 		"paths": {
-			"$components/*": ["./src/components/*"]
+			"$components/*": ["./src/components/*"],
+			"$lib/*": ["./src/lib/*"],
+			"$stores/*": ["./src/stores/*"],
+			"$assets/*": ["./src/assets/*"]
 		}
 	}
 }

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Schema from '../../../lib/schemas';
-	import Parameter from '../composed/Parameter.svelte';
+	import Schema from '$lib/schemas';
+	import Parameter from '$components/isa/composed/Parameter.svelte';
 
 	let {
 		label = 'Protocol Parameters',

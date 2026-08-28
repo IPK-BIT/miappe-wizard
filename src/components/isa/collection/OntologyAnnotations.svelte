@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Publication from '../composed/Publication.svelte';
-	import Schema from '../../../lib/schemas';
-	import OntologyAnnotation from '../singleton/OntologyAnnotation.svelte';
+	import Publication from '$components/isa/composed/Publication.svelte';
+	import Schema from '$lib/schemas';
+	import OntologyAnnotation from '$components/isa/singleton/OntologyAnnotation.svelte';
 
 	let {
 		label = 'Publications',

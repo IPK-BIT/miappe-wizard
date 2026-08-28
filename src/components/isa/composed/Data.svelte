@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Select from '../singleton/Select.svelte';
-	import String from '../singleton/String.svelte';
+	import Select from '$components/isa/singleton/Select.svelte';
+	import String from '$components/isa/singleton/String.svelte';
 
 	let {
 		label = 'Sample',

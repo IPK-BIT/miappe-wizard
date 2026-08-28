@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Number from '../singleton/Number.svelte';
-	import OntologyAnnotation from '../singleton/OntologyAnnotation.svelte';
-	import String from '../singleton/String.svelte';
-	import Schema from '../../../lib/schemas';
+	import Number from '$components/isa/singleton/Number.svelte';
+	import OntologyAnnotation from '$components/isa/singleton/OntologyAnnotation.svelte';
+	import String from '$components/isa/singleton/String.svelte';
+	import Schema from '$lib/schemas';
 
 	let {
 		label = 'Protocol Parameter',

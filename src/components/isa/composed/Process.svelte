@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { getAppstate } from '../../../lib/appstate.svelte';
-	import { isaObj } from '../../../stores/isa';
+	import { getAppstate } from '$lib/appstate.svelte';
+	import { isaObj } from '$stores/isa';
 	import type {
 		ISAProcessParameterValueSchema,
 		ISASourceSchema
-	} from '../../../lib/types/isa.generated';
-	import Select from '../singleton/Select.svelte';
-	import String from '../singleton/String.svelte';
-	import Schema from '../../../lib/schemas';
-	import ParameterValues from '../collection/ParameterValues.svelte';
-	import EntitySelectModal, { type TypedEntity } from '../../util/EntitySelectModal.svelte';
+	} from '$lib/types/isa.generated';
+	import Select from '$components/isa/singleton/Select.svelte';
+	import String from '$components/isa/singleton/String.svelte';
+	import Schema from '$lib/schemas';
+	import ParameterValues from '$components/isa/collection/ParameterValues.svelte';
+	import EntitySelectModal, {type TypedEntity} from '$components/util/EntitySelectModal.svelte';
 
 	let {
 		label = 'Process',

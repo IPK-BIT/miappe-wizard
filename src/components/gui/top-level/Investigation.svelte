@@ -1,12 +1,12 @@
 <script lang="ts">
-	import Person from '../building-blocks/Person.svelte';
+	import Person from '$components/gui/building-blocks/Person.svelte';
 
-	import Publication from '../building-blocks/Publication.svelte';
-	import TemplateCards from '../building-blocks/TemplateCards.svelte';
+	import Publication from '$components/gui/building-blocks/Publication.svelte';
+	import TemplateCards from '$components/gui/building-blocks/TemplateCards.svelte';
 
-	import { isaObj } from '../../../stores/isa';
-	import { updateAppstate } from '../../../lib/appstate.svelte';
-	import Schema from '../../../lib/schemas';
+	import { isaObj } from '$stores/isa';
+	import { updateAppstate } from '$lib/appstate.svelte';
+	import Schema from '$lib/schemas';
 
 	let { config, value = $bindable() } = $props();
 

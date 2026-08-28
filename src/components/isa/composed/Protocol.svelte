@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { getConfig } from '../../../lib/config.svelte';
-	import BreadcrumbWidget from '../../ts4nfdi/BreadcrumbWidget.svelte';
-	import Components from '../collection/Components.svelte';
-	import Parameters from '../collection/Parameters.svelte';
-	import OntologyAnnotation from '../singleton/OntologyAnnotation.svelte';
-	import String from '../singleton/String.svelte';
-	import Textarea from '../singleton/Textarea.svelte';
+	import { getConfig } from '$lib/config.svelte';
+	import BreadcrumbWidget from '$components/ts4nfdi/BreadcrumbWidget.svelte';
+	import Components from '$components/isa/collection/Components.svelte';
+	import Parameters from '$components/isa/collection/Parameters.svelte';
+	import OntologyAnnotation from '$components/isa/singleton/OntologyAnnotation.svelte';
+	import String from '$components/isa/singleton/String.svelte';
+	import Textarea from '$components/isa/singleton/Textarea.svelte';
 
 	let {
 		label = 'Protocol',

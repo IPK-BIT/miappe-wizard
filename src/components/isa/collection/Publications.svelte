@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Publication from '../composed/Publication.svelte';
-	import Schema from '../../../lib/schemas';
+	import Publication from '$components/isa/composed/Publication.svelte';
+	import Schema from '$lib/schemas';
 
 	let {
 		label = 'Publications',

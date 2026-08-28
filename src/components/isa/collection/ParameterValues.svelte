@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ParameterValue from '../composed/ParameterValue.svelte';
+	import ParameterValue from '$components/isa/composed/ParameterValue.svelte';
 
 	let {
 		label = 'Parameter Values',

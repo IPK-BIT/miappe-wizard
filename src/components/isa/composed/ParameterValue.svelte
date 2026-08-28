@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Schema from '../../../lib/schemas';
-	import Number from '../singleton/Number.svelte';
-	import OntologyAnnotation from '../singleton/OntologyAnnotation.svelte';
-	import Select from '../singleton/Select.svelte';
-	import String from '../singleton/String.svelte';
+	import Schema from '$lib/schemas';
+	import Number from '$components/isa/singleton/Number.svelte';
+	import OntologyAnnotation from '$components/isa/singleton/OntologyAnnotation.svelte';
+	import Select from '$components/isa/singleton/Select.svelte';
+	import String from '$components/isa/singleton/String.svelte';
 
 	let {
 		label = 'Parameter Values',

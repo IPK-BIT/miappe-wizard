@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Person from '../composed/Person.svelte';
-	import Schema from '../../../lib/schemas';
+	import Person from '$components/isa/composed/Person.svelte';
+	import Schema from '$lib/schemas';
 
 	let {
 		label = 'Publications',

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import spdx from '../../../assets/spdx.ico';
+	import spdx from '$assets/spdx.ico';
 	import Svelecte from 'svelecte';
 	import { onMount } from 'svelte';
 

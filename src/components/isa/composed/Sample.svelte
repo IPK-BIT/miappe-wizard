@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Characteristics from '../collection/Characteristics.svelte';
-	import String from '../singleton/String.svelte';
+	import Characteristics from '$components/isa/collection/Characteristics.svelte';
+	import String from '$components/isa/singleton/String.svelte';
 
 	let {
 		label = 'Sample',

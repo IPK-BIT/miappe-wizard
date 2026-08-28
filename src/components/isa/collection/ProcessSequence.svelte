@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Schema from '../../../lib/schemas';
-	import Process from '../composed/Process.svelte';
+	import Schema from '$lib/schemas';
+	import Process from '$components/isa/composed/Process.svelte';
 
 	let {
 		label = 'Process Sequence',

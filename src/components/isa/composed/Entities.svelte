@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { getAppstate } from '../../../lib/appstate.svelte';
-	import Materials from '../collection/Materials.svelte';
-	import Samples from '../collection/Samples.svelte';
-	import Sources from '../collection/Sources.svelte';
+	import { getAppstate } from '$lib/appstate.svelte';
+	import Materials from '$components/isa/collection/Materials.svelte';
+	import Samples from '$components/isa/collection/Samples.svelte';
+	import Sources from '$components/isa/collection/Sources.svelte';
 
 	let {
 		label = 'Protocol Parameter',

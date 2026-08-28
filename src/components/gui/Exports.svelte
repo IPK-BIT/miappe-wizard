@@ -1,6 +1,7 @@
 <script lang="ts">
+	import { convertIsaJsonToArc} from '$lib/export/arc';
 	import { convertIsaJsonToZip } from 'isa4js';
-	import { isaObj } from '../../stores/isa';
+	import { isaObj } from '$stores/isa';
 
 	interface ExportOption {
 		id: string;
@@ -77,6 +78,16 @@
 			filename: 'isa.json',
 			formatBadge: 'JSON',
 			action: async (data) => JSON.stringify(data, null, 2)
+		},
+		{
+			id: 'arc',
+			title: 'ARC',
+			description: 'Export as ARC directory compressed into a ZIP archive.',
+			filename: 'arc.zip',
+			formatBadge: 'ZIP',
+			action: async (data) => {
+				return (await convertIsaJsonToArc(data)) as Blob;
+			}
 		}
 	];
 

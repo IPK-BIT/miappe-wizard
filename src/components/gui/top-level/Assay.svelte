@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { getAppstate, updateAppstate } from '../../../lib/appstate.svelte';
-	import { isaObj } from '../../../stores/isa';
-	import BreadcrumbWidget from '../../ts4nfdi/BreadcrumbWidget.svelte';
-	import { parseIsaLvl, constructStudyPath } from '../../../lib/util/breadcrumbUtils';
-	import EditAsButton from '../building-blocks/EditAsButton.svelte';
-	import Materials from '../building-blocks/Materials.svelte';
-	import ProcessSequence from '../building-blocks/ProcessSequence.svelte';
+	import { getAppstate, updateAppstate } from '$lib/appstate.svelte';
+	import { isaObj } from '$stores/isa';
+	import BreadcrumbWidget from '$components/ts4nfdi/BreadcrumbWidget.svelte';
+	import { parseIsaLvl, constructStudyPath } from '$lib/util/breadcrumbUtils';
+	import EditAsButton from '$components/gui/building-blocks/EditAsButton.svelte';
+	import Materials from '$components/gui/building-blocks/Materials.svelte';
+	import ProcessSequence from '$components/gui/building-blocks/ProcessSequence.svelte';
 
 	let { value: assay = $bindable(), config } = $props();
 

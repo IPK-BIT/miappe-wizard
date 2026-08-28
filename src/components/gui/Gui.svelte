@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { getAppstate } from '../../lib/appstate.svelte';
-	import { isaObj } from '../../stores/isa';
+	import { getAppstate } from '$lib/appstate.svelte';
+	import { isaObj } from '$stores/isa';
 	import Exports from './Exports.svelte';
 	import Assay from './top-level/Assay.svelte';
 	import Investigation from './top-level/Investigation.svelte';

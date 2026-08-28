@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { getAppstate } from '../../lib/appstate.svelte';
-	import { componentTypes, fieldTypes } from '../../lib/config/mapping';
-	import { isaObj } from '../../stores/isa';
+	import { getAppstate } from '$lib/appstate.svelte';
+	import { componentTypes, fieldTypes } from '$lib/config/mapping';
+	import { isaObj } from '$stores/isa';
 
 	let { label = '', attr, attr2 = undefined, explanation = '', showLabel = true, type } = $props();
 

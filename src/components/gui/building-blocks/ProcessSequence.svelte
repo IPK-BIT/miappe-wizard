@@ -1,5 +1,5 @@
 <script lang="ts">
-	import BreadcrumbWidget from '../../ts4nfdi/BreadcrumbWidget.svelte';
+	import BreadcrumbWidget from "$components/ts4nfdi/BreadcrumbWidget.svelte";
 
 	let { processes, config } = $props();
 </script>

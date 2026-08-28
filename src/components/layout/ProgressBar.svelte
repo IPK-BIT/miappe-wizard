@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getAppstate } from '../../lib/appstate.svelte';
+	import { getAppstate } from '$lib/appstate.svelte';
 
 	let { totalSteps } = $props();
 </script>

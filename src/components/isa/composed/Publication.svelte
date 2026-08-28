@@ -1,6 +1,6 @@
 <script lang="ts">
-	import OntologyAnnotation from '../singleton/OntologyAnnotation.svelte';
-	import String from '../singleton/String.svelte';
+	import OntologyAnnotation from '$components/isa/singleton/OntologyAnnotation.svelte';
+	import String from '$components/isa/singleton/String.svelte';
 
 	let {
 		label = 'Publication',

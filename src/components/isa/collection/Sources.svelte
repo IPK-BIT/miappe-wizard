@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Schema from '../../../lib/schemas';
-	import MaterialUpload from '../../util/MaterialUpload.svelte';
+	import Schema from '$lib/schemas';
+	import MaterialUpload from '$components/util/MaterialUpload.svelte';
 
 	let {
 		label = 'Sources',

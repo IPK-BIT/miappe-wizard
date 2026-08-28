@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { ISASourceSchema } from '../../lib/types/isa.generated';
-	import Modal from '../layout/Modal.svelte';
+	import type { ISASourceSchema } from '$lib/types/isa.generated';
+	import Modal from '$components/layout/Modal.svelte';
 
 	export type EntityType = 'Source' | 'Material' | 'Sample' | 'Data';
 	export type TypedEntity = { item: ISASourceSchema; type: EntityType };

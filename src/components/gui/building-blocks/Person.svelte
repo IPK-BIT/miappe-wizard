@@ -1,5 +1,5 @@
 <script lang="ts">
-	import orcid from '../../../assets/orcid.png';
+	import orcid from '$assets/orcid.png';
 
 	let { person } = $props();
 </script>

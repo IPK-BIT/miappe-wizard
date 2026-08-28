@@ -1,6 +1,6 @@
 <script lang="ts">
-	import BreadcrumbWidget from '../../ts4nfdi/BreadcrumbWidget.svelte';
-	import TitleWidget from '../../ts4nfdi/TitleWidget.svelte';
+	import BreadcrumbWidget from '$components/ts4nfdi/BreadcrumbWidget.svelte';
+	import TitleWidget from '$components/ts4nfdi/TitleWidget.svelte';
 
 	let { collection, config, label } = $props();
 

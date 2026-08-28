@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Schema from '../../../lib/schemas';
-	import Data from '../composed/Data.svelte';
+	import Schema from '$lib/schemas';
+	import Data from '$components/isa/composed/Data.svelte';
 
 	let {
 		label = 'Data Files',

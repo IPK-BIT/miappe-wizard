@@ -1,5 +1,5 @@
 <script lang="ts">
-	import doi from '../../../assets/doi.png';
+	import doi from '$assets/doi.png';
 
 	let { publication } = $props();
 </script>

@@ -3,7 +3,7 @@
 	import Select from "$components/isa/singleton/Select.svelte";
 	import String from "$components/isa/singleton/String.svelte";
 	import Modal from "$components/layout/Modal.svelte";
-	import Schema from "../../../lib/schemas";
+	import Schema from "$lib/schemas";
 
 	interface Call {
 		service: string;

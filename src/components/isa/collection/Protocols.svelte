@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Schema from '../../../lib/schemas';
-	import Protocol from '../composed/Protocol.svelte';
+	import Schema from '$lib/schemas';
+	import Protocol from '$components/isa/composed/Protocol.svelte';
 
 	let {
 		label = 'Protocols',

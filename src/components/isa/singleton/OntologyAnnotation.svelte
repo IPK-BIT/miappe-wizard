@@ -1,10 +1,8 @@
 <script lang="ts">
-	import { getConfig } from '../../../lib/config.svelte';
-	import Schema from '../../../lib/schemas';
-	import AutoCompleteWidget from '../../ts4nfdi/AutoCompleteWidget.svelte';
-	import BreadcrumbWidget from '../../ts4nfdi/BreadcrumbWidget.svelte';
-	import MetadataWidget from '../../ts4nfdi/MetadataWidget.svelte';
-	import TitleWidget from '../../ts4nfdi/TitleWidget.svelte';
+	import { getConfig } from '$lib/config.svelte';
+	import Schema from '$lib/schemas';
+	import AutoCompleteWidget from '$components/ts4nfdi/AutoCompleteWidget.svelte';
+	import BreadcrumbWidget from '$components/ts4nfdi/BreadcrumbWidget.svelte';
 
 	function selectionChangedEvent(
 		selectedOptions: { label: string; iri?: string; ontology_name?: string; type?: string }[]

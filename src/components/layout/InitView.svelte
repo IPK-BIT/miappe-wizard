@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { updateAppstate } from '../../lib/appstate.svelte';
-	import { isaObj } from '../../stores/isa';
-	import logo from '../../assets/logo.png';
+	import { updateAppstate } from '$lib/appstate.svelte';
+	import { isaObj } from '$stores/isa';
+	import logo from '$assets/logo.png';
 
 	function startQuestionnaire() {
 		updateAppstate({ mode: 'wizard' });

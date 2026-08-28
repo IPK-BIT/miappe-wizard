@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { getAppstate, updateAppstate } from '../../lib/appstate.svelte';
-	import { isaObj } from '../../stores/isa';
+	import { getAppstate, updateAppstate } from '$lib/appstate.svelte';
+	import { isaObj } from '$stores/isa';
 	import {
 		constructAssayPath,
 		constructStudyPath,
 		parseIsaLvl
-	} from '../../lib/util/breadcrumbUtils';
+	} from '$lib/util/breadcrumbUtils';
 
 	const activeNode = $derived.by(() => parseIsaLvl(getAppstate().isaLvl));
 

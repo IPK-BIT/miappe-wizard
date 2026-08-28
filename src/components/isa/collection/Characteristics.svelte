@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Schema from '../../../lib/schemas';
-	import Characteristic from '../composed/Characteristic.svelte';
+	import Schema from '$lib/schemas';
+	import Characteristic from '$components/isa/composed/Characteristic.svelte';
 
 	let {
 		label = 'Characteristics',

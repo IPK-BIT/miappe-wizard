@@ -1,5 +1,5 @@
 <script lang="ts">
-	import OntologyAnnotation from '../singleton/OntologyAnnotation.svelte';
+	import OntologyAnnotation from '$components/isa/singleton/OntologyAnnotation.svelte';
 
 	let {
 		label = 'Protocol Parameter',

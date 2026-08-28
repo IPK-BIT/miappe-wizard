@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { keyed } from '@humanspeak/svelte-keyed';
-	import String from '../singleton/String.svelte';
+	import String from '$components/isa/singleton/String.svelte';
 	import { derived } from 'svelte/store';
-	import Orcid from '../singleton/Orcid.svelte';
+	import Orcid from '$components/isa/singleton/Orcid.svelte';
 
 	let {
 		label = 'Person',

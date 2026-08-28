@@ -1,7 +1,7 @@
 import { writable, get, derived } from 'svelte/store';
 import { keyed } from '@humanspeak/svelte-keyed';
-import Schema from '../lib/schemas';
-import type { ISAInvestigationSchema } from '../lib/types/isa.generated';
+import Schema from '$lib/schemas';
+import type { ISAInvestigationSchema } from '$lib/types/isa.generated';
 
 function createIsaStoresSynced() {
 	const initialIsa = Schema.getObjectFromSchema('investigation') as ISAInvestigationSchema;

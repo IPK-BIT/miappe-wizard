@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { getAppstate, updateAppstate } from '../../../lib/appstate.svelte';
-	import Schema from '../../../lib/schemas';
-	import { isaObj } from '../../../stores/isa';
-	import BreadcrumbWidget from '../../ts4nfdi/BreadcrumbWidget.svelte';
-	import EditAsButton from '../building-blocks/EditAsButton.svelte';
-	import Materials from '../building-blocks/Materials.svelte';
-	import Person from '../building-blocks/Person.svelte';
-	import ProcessSequence from '../building-blocks/ProcessSequence.svelte';
-	import Protocols from '../building-blocks/Protocols.svelte';
-	import Publication from '../building-blocks/Publication.svelte';
-	import TemplateCards from '../building-blocks/TemplateCards.svelte';
+	import { getAppstate, updateAppstate } from '$lib/appstate.svelte';
+	import Schema from '$lib/schemas';
+	import { isaObj } from '$stores/isa';
+	import BreadcrumbWidget from '$components/ts4nfdi/BreadcrumbWidget.svelte';
+	import EditAsButton from '$components/gui/building-blocks/EditAsButton.svelte';
+	import Materials from '$components/gui/building-blocks/Materials.svelte';
+	import Person from '$components/gui/building-blocks/Person.svelte';
+	import ProcessSequence from '$components/gui/building-blocks/ProcessSequence.svelte';
+	import Protocols from '$components/gui/building-blocks/Protocols.svelte';
+	import Publication from '$components/gui/building-blocks/Publication.svelte';
+	import TemplateCards from '$components/gui/building-blocks/TemplateCards.svelte';
 
 	let { value: study = $bindable(), config } = $props();
 
