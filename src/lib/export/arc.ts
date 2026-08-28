@@ -1,5 +1,6 @@
+// @ts-expect-error – @fslab/fsspreadsheet does not declare types
 import { Xlsx } from '@fslab/fsspreadsheet';
-import { ARC, Contract, JsonController } from '@nfdi4plants/arctrl';
+import { ARC, JsonController } from '@nfdi4plants/arctrl';
 import { downloadZip } from 'client-zip';
 
 export async function convertIsaJsonToArc(data: any) {
