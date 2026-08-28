@@ -15,12 +15,12 @@
 {#if templates.length === 0}
 	<p class="text-sm text-neutral/75 italic">{emptyMessage}</p>
 {:else}
-	<h2 class="font-semibold mb-2">{heading}</h2>
-	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+	<h2 class="mb-2 font-semibold">{heading}</h2>
+	<div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
 		{#each templates as template (template.metadata.code)}
 			<button
 				type="button"
-				class="card card-compact bg-base-100 border border-base-300 text-left transition-all hover:border-primary hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary/50"
+				class="card-compact card border border-base-300 bg-base-100 text-left transition-all hover:border-primary hover:shadow-md focus:ring-2 focus:ring-primary/50 focus:outline-none"
 				onclick={() => onSelect(template)}
 			>
 				<div class="card-body">
@@ -29,7 +29,7 @@
 						<p class="text-sm text-neutral/70">{template.metadata.description}</p>
 					{/if}
 					{#if template.metadata.code}
-						<span class="badge badge-ghost badge-sm mt-1">{template.metadata.code}</span>
+						<span class="mt-1 badge badge-ghost badge-sm">{template.metadata.code}</span>
 					{/if}
 				</div>
 			</button>

@@ -138,28 +138,28 @@
 				<th class="w-1/4 align-top">Study Design Descriptors</th>
 				<td class="w-3/4">
 					<div class="overflow-x-auto">
-					<table class="table w-full">
-						<thead>
-							<tr>
-								<th>Annotation Value</th>
-								<th>Term Accession</th>
-							</tr>
-						</thead>
-						<tbody>
-							{#each study.studyDesignDescriptors as studyDesignDescriptor (studyDesignDescriptor)}
+						<table class="table w-full">
+							<thead>
 								<tr>
-									<td>{studyDesignDescriptor.annotationValue}</td>
-									<td
-										><BreadcrumbWidget
-											api={config['lookup-services'].ts.api}
-											iri={studyDesignDescriptor.termAccession}
-											ontologyId={studyDesignDescriptor.termSource}
-										/></td
-									>
+									<th>Annotation Value</th>
+									<th>Term Accession</th>
 								</tr>
-							{/each}
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								{#each study.studyDesignDescriptors as studyDesignDescriptor (studyDesignDescriptor)}
+									<tr>
+										<td>{studyDesignDescriptor.annotationValue}</td>
+										<td
+											><BreadcrumbWidget
+												api={config['lookup-services'].ts.api}
+												iri={studyDesignDescriptor.termAccession}
+												ontologyId={studyDesignDescriptor.termSource}
+											/></td
+										>
+									</tr>
+								{/each}
+							</tbody>
+						</table>
 					</div>
 				</td>
 			</tr>
@@ -189,23 +189,26 @@
 							<span class="text-sm text-neutral/75 italic">No assays defined</span>
 						{/if}
 						<div class="overflow-x-auto">
-						<table class="table">
-							<tbody>
-								{#each study.assays as assay, i (assay)}
-									<tr class="hover:cursor-pointer hover:bg-primary/10" onclick={() => openAssay(i)}>
-										<td>
-											<span
-												>{assay.filename ||
-													assay.comments?.find(
-														(c: { name: string; value: string }) => c.name === 'title'
-													)?.value ||
-													`Assay ${i + 1}`}</span
-											>
-										</td>
-									</tr>
-								{/each}
-							</tbody>
-						</table>
+							<table class="table">
+								<tbody>
+									{#each study.assays as assay, i (assay)}
+										<tr
+											class="hover:cursor-pointer hover:bg-primary/10"
+											onclick={() => openAssay(i)}
+										>
+											<td>
+												<span
+													>{assay.filename ||
+														assay.comments?.find(
+															(c: { name: string; value: string }) => c.name === 'title'
+														)?.value ||
+														`Assay ${i + 1}`}</span
+												>
+											</td>
+										</tr>
+									{/each}
+								</tbody>
+							</table>
 						</div>
 					</div>
 					<div class="mt-2">
@@ -229,22 +232,22 @@
 				<td class="w-3/4">
 					{#if study.comments && study.comments.length > 0}
 						<div class="overflow-x-auto">
-						<table class="table w-full">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Value</th>
-								</tr>
-							</thead>
-							<tbody>
-								{#each study.comments as comment}
+							<table class="table w-full">
+								<thead>
 									<tr>
-										<td>{comment.name}</td>
-										<td>{comment.value}</td>
+										<th>Name</th>
+										<th>Value</th>
 									</tr>
-								{/each}
-							</tbody>
-						</table>
+								</thead>
+								<tbody>
+									{#each study.comments as comment}
+										<tr>
+											<td>{comment.name}</td>
+											<td>{comment.value}</td>
+										</tr>
+									{/each}
+								</tbody>
+							</table>
 						</div>
 					{/if}
 				</td>

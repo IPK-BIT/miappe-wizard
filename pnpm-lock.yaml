@@ -8,12 +8,18 @@ importers:
 
   .:
     dependencies:
+      '@fslab/fsspreadsheet':
+        specifier: ^6.3.1
+        version: 6.3.1
       '@humanspeak/svelte-keyed':
         specifier: ^5.0.1
         version: 5.0.1
       '@nfdi4plants/arctrl':
         specifier: ^3.2.1
         version: 3.2.1
+      client-zip:
+        specifier: ^2.5.0
+        version: 2.5.0
       dataframe-js:
         specifier: ^1.4.4
         version: 1.4.4
@@ -103,6 +109,9 @@ packages:
 
   '@fast-csv/parse@4.3.6':
     resolution: {integrity: sha512-uRsLYksqpbDmWaSmzvJcuApSEe38+6NQZBUsuAyMZKqHxH0g1wcJgsKUvN3WC8tewaqFjBMMGrkHmC+T7k8LvA==}
+
+  '@fslab/fsspreadsheet@6.3.1':
+    resolution: {integrity: sha512-Qx5UsUusb5RvCbUsOGFpuQci40fEX4CKg5gKh6eJj4nENaMbEwLobJzX635O5Vq28EIIIpOhs/xvnPLj+Cg52w==}
 
   '@humanspeak/svelte-keyed@5.0.1':
     resolution: {integrity: sha512-jFvANd9Nb5B/u9ELTSw1iUyuckgjF9R15BvK1V7eLLPurt4hxu35bZAoZMkqYxmj8fazcSw9UkmEu66jZ0+0Rg==}
@@ -463,6 +472,9 @@ packages:
   chokidar@4.0.3:
     resolution: {integrity: sha512-Qgzu8kfBvo+cA4962jnP1KkS6Dop5NS6g7R5LFYJr4b8Ub94PPQXUksCw9PvXoeXPRRddRNC5C1JQUR2SMGtnA==}
     engines: {node: '>= 14.16.0'}
+
+  client-zip@2.5.0:
+    resolution: {integrity: sha512-ydG4nDZesbFurnNq0VVCp/yyomIBh+X/1fZPI/P24zbnG4dtC4tQAfI5uQsomigsUMeiRO2wiTPizLWQh+IAyQ==}
 
   clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
@@ -1252,6 +1264,10 @@ snapshots:
       lodash.isundefined: 3.0.1
       lodash.uniq: 4.5.0
 
+  '@fslab/fsspreadsheet@6.3.1':
+    dependencies:
+      '@nfdi4plants/exceljs': 0.3.0
+
   '@humanspeak/svelte-keyed@5.0.1': {}
 
   '@jridgewell/gen-mapping@0.3.13':
@@ -1564,6 +1580,8 @@ snapshots:
   chokidar@4.0.3:
     dependencies:
       readdirp: 4.1.2
+
+  client-zip@2.5.0: {}
 
   clsx@2.1.1: {}
 

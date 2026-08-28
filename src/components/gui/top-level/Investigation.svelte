@@ -13,10 +13,10 @@
 	function switchToTemplate(template: any) {
 		let emptyObj = Schema.getObjectFromSchema('study');
 
-        if (!emptyObj) {
-            return;
-        }
-		
+		if (!emptyObj) {
+			return;
+		}
+
 		$isaObj.studies = [...($isaObj.studies ?? []), emptyObj];
 		$isaObj = $isaObj; // trigger reactivity
 
@@ -123,26 +123,26 @@
 						<span class="text-sm text-neutral/75 italic">No studies defined</span>
 					{/if}
 					<div class="overflow-x-auto">
-					<table class="table">
-						<tbody>
-							{#each $isaObj.studies as study, i (study)}
-								<tr class="hover:cursor-pointer hover:bg-primary/10" onclick={() => openStudy(i)}>
-									<td>
-										<span>{study.title || 'Untitled Study'}</span>
-									</td>
-									<td>
-										<div class="flex space-x-2">
-											{#each study.studyDesignDescriptors as studyDesignDescriptor (studyDesignDescriptor)}
-												<span class="badge badge-sm badge-secondary"
-													>{studyDesignDescriptor.annotationValue}</span
-												>
-											{/each}
-										</div>
-									</td>
-								</tr>
-							{/each}
-						</tbody>
-					</table>
+						<table class="table">
+							<tbody>
+								{#each $isaObj.studies as study, i (study)}
+									<tr class="hover:cursor-pointer hover:bg-primary/10" onclick={() => openStudy(i)}>
+										<td>
+											<span>{study.title || 'Untitled Study'}</span>
+										</td>
+										<td>
+											<div class="flex space-x-2">
+												{#each study.studyDesignDescriptors as studyDesignDescriptor (studyDesignDescriptor)}
+													<span class="badge badge-sm badge-secondary"
+														>{studyDesignDescriptor.annotationValue}</span
+													>
+												{/each}
+											</div>
+										</td>
+									</tr>
+								{/each}
+							</tbody>
+						</table>
 					</div>
 				</div>
 				<div class="mt-2">
@@ -165,22 +165,22 @@
 			<th class="w-1/4 align-top">Comments</th>
 			<td>
 				<div class="overflow-x-auto">
-				<table class="table w-full">
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Value</th>
-						</tr>
-					</thead>
-					<tbody>
-						{#each $isaObj.comments as comment}
+					<table class="table w-full">
+						<thead>
 							<tr>
-								<td>{comment.name}</td>
-								<td>{comment.value}</td>
+								<th>Name</th>
+								<th>Value</th>
 							</tr>
-						{/each}
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							{#each $isaObj.comments as comment}
+								<tr>
+									<td>{comment.name}</td>
+									<td>{comment.value}</td>
+								</tr>
+							{/each}
+						</tbody>
+					</table>
 				</div>
 			</td>
 		</tr>

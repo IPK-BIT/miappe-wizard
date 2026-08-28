@@ -161,22 +161,22 @@
 			<td>
 				{#if assay.comments && assay.comments.length > 0}
 					<div class="overflow-x-auto">
-					<table class="table w-full">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Value</th>
-							</tr>
-						</thead>
-						<tbody>
-							{#each assay.comments as comment}
+						<table class="table w-full">
+							<thead>
 								<tr>
-									<td>{comment.name}</td>
-									<td>{comment.value}</td>
+									<th>Name</th>
+									<th>Value</th>
 								</tr>
-							{/each}
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								{#each assay.comments as comment}
+									<tr>
+										<td>{comment.name}</td>
+										<td>{comment.value}</td>
+									</tr>
+								{/each}
+							</tbody>
+						</table>
 					</div>
 				{/if}
 			</td>

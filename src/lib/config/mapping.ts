@@ -1,6 +1,6 @@
 /**
  * ISA Components
-*/
+ */
 import OntologyAnnotations from '$components/isa/collection/OntologyAnnotations.svelte';
 import People from '$components/isa/collection/People.svelte';
 import Protocols from '$components/isa/collection/Protocols.svelte';
@@ -16,7 +16,7 @@ import DataFiles from '$components/isa/collection/DataFiles.svelte';
 
 /**
  * BrAPI Components
-*/
+ */
 
 import BrapiImages from '$components/brapi/collection/BrapiImages.svelte';
 
@@ -36,5 +36,5 @@ export const componentTypes = {
 	entities: Entities,
 	processes: ProcessSequence,
 	data: DataFiles,
-	"brapi:images": BrapiImages
+	'brapi:images': BrapiImages
 };

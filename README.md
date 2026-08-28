@@ -16,7 +16,7 @@ Or configure it from JavaScript, once `widget.mjs` has registered the element:
 
 ```js
 const widget = document.querySelector('isa-wizard');
-widget.setConfig({ /* WizardConfig */ });
+widget.setConfig({/* WizardConfig */});
 widget.onFinish = (data) => {
 	console.log(data.investigation); // completed ISA-Tab investigation JSON
 };

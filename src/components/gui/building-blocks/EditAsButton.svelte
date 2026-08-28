@@ -36,7 +36,10 @@
 			</svg>
 		</div>
 		<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-		<ul tabindex="0" class="dropdown-content menu menu-sm z-10 w-56 rounded-box bg-base-100 p-2 shadow">
+		<ul
+			tabindex="0"
+			class="menu dropdown-content z-10 w-56 menu-sm rounded-box bg-base-100 p-2 shadow"
+		>
 			{#each templates as template (template.metadata.code)}
 				<li>
 					<button onclick={() => onSelect(template)}>{template.metadata.label}</button>

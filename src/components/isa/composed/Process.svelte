@@ -1,15 +1,12 @@
 <script lang="ts">
 	import { getAppstate } from '$lib/appstate.svelte';
 	import { isaObj } from '$stores/isa';
-	import type {
-		ISAProcessParameterValueSchema,
-		ISASourceSchema
-	} from '$lib/types/isa.generated';
+	import type { ISAProcessParameterValueSchema, ISASourceSchema } from '$lib/types/isa.generated';
 	import Select from '$components/isa/singleton/Select.svelte';
 	import String from '$components/isa/singleton/String.svelte';
 	import Schema from '$lib/schemas';
 	import ParameterValues from '$components/isa/collection/ParameterValues.svelte';
-	import EntitySelectModal, {type TypedEntity} from '$components/util/EntitySelectModal.svelte';
+	import EntitySelectModal, { type TypedEntity } from '$components/util/EntitySelectModal.svelte';
 
 	let {
 		label = 'Process',
@@ -331,16 +328,10 @@
 				<span></span>
 			{/if}
 			<div class="flex shrink-0 gap-2">
-				<button
-					type="button"
-					class="btn btn-secondary btn-sm"
-					onclick={() => (isEditing = false)}
-				>
+				<button type="button" class="btn btn-secondary btn-sm" onclick={() => (isEditing = false)}>
 					View
 				</button>
-				<button type="button" class="btn btn-error btn-sm" onclick={handleRemove}>
-					Remove
-				</button>
+				<button type="button" class="btn btn-error btn-sm" onclick={handleRemove}> Remove </button>
 			</div>
 		</div>
 
@@ -373,8 +364,7 @@
 		<fieldset class="fieldset">
 			<legend class="fieldset-legend">Materials</legend>
 			<div
-				class="rounded-lg border bg-base-100 p-2 {process.inputs.length ===
-				process.outputs.length
+				class="rounded-lg border bg-base-100 p-2 {process.inputs.length === process.outputs.length
 					? 'border-base-300'
 					: 'border-error'}"
 			>
@@ -446,7 +436,7 @@
 												<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 												<ul
 													tabindex="0"
-													class="dropdown-content menu z-30 w-44 rounded-box border border-base-200 bg-base-100 p-1 text-xs shadow"
+													class="menu dropdown-content z-30 w-44 rounded-box border border-base-200 bg-base-100 p-1 text-xs shadow"
 												>
 													<li>
 														<button type="button" onclick={() => fillColumnInput(i)}>
@@ -490,7 +480,7 @@
 												<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 												<ul
 													tabindex="0"
-													class="dropdown-content menu z-30 w-44 rounded-box border border-base-200 bg-base-100 p-1 text-xs shadow"
+													class="menu dropdown-content z-30 w-44 rounded-box border border-base-200 bg-base-100 p-1 text-xs shadow"
 												>
 													<li>
 														<button
@@ -532,7 +522,7 @@
 												<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 												<ul
 													tabindex="0"
-													class="dropdown-content menu z-30 w-44 rounded-box border border-base-200 bg-base-100 p-1 text-xs shadow"
+													class="menu dropdown-content z-30 w-44 rounded-box border border-base-200 bg-base-100 p-1 text-xs shadow"
 												>
 													<li>
 														<button type="button" onclick={() => fillColumnOutput(i)}>
@@ -576,7 +566,7 @@
 												<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 												<ul
 													tabindex="0"
-													class="dropdown-content menu z-30 w-44 rounded-box border border-base-200 bg-base-100 p-1 text-xs shadow"
+													class="menu dropdown-content z-30 w-44 rounded-box border border-base-200 bg-base-100 p-1 text-xs shadow"
 												>
 													<li>
 														<button
@@ -663,15 +653,17 @@
 		</fieldset>
 	</div>
 {:else}
-	<div class="flex items-center justify-between gap-4 rounded-lg border border-neutral bg-base-200 p-4">
+	<div
+		class="flex items-center justify-between gap-4 rounded-lg border border-neutral bg-base-200 p-4"
+	>
 		<div class="space-y-1">
 			{#if showLabel}
 				<p class="text-xs font-semibold tracking-wide text-base-content/50 uppercase">{label}</p>
 			{/if}
-			<p class="italic text-base-content/70">
+			<p class="text-base-content/70 italic">
 				{process.name?.trim() ? process.name : 'No process name provided'}
 			</p>
-			<p class="text-sm italic text-base-content/60">
+			<p class="text-sm text-base-content/60 italic">
 				{process.executesProtocol?.name
 					? `Executes: ${process.executesProtocol.name}`
 					: 'No protocol selected'}

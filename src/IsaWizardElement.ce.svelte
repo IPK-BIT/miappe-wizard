@@ -35,7 +35,9 @@
 	} = $props();
 
 	async function handleFinish(data: WizardFinishData) {
-		$host().dispatchEvent(new CustomEvent('finish', { detail: data, bubbles: true, composed: true }));
+		$host().dispatchEvent(
+			new CustomEvent('finish', { detail: data, bubbles: true, composed: true })
+		);
 		await onFinish?.(data);
 	}
 

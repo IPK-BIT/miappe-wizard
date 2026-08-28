@@ -71,14 +71,13 @@
 
 			loading = false;
 		} catch (err) {
-			const normalizedError = err instanceof Error ? err : new Error('Failed to load configuration');
+			const normalizedError =
+				err instanceof Error ? err : new Error('Failed to load configuration');
 			error = normalizedError.message;
 			loading = false;
 			await onError?.(normalizedError);
 		}
 	}
-
-
 </script>
 
 {#if loading}
@@ -119,10 +118,7 @@
 			<div class="col-start-2 row-start-2 mt-5 overflow-y-auto px-2.5 py-0 pb-5">
 				{#if getAppstate().mode === 'wizard'}
 					<div class="card bg-base-100 p-4 shadow-md">
-						<Questionnaire
-							config={wizardConfig.templates[getAppstate().template]}
-							{onFinish}
-						/>
+						<Questionnaire config={wizardConfig.templates[getAppstate().template]} {onFinish} />
 					</div>
 				{:else if getAppstate().mode === 'init'}
 					<InitView />
