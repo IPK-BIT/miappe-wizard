@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { convertIsaJsonToArc} from '$lib/export/arc';
+	import { convertIsaJsonToArc } from '$lib/export/arc';
 	import { convertIsaJsonToZip } from 'isa4js';
 	import { isaObj } from '$stores/isa';
 
@@ -20,7 +20,6 @@
 		const clonedJson = JSON.parse(JSON.stringify(investigationJson));
 
 		for (const study of clonedJson.get?.('studies') || clonedJson.studies || []) {
-
 			const assays = study.assays || [];
 			for (let i = 0; i < assays.length; i++) {
 				const assay = assays[i];
@@ -116,7 +115,7 @@
 	<div class="collapse-content text-sm">
 		{#if errorMessage}
 			<div
-				class="flex items-center gap-2 border-b border-error/20 bg-error/10 p-4 text-sm text-error"
+				class="flex items-center gap-2 border-b-2 border-error/20 bg-error/10 p-4 text-sm text-error"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
