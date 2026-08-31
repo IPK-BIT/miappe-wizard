@@ -81,7 +81,7 @@
 		{
 			id: 'arc',
 			title: 'ARC',
-			description: 'Export as ARC directory compressed into a ZIP archive.',
+			description: 'Export as ARC directory compressed into a ZIP archive. Experimental',
 			filename: 'arc.zip',
 			formatBadge: 'ZIP',
 			action: async (data) => {
