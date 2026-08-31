@@ -186,7 +186,7 @@
 				<td class="w-3/4">
 					<div>
 						{#if study.assays && study.assays.length === 0}
-							<span class="text-sm text-neutral/75 italic">No assays defined</span>
+							<span class="text-sm text-base-content/75 italic">No assays defined</span>
 						{/if}
 						<div class="overflow-x-auto">
 							<table class="table">
